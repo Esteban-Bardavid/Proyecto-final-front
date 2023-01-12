@@ -17,36 +17,30 @@ function NavBarComponent() {
             </div>
 
             <div className="navbar-container">
-                <Navbar className="navContainer" expand="lg">
-
-                    <div className="d-flex juatify-content-center " >
-                        <Navbar.Brand href="#">ROLLING SHOES</Navbar.Brand>
-
+                <Navbar  expand="lg">
+                    <Container fluid>
+                        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
-                            <div className="form-box">
-                                <Form className="d-flex">
-                                    <Form.Control
-                                        type="search"
-                                        placeholder="Adidas, Nike"
-                                        className="me-2"
-                                        aria-label="Search" />
-                                    <Button variant="outline-success">Buscar</Button>
-                                </Form>
-                            </div>
-                            <div className="nav-links">
-                                <Nav>
-                                    <Nav.Link href="#action1">HomeIcons</Nav.Link>
-                                    <Nav.Link href="#action2">Destacados</Nav.Link>
-                                    <Nav.Link href="#action3">CarritoIcons</Nav.Link>
-                                    <Nav.Link href="#action4">Contacto</Nav.Link>
-                                    <Nav.Link href="#action5">Perfil</Nav.Link>
-                                    <Nav.Link href="#action6">Ayuda</Nav.Link>
-                                </Nav>
-                            </div>
+                            <Form className="d-flex">
+                                <Form.Control
+                                    type="search"
+                                    placeholder="Search"
+                                    className="me-2"
+                                    aria-label="Search"
+                                />
+                                <Button variant="outline-success">Search</Button>
+                            </Form>
+                            <Nav>
+                                <Nav.Link href="#action1">HomeIcons</Nav.Link>
+                                <Nav.Link href="#action2">Destacados</Nav.Link>
+                                <Nav.Link href="#action3">CarritoIcons</Nav.Link>
+                                <Nav.Link href="#action4">Contacto</Nav.Link>
+                                <Nav.Link href="#action5">Perfil</Nav.Link>
+                                <Nav.Link href="#action6">Ayuda</Nav.Link>
+                            </Nav>
                         </Navbar.Collapse>
-                    </div>
-
+                    </Container>
                 </Navbar>
             </div>
         </div>
@@ -54,3 +48,6 @@ function NavBarComponent() {
 }
 
 export default NavBarComponent;
+
+
+

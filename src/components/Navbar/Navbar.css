@@ -1,4 +1,4 @@
-.navContainer {
+ .navbar{
     display: flex;
     justify-content: space-evenly;
     background-color: rgb(235, 96, 15);
