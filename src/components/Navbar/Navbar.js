@@ -2,6 +2,9 @@ import "./Navbar.css";
 import { Container, Nav, Navbar, Button, NavDropdown, Form } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
+
+
+
 function NavBarComponent() {
     const token = localStorage.getItem('token');
 
@@ -19,7 +22,7 @@ function NavBarComponent() {
             <div className="navbar-container">
                 <Navbar  expand="lg">
                     <Container fluid>
-                        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                        <Navbar.Brand href="#">ROLLING SHOES</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Form className="d-flex">
@@ -29,7 +32,7 @@ function NavBarComponent() {
                                     className="me-2"
                                     aria-label="Search"
                                 />
-                                <Button variant="outline-success">Search</Button>
+                                <Button variant="outline-success">Buscar</Button>
                             </Form>
                             <Nav>
                                 <Nav.Link href="#action1">HomeIcons</Nav.Link>
