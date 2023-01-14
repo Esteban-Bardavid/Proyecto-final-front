@@ -1,0 +1,56 @@
+*{
+    font-family: 'Slabo 27px', serif;
+    margin: 0%;
+    padding: 0%;
+}
+#FirstButton{
+    background-color: rgb(36, 55, 99);
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.ConteinerInputLogin {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.OptionLogin {
+    background-color: rgb(255, 255, 255);
+    width: 155px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    border-color: rgb(9, 121, 206);
+    border-style: double;
+    border-radius: 50px;
+}
+
+.ConteinerOptionsLogin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+#ConteinerForgottenPassword{
+    display: flex;
+    flex-direction: row;
+}
+#CloseLoginButton{
+    background-color: rgb(173, 142, 112);
+    padding: 10px;
+    border-radius: 15px;
+    border-color: rgb(173, 142, 112);
+}
+#ReadyLoginButton{
+    background-color: rgb(255, 110, 49);
+    padding: 10px;
+    border-radius: 15px;
+    border-color:rgb(255, 110, 49); ;
+}
