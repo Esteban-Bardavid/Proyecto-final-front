@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPage from "./pages/Admin/AdminPage";
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
-import ProfilePage from "./pages/Profile/ProfilePage";
+import ProductsPage from "./pages/Products/ProductsPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <div className='mt-5'>
               <HomePage />
             </div>
+            <Footer />
           </div>
         }>
         </Route>
@@ -29,6 +31,7 @@ function App() {
             <div className='mt-5'>
               <LoginPage />
             </div>
+            <Footer />
           </div>
         }>
         </Route>
@@ -38,6 +41,7 @@ function App() {
             <div className='mt-5'>
               <RegisterPage />
             </div>
+            <Footer />
           </div>
         }>
         </Route>
@@ -47,15 +51,17 @@ function App() {
             <div className='mt-5'>
               <ErrorPage />
             </div>
+            <Footer />
           </div>
         }>
         </Route>
-        <Route path='/profile' element={
+        <Route path='/products' element={
           <div>
             <Navbar />
             <div className='mt-5'>
-              <ProfilePage />
+              <ProductsPage />
             </div>
+            <Footer />
           </div>
         }>
         </Route>
