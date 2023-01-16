@@ -52,7 +52,7 @@ function App() {
         </Route>
         <Route path='/profile' element={
           <div>
-            <Navbar />
+            <Navbar/>
             <div className='mt-5'>
               <ProfilePage />
             </div>

@@ -1,39 +1,103 @@
 import "./LoginPage.css";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 import React from "react";
-import {Link} from "react-router-dom";
-import  FooterComponent  from "../../../src/components/Footer/Footer";
+import { Link } from "react-router-dom";
+import FooterComponent from "../../../src/components/Footer/Footer";
+import Navbar from "../../components/Navbar/Navbar";
 
 function LoginPage() {
-    // const { } = useLogin();
-    const [form, setform] = useState({});
+  // const { } = useLogin();
+  const [form, setform] = useState({});
 
-    function onChange(e) {
-        const { name, value } = e.target;
-        const response = { ...form, [name]: value }
-        setform(response)
+  const handleClose = () => setform(false);
+  const handleShow = () => setform(true);
+
+  function onChange(e) {
+    const { name, value } = e.target;
+    const response = { ...form, [name]: value }
+    setform(response)
+  }
+  async function LoginPost() {
+    try {
+
+      const { data } = await axios.post(`http://localhost:3000/api/Login`, form)
+
+      localStorage.setItem('token', data)
+      console.log("usuario rey")
+      alert("todo bein")
+      window.location.href = '/'
+    } catch (error) {
+      console.error('error')
+
     }
-    async function Login() {
-        try {
-            const { data } = await axios.post(`http://localhost:4000/api/auth`, form)
+  }
+  return (
+    <div className="Return">
+      <Button id="FirstButton" onClick={handleShow}>
+        Iniciar Sesion
+      </Button>
 
-            localStorage.setItem('token', data)
+      <Modal
+        show={form}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}>
+        <Modal.Header closeButton>
+          <Modal.Title className="FirstButton">Iniciar Sesion</Modal.Title>
+        </Modal.Header>
 
-            window.location.href = '/'
-        } catch (error) {
-            console.error('error')
 
-        }
-    }
+        <Modal.Body>
+          <h2>Bienvenid@s a ... </h2>
+          <div className="ConteinerInputLogin">
+            <div className="ConteinerInputLogin">
 
-    return (
-        <div>
-           hola soy el login
-        </div>
+              <Form>
+                <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
+                  <Form.Label>Ingrese su email</Form.Label>
+                  <Form.Control
+                    name="email"
+                    type="email"
+                    placeholder="juan@gmail.com" />
+                </Form.Group>
 
-    )
+                <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
+                  <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
+                  <Form.Control
+                    name="lastname"
+                    type="password"
+                    placeholder="************" />
+                </Form.Group>
+              </Form>
+
+
+
+
+              <div id="ConteinerForgottenPassword">
+                <p className="me-2">¿Olvidaste tu contraseña?</p>
+                <a href="http://">Recuperar contraseña</a>
+              </div>
+            </div>
+
+
+          </div>
+
+        </Modal.Body>
+
+
+        <Modal.Footer>
+          <Button id="CloseLoginButton" onClick={handleClose}>
+            Cerrar
+          </Button>
+          <Button id="ReadyLoginButton" onClick={LoginPost}>Listo!
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
+
 
 export default LoginPage;

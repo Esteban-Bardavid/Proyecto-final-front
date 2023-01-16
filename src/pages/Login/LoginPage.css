@@ -1,13 +1,17 @@
 *{
-    font-family: 'Slabo 27px', serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin: 0%;
     padding: 0%;
+}
+#Return{
+    display:flex ;
+    justify-content: center;
 }
 #FirstButton{
     background-color: rgb(36, 55, 99);
 }
 
-.modal-body {
+.modal.body {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,17 +25,6 @@
     padding: 20px;
 }
 
-.OptionLogin {
-    background-color: rgb(255, 255, 255);
-    width: 155px;
-    height: 46px;
-    display: flex;
-    justify-content: center;
-    border-color: rgb(9, 121, 206);
-    border-style: double;
-    border-radius: 50px;
-}
-
 .ConteinerOptionsLogin {
     display: flex;
     flex-direction: row;
@@ -43,10 +36,10 @@
     flex-direction: row;
 }
 #CloseLoginButton{
-    background-color: rgb(173, 142, 112);
+    background-color: rgb(232, 14, 14);
     padding: 10px;
     border-radius: 15px;
-    border-color: rgb(173, 142, 112);
+    border-color: rgba(204, 8, 8, 0.845);
 }
 #ReadyLoginButton{
     background-color: rgb(255, 110, 49);
