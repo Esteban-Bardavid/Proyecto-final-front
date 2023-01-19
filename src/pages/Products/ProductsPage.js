@@ -1,8 +1,7 @@
-import React from "react";
-import "./ProductsPage.css";
-
+import React,{useState} from "react";
+import { useEffect} from "react";
+import products from "../../assets/data/ProductsData";
 import ProductsList from "../../components/ProductCard/ProductsList";
-import { useEffect, useState } from "react";
 import {
   Card,
   Col,
@@ -11,15 +10,102 @@ import {
   ListGroupItem,
   Row,
 } from "react-bootstrap";
+
+import "./ProductsPage.css";
+
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+
+
 function ProductsPage() {
+
+  const [data, setData] = useState(products)
+
+ /* const handleFilter = e=>{
+    const filterValue = e.target.value
+    if(filterValue ==='Mujer'){
+      const filteredProducts = products.filter(item=> item.genero ==='Mujer')
+      setProductsData(filteredProducts);
+    }
+  }*/
+
+  useEffect(()=>{
+    const womanProducts = products.filter(
+      (item)=> item.genero === 'Mujer'
+    );
+
+    setData(womanProducts)
+  })
+
 
 
   return (
-      <div style={{display:'flex', flexDirection:'row', justifyContent:"space-around"}}>
+    <>
+    <section>
+      <Container>
+        <Row>
+          <Col lg='3' md='3'>
+            <div className="filter__widget">
+              
+              <select>
+                <option>Filtrar por categoria</option>
+                <option value="football">Football</option>
+                <option value="running">Running</option>
+                <option value="urbanas">Urbanas</option>
+                <option value="clasicas">Clasicas</option>
+              </select>
+              <select>
+                <option /* onChange={handleFilter}*/>Filtrar por Marcas</option>
+                <option value="Nike">Nike</option>
+                <option value="Adidas">Adidas</option>
+                <option value="Reebok">Reebok</option>
+                <option value="Fila">Fila</option>
+              </select>
+            </div>
+          </Col>
+          <Col lg='3' md='3'>
+            <div className="filter__widget">
+              <select>
+                <option>Ordenar por</option>
+                <option value="mayor">Mayor precio</option>
+                <option value="menor">Menor precio</option>
+              </select>
+              
+            </div>
+          </Col>
+          <Col lg='6' md='6'>
+            <div className="search__box">
+              <input type="text" placeholder="Search....." />
+              <span><i class="ri-search-line"></i></span>
+            </div>
+            
+          </Col>
+        </Row>
+      </Container>
+    </section>
+    <section>
+      <Container>
+        <Row>
+         
+            <ProductsList data ={data} />
+          
+        </Row>
+      </Container>
+    </section>
+    </>
+
+
+    
+/* {productsData.length === 0 ? ( 
+            <h1>No hay productos para mostrar </h1>
+            ) : ( */
+    
+
+
+
+     /* <div style={{display:'flex', flexDirection:'row', justifyContent:"space-around"}}>
               
               <div style={{padding:'20px', width: '20%'}}>
               <h2>MUJER</h2>    
@@ -72,7 +158,7 @@ function ProductsPage() {
 
       
 
-      </div>
+      </div>*/
   );
 }
 

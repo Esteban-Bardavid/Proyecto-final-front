@@ -1,22 +1,18 @@
 import React from "react";
 import ProductCard from "./ProductCard";
 
-function ProductsList (){ 
+function ProductsList ({data}){ 
     return (
         <>
-        
-       
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        
+        {
+            data.map(item=>(
+                <ProductCard item={item}/>
+
+            ))
+        }
         
         </>
-    )
-}
+    );
+};
 
 export default ProductsList;

@@ -1,8 +1,29 @@
-.product_card{
-    width: 30%;
-    padding:1px;
-    margin-left:1px;
-    height: auto;
-    border: black 1px solid;
-    border-radius: 5px; 
+.filter__widget select{
+    padding: 10px 20px;
+    border:  1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    color: #fff;
+}
+.filter__widget select:focus{
+    outline: none;
+}
+
+.filter__widget select option{
+    font-size: 0.9rem;
+}
+
+.search__box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+.search__box input{
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 8px 10px;
 }
