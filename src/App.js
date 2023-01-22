@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AdminPage from "./pages/Admin/AdminPage";
+
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
-import ProductsPage from "./pages/Products/ProductsPage";
+import WomanPage from "./pages/Products/WomanPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import Navbar from "./components/Navbar/Navbar";
@@ -55,11 +55,11 @@ function App() {
           </div>
         }>
         </Route>
-        <Route path='/products' element={
+        <Route path='/womanPage' element={
           <div>
             <Navbar />
             <div className='mt-5'>
-              <ProductsPage />
+              <WomanPage />
             </div>
             <Footer />
           </div>
