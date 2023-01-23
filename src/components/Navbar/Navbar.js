@@ -11,8 +11,12 @@ function NavBarComponent() {
     }
 
     return (
-        <div>
-           hola soy el navbar
+        <div className='nav-container'>
+           <nav className='navbar'>
+            <h1 className='navbar-logo'>shop.</h1>
+            <h2 className='seeCarrito'>🛒</h2>
+            </nav>
+
         </div>
     )
 }
