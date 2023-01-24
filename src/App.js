@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter >
-    
+      <Navbar />
       <Routes>
         <Route path='/' element={
           <div>
@@ -21,7 +21,6 @@ function App() {
             <div className='mt-5'>
               <HomePage />
             </div>
-            <Footer />
           </div>
         }>
         </Route>
@@ -31,7 +30,6 @@ function App() {
             <div className='mt-5'>
               <LoginPage />
             </div>
-            <Footer />
           </div>
         }>
         </Route>
@@ -41,7 +39,6 @@ function App() {
             <div className='mt-5'>
               <RegisterPage />
             </div>
-            <Footer />
           </div>
         }>
         </Route>
@@ -51,17 +48,15 @@ function App() {
             <div className='mt-5'>
               <ErrorPage />
             </div>
-            <Footer />
           </div>
         }>
         </Route>
-        <Route path='/womanPage' element={
+        <Route path='/profile' element={
           <div>
             <Navbar />
             <div className='mt-5'>
-              <WomanPage />
+              <ProfilePage />
             </div>
-            <Footer />
           </div>
         }>
         </Route>
