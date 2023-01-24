@@ -19,23 +19,23 @@ import Form from "react-bootstrap/Form";
 function WomanPage() {
 
   const [womanData, setWomanData] = useState(products)
+  const [CategoryFilter, setCategoryFilter] = useState(womanData)
+  
   
   useEffect(() => {
     const womanProducts = products.filter(
       (item) => item.genero === "Mujer"
     );
-    setWomanData(womanProducts)
-  })
-  
+    setWomanData(womanProducts);
+  }, []);
 
-
-    /* const handleFilter = e=>{
-     const filterValue = e.target.value
-     if(filterValue ==='Mujer'){
-       const filteredProducts = products.filter(item=> item.genero ==='Mujer')
-       setProductsData(filteredProducts);
+    const handleFilter = e=>{
+     const filterValue = e.id
+     if(filterValue ==='Nike'){
+       const filteredProducts = womanData.filter(item=> item.marca ==='Nike')
+       setCategoryFilter(filteredProducts);
      }
-   }*/
+   }
   return (
     <>
       <section>
@@ -63,10 +63,10 @@ function WomanPage() {
                 <Row>
                   <div>
                     <h5>CATEGORIAS</h5>
-                    <Form>
+                    <Form data={CategoryFilter}>
                       {['Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) => (
                         <div key={`${cat}`} className="mb-3">
-                          <Form.Check
+                          <Form.Check 
                             id={`${cat}`}
                             label={`${cat}`}
                           />
@@ -74,14 +74,14 @@ function WomanPage() {
                       ))}
                     </Form>
                     <h5>MARCAS</h5>
-                    <Form>
+                    <Form > 
                       {['Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
                         <div key={`${marca}`} className="mb-3">
-                          <Form.Check
-
+                          <input type="checkbox"
+                            onChange={handleFilter}
+                            value={`${marca}`}
                             id={`${marca}`}
-                            label={`${marca}`}
-                          />
+                          /><label>{marca}</label>
                         </div>
                       ))}
                     </Form>

@@ -1,7 +1,7 @@
 const products = [
     {
         id: "01",
-        productName: "Zapatilla 1 ",
+        productName: "Nike 1 ",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe4606d11/products/NI_DC9437-100/NI_DC9437-100-1.JPG",
         genero: "Mujer",
         category: "Running",
@@ -13,7 +13,7 @@ const products = [
     },
     {
         id: "02",
-        productName: "Zapatillas adidas Adizero Rc 4",
+        productName: "Adidas Adizero Rc 4",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw718afea1/products/AD_GX8156/AD_GX8156-1.JPG",
         genero: "Mujer",
         category: "Running",
@@ -25,7 +25,7 @@ const products = [
     },
     {
         id: "03",
-        productName: "Zapatillas adidas Duramo 10",
+        productName: "Adidas Duramo 10",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dw57723ade/products/AD_GW4116/AD_GW4116-1.JPG",
         genero: "Mujer",
         category: "Running",
@@ -37,7 +37,7 @@ const products = [
     },
     {
         id: "03",
-        productName: "Zapatillas adidas Eq21 Run",
+        productName: "Adidas Eq21 Run",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwb194103e/products/AD_GW6720/AD_GW6720-1.JPG",
         genero: "Mujer",
         category: "Running",
@@ -48,7 +48,7 @@ const products = [
     },
     {
         id: "04",
-        productName: "Zapatillas Fila Street Fit ",
+        productName: "Fila Street Fit ",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe9309fd1/products/FI_F02AT018-5090/FI_F02AT018-5090-1.JPG",
         genero: "Mujer",
         category: "Trainning",
@@ -60,7 +60,7 @@ const products = [
     },
     {
         id: "05",
-        productName: "Ojotas adidas Adilette Aqua",
+        productName: "Adidas Adilette Aqua",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwd53c3081/products/AD_GX4277/AD_GX4277-1.JPG",
         genero: "Mujer",
         category: "Ojotas",
@@ -72,11 +72,11 @@ const products = [
     },
     {
         id: "01",
-        productName: "Zapatilla 1 ",
+        productName: "nIKE 1 ",
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe4606d11/products/NI_DC9437-100/NI_DC9437-100-1.JPG",
         genero: "Mujer",
         category: "Running",
-        price: '$19.300',
+        price: '19.300',
         colors: '2',
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
@@ -87,7 +87,7 @@ const products = [
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe4606d11/products/NI_DC9437-100/NI_DC9437-100-1.JPG",
         genero: "Mujer",
         category: "Running",
-        price: '$19.300',
+        price: '19.300',
         colors: '2',
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
@@ -98,7 +98,7 @@ const products = [
         imgUrl: "https://www.stockcenter.com.ar/on/demandware.static/-/Sites-dabra-catalog/default/dwe4606d11/products/NI_DC9437-100/NI_DC9437-100-1.JPG",
         genero: "Mujer",
         category: "Running",
-        price: '$19.300',
+        price: '19.300',
         colors: '2',
         description:
             "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio nostrum accusantium iste, voluptas cumque provident! Consequatur officiis animi rem tempore voluptate cumque hic similique aperiam ut consectetur distinctio repudiandae quia quam quos, quas illo, iusto, necessitatibus odio veniam exercitationem quis voluptatibus debitis laboriosam! Esse debitis obcaecati blanditiis at impedit quibusdam!",
