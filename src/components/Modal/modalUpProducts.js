@@ -1,15 +1,16 @@
 import { Modal, Form, Button } from 'react-bootstrap';
 import UseAdminProducts from '../../utils/useAdminProducts';
+import { FaRegEdit } from "react-icons/fa";
 
 
-function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categoria, sex, id }) {
+function ModalUpProducts({producto, imagen, precio,  marca, categoria, sex, id, publicado, color, tseis, tsiete, tocho, tnueve, ccero, cuno, cdos, ctres }) {
 
     const { showUp, handleCloseUp, handleShowUp, OnChangeUpdate, PutProducts } = UseAdminProducts();
 
     return (
         <div>
 
-            <Button variant="primary" onClick={handleShowUp}>Actualizar Producto</Button>
+            <Button variant="primary" onClick={handleShowUp}><FaRegEdit /></Button>
 
             <Modal show={showUp} onHide={handleCloseUp}>
                 <Modal.Header closeButton>
@@ -18,17 +19,9 @@ function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categ
 
                 <Modal.Body>
                     <Form>
-                        <div className='d-flex'>
-                            <Form.Group className="mb-3 px-2 w-50" controlId="formBasicEmail">
-                                <Form.Label>Codigo</Form.Label>
-                                <Form.Control
-                                    name='codigo'
-                                    type='text'
-                                    onChange={OnChangeUpdate}
-                                    placeholder={codigo} />
-                            </Form.Group>
 
-                            <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
+                        <div className='d-flex'>
+                            <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Producto</Form.Label>
                                 <Form.Control
                                     name='producto'
@@ -36,37 +29,28 @@ function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categ
                                     onChange={OnChangeUpdate}
                                     placeholder={producto} />
                             </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
+                                <Form.Label>Imagen</Form.Label>
+                                <Form.Control
+                                    name='imagen'
+                                    type='text'
+                                    onChange={OnChangeUpdate}
+                                    placeholder={imagen} />
+                            </Form.Group>
                         </div>
 
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Imagen</Form.Label>
-                            <Form.Control
-                                name='imagen'
-                                type='text'
-                                onChange={OnChangeUpdate}
-                                placeholder={imagen} />
-                        </Form.Group>
-
                         <div className='d-flex'>
-                            <Form.Group className="mb-3 px-2 w-25" controlId="formBasicEmail">
-                                <Form.Label>Precio ($)</Form.Label>
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>Sexo</Form.Label>
                                 <Form.Control
-                                    name='precio'
-                                    type="number"
+                                    name='sex'
+                                    type="text"
                                     onChange={OnChangeUpdate}
-                                    placeholder={precio} />
+                                    placeholder={sex} />
                             </Form.Group>
 
-                            <Form.Group className="mb-3 px-3 w-25" controlId="formBasicEmail">
-                                <Form.Label>Talle</Form.Label>
-                                <Form.Control
-                                    name='talle'
-                                    type="number"
-                                    onChange={OnChangeUpdate}
-                                    placeholder={talle} />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3 w-25" controlId="formBasicEmail">
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
                                 <Form.Label>Marca</Form.Label>
                                 <Form.Control
                                     name='marca'
@@ -74,10 +58,104 @@ function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categ
                                     onChange={OnChangeUpdate}
                                     placeholder={marca} />
                             </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>Color</Form.Label>
+                                <Form.Control
+                                    name='color'
+                                    type="text"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={color} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>Precio ($)</Form.Label>
+                                <Form.Control
+                                    name='precio'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={precio} />
+                            </Form.Group>
                         </div>
 
                         <div className='d-flex'>
-                            <Form.Group className="mb-3 px-2 w-50" controlId="formBasicEmail">
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-36</Form.Label>
+                                <Form.Control
+                                    name='tseis'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={tseis} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-37</Form.Label>
+                                <Form.Control
+                                    name='tsiete'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={tsiete} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-38</Form.Label>
+                                <Form.Control
+                                    name='tocho'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={tocho} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-39</Form.Label>
+                                <Form.Control
+                                    name='tnueve'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={tnueve} />
+                            </Form.Group>
+                        </div>
+
+                        <div className='d-flex'>
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-40</Form.Label>
+                                <Form.Control
+                                    name='ccero'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={ccero} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-41</Form.Label>
+                                <Form.Control
+                                    name='cuno'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={cuno} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-42</Form.Label>
+                                <Form.Control
+                                    name='cdos'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={cdos} />
+                            </Form.Group>
+
+                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                                <Form.Label>T-43</Form.Label>
+                                <Form.Control
+                                    name='ctres'
+                                    type="number"
+                                    onChange={OnChangeUpdate}
+                                    placeholder={ctres} />
+                            </Form.Group>
+                        </div>
+
+                        <div className='d-flex'>
+                            <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Categoria</Form.Label>
                                 <Form.Control
                                     name='categoria'
@@ -86,16 +164,15 @@ function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categ
                                     placeholder={categoria} />
                             </Form.Group>
 
-                            <Form.Group className="mb-3 w-50" controlId="formBasicEmail">
-                                <Form.Label>Sexo</Form.Label>
+                            <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
+                                <Form.Label>Publicado</Form.Label>
                                 <Form.Control
-                                    name='sex'
-                                    type="text"
+                                    name='publicado'
+                                    type="number"
                                     onChange={OnChangeUpdate}
-                                    placeholder={sex} />
+                                    placeholder={publicado} />
                             </Form.Group>
                         </div>
-
 
                     </Form>
                 </Modal.Body>
@@ -107,7 +184,8 @@ function ModalUpProducts({ codigo, producto, imagen, precio, talle, marca, categ
                 </Modal.Footer>
 
             </Modal>
-        </div>
+
+        </div >
     )
 };
 
