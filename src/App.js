@@ -12,53 +12,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter >
-    
+      <Navbar />
       <Routes>
-        <Route path='/' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <HomePage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/login' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <LoginPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/register' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <RegisterPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/*' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ErrorPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/profile' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ProfilePage />
-            </div>
-          </div>
-        }>
-        </Route>
+        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/*' element={<ErrorPage />}></Route>
+        <Route path='/profile' element={<ProfilePage />}></Route>
       </Routes>
     </BrowserRouter>
   );
