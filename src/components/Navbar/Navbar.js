@@ -3,14 +3,17 @@ import { Container, Nav, Navbar, Button, NavDropdown, Form, Modal, Offcanvas } f
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faStar, faCartShopping, faUser, faCircleInfo,faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 
 function NavBarComponent() {
     const token = localStorage.getItem('token');
     const [smShow, setSmShow] = useState(false);
     const [lgShow, setLgShow] = useState(false);
+    const [show, setShow] = useState(false);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     function singOut() {
         localStorage.removeItem('token')
         window.location.href = "/login"
@@ -54,20 +57,43 @@ function NavBarComponent() {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link  href="#action1"> <FontAwesomeIcon color="grey" fontSize={28} icon={faHouse} /> </Nav.Link>
-                            <Nav.Link  href="#action1"> <FontAwesomeIcon color="grey" fontSize={28} icon={faStar} /> </Nav.Link>
-                            <Nav.Link  href="#action1"> <FontAwesomeIcon color="grey" fontSize={28} icon={faCartShopping} /> </Nav.Link>
-                            <Nav.Link  href="#action1"> <FontAwesomeIcon color="grey" fontSize={28} icon={faUser} /> </Nav.Link>
-                            <Nav.Link  href="#action1"> <FontAwesomeIcon color="grey" fontSize={28} icon={faCircleInfo} />  </Nav.Link>
+                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Nav.Link>
+                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Nav.Link>
+                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Nav.Link>
+                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
+                                <Modal
+                                    show={show}
+                                    onHide={handleClose}
+                                    backdrop="static"
+                                    keyboard={false}
+                                >
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Modal title</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        I will not close if you click outside me. Don't even try to press
+                                        escape key.
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleClose}>
+                                            Close
+                                        </Button>
+                                        <Button variant="primary">Understood</Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </Nav.Link>
+
+
+                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Nav.Link>
 
                         </Nav>
 
 
                         <Form className="container-search d-flex  ">
 
-                            <input className="input-search" type="text" placeholder="Adidas, pantalon, remeras..."  />
-                            
-                           <button type="submit" className="button-search"><FontAwesomeIcon  color="grey" fontSize={28} icon={faMagnifyingGlass}/></button> 
+                            <input className="input-search" type="text" placeholder="Adidas, pantalon, remeras..." />
+
+                            <button type="submit" className="button-search"><FontAwesomeIcon color="grey" fontSize={28} icon={faMagnifyingGlass} /></button>
                         </Form>
 
 
