@@ -1,7 +1,13 @@
 .botonTalle {
-    height:55px;
-    width: 55px;
+    height:50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
     
+}
+.container-Imag{
+    height: 75%;
+    width: 75%;
 }
 .Imag {
     height: 100%;

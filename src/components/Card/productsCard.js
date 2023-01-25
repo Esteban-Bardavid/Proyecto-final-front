@@ -37,7 +37,9 @@ function ProductsCard({ producto, imagen, precio, color, categoria, tseis, tsiet
                 <Modal.Body>
                     <div className='row'>
                         <div className='col-6 d-flex justify-content-center'>
-                            <Image variant="top" src={imagenes(`./${imagen}`)} className='Imag' />
+                            <div className='container-Imag'>
+                                <Image variant="top" src={imagenes(`./${imagen}`)} className='Imag' />
+                            </div>
                         </div>
                         <div className='col-6'>
                             <h5>Precio: ${precio}</h5>
