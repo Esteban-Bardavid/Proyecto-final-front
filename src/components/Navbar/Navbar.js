@@ -48,7 +48,7 @@ function NavBarComponent() {
             {/* NAVBAR  */}
             <Navbar bg="orange" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#">LOGO</Navbar.Brand>
+                    <Navbar.Brand href="#"><img className="logo-img" src="https://o.remove.bg/downloads/6e3f4129-583d-415f-95d5-93ff14aeca57/ROLLING_SHOES-removebg-preview.png" alt=""  srcset="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse className="container-search-icons " id="navbarScroll">
 
