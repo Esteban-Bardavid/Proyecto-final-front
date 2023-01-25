@@ -11,7 +11,7 @@ function NavBarComponent() {
     const [smShow, setSmShow] = useState(false);
     const [lgShow, setLgShow] = useState(false);
     const [show, setShow] = useState(false);
-
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     function singOut() {
@@ -57,10 +57,10 @@ function NavBarComponent() {
                             style={{ maxHeight: '100px' }}
                             navbarScroll
                         >
-                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Nav.Link>
-                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Nav.Link>
-                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Nav.Link>
-                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
+                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="favs" to="/Favorites"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
                                 <Modal
                                     show={show}
                                     onHide={handleClose}
@@ -81,10 +81,8 @@ function NavBarComponent() {
                                         <Button variant="primary">Understood</Button>
                                     </Modal.Footer>
                                 </Modal>
-                            </Nav.Link>
-
-
-                            <Nav.Link href="#action1"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Nav.Link>
+                            </Link>
+                            <Link className="links-icons m-2 p-1" id="favs" to="/Info"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Link>
 
                         </Nav>
 
