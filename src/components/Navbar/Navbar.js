@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-
+import 'animate.css';
 
 function NavBarComponent() {
     const token = localStorage.getItem('token');
@@ -18,17 +18,17 @@ function NavBarComponent() {
         localStorage.removeItem('token')
         window.location.href = "/login"
     }
-
+   
     return (
         <div>
             <div className=" pre-navbar  ">
-                <h2>3 <small>CUOTAS SIN INTERES </small><strong>-ENVIOS GRATIS</strong> <small>DESDE $20.000</small></h2>
+                <h2 >3 <small >CUOTAS SIN INTERES </small><strong >-ENVIOS GRATIS</strong> <small >DESDE $20.000</small></h2>
 
 
                 {/* MODAL CONTACTO */}
 
                 <div className="contact-navb">
-                    <Button className="button-nav" onClick={() => setLgShow(true)}>Contact Us</Button>
+                    <Button className="button-nav" onClick={() => setLgShow(true)}>Contacto</Button>
                     <Modal
                         size="lg"
                         show={lgShow}
