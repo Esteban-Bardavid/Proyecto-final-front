@@ -40,21 +40,43 @@ function useProducts() {
   } 
   else if (filterValue === 'Running'){
     const filteredProducts = productos.filter(
-      (item)=> item.category === 'Running');
+      (item)=> item.categoria === 'Running');
 
   SetFilter(filteredProducts)
 } 
 else if (filterValue === 'Footbal'){
     const filteredProducts = productos.filter(
-      (item)=> item.category === 'Footbal');
+      (item)=> item.categoria === 'Footbal');
 
   SetFilter(filteredProducts)
 } 
 else if (filterValue === 'Trainning'){
     const filteredProducts = productos.filter(
-      (item)=> item.category === 'Trainning');
+      (item)=> item.categoria === 'Trainning');
 
   SetFilter(filteredProducts)
+}
+else if (filterValue === 'Outdoor'){
+  const filteredProducts = productos.filter(
+    (item)=> item.categoria === 'Trainning');
+
+SetFilter(filteredProducts)
+}  
+else if (filterValue === 'Clasicas'){
+  const filteredProducts = productos.filter(
+    (item)=> item.categoria === 'Clasicas');
+
+SetFilter(filteredProducts)
+}  
+else if (filterValue === 'Ojotas'){
+  const filteredProducts = productos.filter(
+    (item)=> item.categoria === 'Ojotas');
+
+SetFilter(filteredProducts)
+} 
+else if (filterValue === 'Todas las marcas'){
+
+SetFilter(productos)
 } 
     else (
       SetFilter(productos)

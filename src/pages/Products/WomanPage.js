@@ -51,10 +51,10 @@ function WomanPage() {
                   <div>
                     <select >
                       <option>Ordenar por:</option>
-                      <option value="Nike">Nike</option>
-                      <option value="Adidas">Adidas</option>
-                      <option value="menor">Mas nuevo a mas viejo</option>
-                      <option value="menor">Mas viejo a mas nuevo</option>
+                      <option value="Menor">Menor precio</option>
+                      <option value="Mayor">Mayor precio</option>
+                      <option value="Nuevo">Mas nuevo a mas viejo</option>
+                      <option value="Viejo">Mas viejo a mas nuevo</option>
                     </select>
                  
                   </div>
@@ -64,7 +64,7 @@ function WomanPage() {
                   <div>
                     <h5>CATEGORIAS</h5>
                     <Form>
-                      {['Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) => (
+                      {['Todas las categorias','Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) => (
                         <div key={`${cat}`} className="mb-3">
                           <Form.Check 
                             onChange={handleFilter}
