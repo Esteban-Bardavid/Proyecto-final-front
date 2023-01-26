@@ -3,12 +3,15 @@ import { useEffect } from "react";
 import products from "../../assets/data/ProductsData";
 import ProductsList from "../../components/ProductCard/ProductsList";
 import {
+  Badge,
   Col,
   Container,
   Row,
+  
 } from "react-bootstrap";
-
+import { FaHeart } from "react-icons/fa";
 import "./WomanPage.css";
+import useProducts from '../../utils/useProducts';
 
 import axios from "axios";
 import Form from "react-bootstrap/Form";
@@ -17,56 +20,55 @@ import Form from "react-bootstrap/Form";
 
 
 function WomanPage() {
-
-  const [womanData, setWomanData] = useState(products)
-  const [CategoryFilter, setCategoryFilter] = useState(womanData)
+  const { 
+    productos,
+    handleFilter,
+    Filter,
   
-  
-  useEffect(() => {
-    const womanProducts = products.filter(
-      (item) => item.genero === "Mujer"
-    );
-    setWomanData(womanProducts);
-  }, []);
+    
+} = useProducts();
 
-    const handleFilter = e=>{
-     const filterValue = e.id
-     if(filterValue ==='Nike'){
-       const filteredProducts = womanData.filter(item=> item.marca ==='Nike')
-       setCategoryFilter(filteredProducts);
-     }
-   }
+  
+
   return (
     <>
       <section>
         <Container>
           
-          <Row data={womanData}>
-          <h2 style={{ fontSize:"35px", color: "#243763"}}>MUJER <span >[{womanData.length}]</span></h2>
+          <Row data={Filter}>
+          <h2 style={{ fontSize:"35px", color: "#243763"}}>MUJER  
+          
+            <span style={{ fontSize:"20px", color: "#243763"}}> [{Filter.length}] </span>
+          
+          </h2>
           </Row>
           <Row>
             <Col lg='2' md='2' className="filter__widget">
                 <Row >
-                  <h5>FILTRAR/ORDENAR <span>[0]</span></h5>
+                  <h5>FILTRAR/ORDENAR</h5>
                 <Row />
                 <Row>
                   <div>
-                    <select>
+                    <select >
                       <option>Ordenar por:</option>
-                      <option value="mayor">Mayor precio</option>
-                      <option value="menor">Menor precio</option>
+                      <option value="Nike">Nike</option>
+                      <option value="Adidas">Adidas</option>
                       <option value="menor">Mas nuevo a mas viejo</option>
                       <option value="menor">Mas viejo a mas nuevo</option>
                     </select>
+                 
                   </div>
+                  
                 </Row>
                 <Row>
                   <div>
                     <h5>CATEGORIAS</h5>
-                    <Form data={CategoryFilter}>
+                    <Form>
                       {['Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) => (
                         <div key={`${cat}`} className="mb-3">
                           <Form.Check 
+                            onChange={handleFilter}
+                            value={`${cat}`}
                             id={`${cat}`}
                             label={`${cat}`}
                           />
@@ -75,13 +77,14 @@ function WomanPage() {
                     </Form>
                     <h5>MARCAS</h5>
                     <Form > 
-                      {['Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
+                      {['Todas las marcas','Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
                         <div key={`${marca}`} className="mb-3">
-                          <input type="checkbox"
+                          <Form.Check type="checkbox"
                             onChange={handleFilter}
                             value={`${marca}`}
                             id={`${marca}`}
-                          /><label>{marca}</label>
+                            label={`${marca}`}
+                          />
                         </div>
                       ))}
                     </Form>
@@ -100,10 +103,10 @@ function WomanPage() {
             </Col>
             <Col lg='10' md='10'>
               <Row>
-              {womanData.length === 0 ? ( 
-                <h1>No hay productos para mostrar </h1>
+              {Filter.length === 0 ? ( 
+                <h2>No hay productos para mostrar </h2>
                 ) : (
-                <ProductsList data={womanData} /> )}
+                <ProductsList data={Filter} /> )}
               </Row>
             </Col>
           </Row>

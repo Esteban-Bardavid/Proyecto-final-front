@@ -9,23 +9,17 @@ import { motion } from "framer-motion";
 import "./ProductCard.css";
 import { Link } from "react-router-dom";
 import products from "../../assets/data/ProductsData";
-import ModalComponent from "../Modal/Modal";
-
-
-
+import ModalProduct from "../Modal/Modal";
 
 
 function ProductCard({ item }) {
-
     const [ShowProduct, setShowProd] = useState(false);
-
     const closeModal = () => setShowProd(false);
     const openModal = () => setShowProd(true);
-
     const [addFav, setAddFav] = useState(false);
-
-
     const favIn = () => setAddFav(true);
+    
+
 
     return (
         <>
@@ -59,7 +53,6 @@ function ProductCard({ item }) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-
             <Col lg='3' md='4' mb-2 >
                 <Card style={{ width: "14rem", border: 'none' }} className="product__item">
                     <Card.Img
@@ -77,13 +70,12 @@ function ProductCard({ item }) {
 
                             <i className="add__fav" onClick={favIn} ><FaHeart /></i>
                         </div>
-
-
                     </Card.Text>
                 </Card>
             </Col>
 
         </>
     );
+   
 }
 export default ProductCard;

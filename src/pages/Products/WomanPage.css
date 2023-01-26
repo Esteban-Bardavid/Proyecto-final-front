@@ -39,3 +39,18 @@ font-size:"8px"
     outline: none;
     padding: 8px 10px;
 }
+.fav_icon{
+    position: relative;
+}
+.fav_icon span{
+ position:absolute;
+ top:70%;
+ right: 10%;
+ content: '';
+ background-color: red;
+ color: #fff;
+ font-size: .8rem;
+ border-radius: 50px;
+ padding: 2px 5px;
+
+}
