@@ -8,6 +8,7 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import Navbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ForgotPassword from './pages/RecoveryPassword/ForgotPassword';
 
 function App() {
   return (
@@ -37,6 +38,15 @@ function App() {
             <Navbar />
             <div className='mt-5'>
               <RegisterPage />
+            </div>
+          </div>
+        }>
+        </Route>
+        <Route path='/ForgotPassword' element={
+          <div>
+            <Navbar />
+            <div className='mt-5'>
+              <ForgotPassword />
             </div>
           </div>
         }>
