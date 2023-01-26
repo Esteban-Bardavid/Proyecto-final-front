@@ -18,16 +18,16 @@ function LoginPage() {
     const { name, value } = e.target;
     const response = { ...form, [name]: value }
     setform(response)
+    console.log(form)
   }
   async function LoginPost() {
     try {
 
-      const { data } = await axios.post(`http://localhost:3000/api/Login`, form)
-
+      const { data } = await axios.post(`http://localhost:3000`, form)
+console.log ({data})
+//alert ("todo bien pana")
       localStorage.setItem('token', data)
-      console.log("usuario rey")
-      alert("todo bein")
-      window.location.href = '/'
+    window.location.href = '/'
     } catch (error) {
       console.error('error')
 
@@ -60,15 +60,19 @@ function LoginPage() {
                   <Form.Control
                     name="email"
                     type="email"
-                    placeholder="juan@gmail.com" />
+                    placeholder="juan@gmail.com"
+                    onChange={onChange}
+                    />
                 </Form.Group>
 
                 <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
                   <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
                   <Form.Control
-                    name="lastname"
+                    name="password"
                     type="password"
-                    placeholder="************" />
+                    placeholder="************"
+                   onChange={onChange}
+                     />
                 </Form.Group>
               </Form>
 
@@ -91,7 +95,7 @@ function LoginPage() {
           <Button id="CloseLoginButton" onClick={handleClose}>
             Cerrar
           </Button>
-          <Button id="ReadyLoginButton" onClick={LoginPost}>Listo!
+          <Button id="ReadyLoginButton" onClick={onChange}>Listo!
           </Button>
         </Modal.Footer>
       </Modal>
