@@ -60,7 +60,7 @@ class ForgotPassword extends Component {
         }
       } catch (error) {
         console.error(error.response.data);
-        if (error.response.data === 'email not in db') {
+        if (error.response.data === 'Email no enviado') {
           this.setState({
             showError: true,
             messageFromServer: '',
@@ -90,7 +90,7 @@ class ForgotPassword extends Component {
           />
           <SubmitButtons
             buttonStyle={forgotButton}
-            buttonText="Send Password Reset Email"
+            buttonText="Enviar correo electrónico de restablecimiento de contraseña"
           />
         </form>
         {showNullError && (
