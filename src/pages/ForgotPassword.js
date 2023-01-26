@@ -110,12 +110,12 @@ class ForgotPassword extends Component {
             />
           </div>
         )}
-        {messageFromServer === 'recovery email sent' && (
+        {messageFromServer === 'email de recuperacion enviado' && (
           <div>
             <h3>El correo de restablecimiento de contraseña se ha enviado con exito</h3>
           </div>
         )}
-        <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
+        <LinkButtons buttonText="Home" buttonStyle={homeButton} link="/" />
       </div>
     );
   }
