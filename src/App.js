@@ -3,7 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AdminPage from "./pages/Admin/AdminPage";
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
-import ProfilePage from "./pages/Profile/ProfilePage";
+import WomanPage from "./pages/Products/WomanPage";
+import CartContent from './components/CartContent/CartContent';
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import Navbar from "./components/Navbar/Navbar";
@@ -12,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <BrowserRouter >
-    
+
       <Routes>
         <Route path='/' element={
           <div>
@@ -50,15 +51,24 @@ function App() {
           </div>
         }>
         </Route>
-        <Route path='/profile' element={
+        <Route path='/womanpage' element={
           <div>
             <Navbar />
             <div className='mt-5'>
-              <ProfilePage />
+              <WomanPage />
             </div>
           </div>
         }>
         </Route>
+        <Route path="/CartPage" element={
+          <div>
+            <CartContent />
+          </div>
+        
+        }>
+
+        </Route>
+
       </Routes>
     </BrowserRouter>
   );
