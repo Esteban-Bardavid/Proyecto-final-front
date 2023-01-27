@@ -46,6 +46,7 @@ function App() {
           </div>
         }>
         </Route>
+      
         <Route path='/register' element={
           <div>
             <Navbar />
