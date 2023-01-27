@@ -18,6 +18,16 @@ function ProductCard({ item }) {
     const openModal = () => setShowProd(true);
     const [addFav, setAddFav] = useState(false);
     const favIn = () => setAddFav(true);
+
+    const [Cart, setCart] = useState([]);
+    const addToCart = item =>{
+        setCart([...Cart, item]);
+        console.log(Cart)
+   
+    }
+   
+        
+    
     
 
 
@@ -95,7 +105,7 @@ function ProductCard({ item }) {
                     <Button style={{background:"black"}} onClick={closeModal}>
                         Salir
                     </Button>
-                    <Button style={{background:'#FF6E31'}} onClick={closeModal}>
+                    <Button style={{background:'#FF6E31'}} onClick={()=> addToCart(item)}>
                         Agregar al carrito
                     </Button>
                 </Modal.Footer>
