@@ -33,7 +33,7 @@ function ModalUpProducts({producto, imagen, precio,  marca, categoria, sex, id, 
                             <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Imagen</Form.Label>
                                 <Form.Control
-                                    name='imagen'
+                                    name='imgUrl'
                                     type='text'
                                     onChange={OnChangeUpdate}
                                     placeholder={imagen} />

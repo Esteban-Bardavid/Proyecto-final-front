@@ -130,7 +130,7 @@ function AdminProducts() {
                                     indice={i + 1}
                                     // codigo={item.codigo}
                                     producto={item.producto}
-                                    imagen={item.imagen}
+                                    imagen={item.imgUrl}
                                     sex={item.sex}
                                     marca={item.marca}
                                     color={item.color}
@@ -186,7 +186,7 @@ function AdminProducts() {
                             <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Imagen</Form.Label>
                                 <Form.Control
-                                    name='imagen'
+                                    name='imgUrl'
                                     type='text'
                                     onChange={OnChangeProducts}
                                     placeholder='path o url' />
