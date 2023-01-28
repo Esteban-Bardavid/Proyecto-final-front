@@ -75,7 +75,7 @@ function NavBarComponent() {
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
                               
-                               //Modal de login
+                            
 
                                 <Modal
                                     show={show}
@@ -83,11 +83,11 @@ function NavBarComponent() {
                                     backdrop="static"
                                     keyboard={false}
                                 >
-                                    <Modal.Header closeButton>
+                                    <Modal.Header closeButton onClick={handleClose}>
                                         <Modal.Title className="FirstButton">Iniciar Sesion</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        <h2>Bienvenid@s a ... </h2>
+                                        <h2>Bienvenid@s a Rolling Shoes</h2>
                                         <div className="ConteinerInputLogin">
                                             <div className="ConteinerInputLogin">
 
@@ -127,7 +127,7 @@ function NavBarComponent() {
 
                                     </Modal.Body>
                                     <Modal.Footer>
-                                        <Button id="CloseLoginButton" onClick={ModalClose}>
+                                        <Button id="CloseLoginButton" onClick={handleClose}>
                                             Cerrar
                                         </Button>
                                         <Button id="ReadyLoginButton" onClick={onChange}>Listo!
