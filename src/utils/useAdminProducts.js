@@ -79,6 +79,9 @@ function UseAdminProducts() {
         }
     }
 
+    
+  const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
+
 
     return ({
         show,
@@ -96,7 +99,8 @@ function UseAdminProducts() {
         OnChangeUpdate,
         PutProducts,
         products,
-        url
+        url,
+        productsWoman
     })
 }
 

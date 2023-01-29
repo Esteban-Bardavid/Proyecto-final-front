@@ -15,6 +15,9 @@ import AdminProducts from './pages/AdminProducts/AdminProductsPage';
 
 
 function App() {
+
+
+  
   return (
     <BrowserRouter >
       <NavBarComponent />

@@ -19,19 +19,14 @@ import Form from "react-bootstrap/Form";
 
 
 function WomanPage() {
+  
   const {
     productos,
     handleFilter,
     Filter,
+    productsWoman
   } = useProducts();
-
-  //const { products } = UseAdminProducts();
-
-  console.log (Filter)
-
-
-
-
+  
   return (
     <>
       <section>
