@@ -26,13 +26,14 @@ function UseAdminProducts() {
 
     // Funcion para crear Producto en la Base de Datos:
     async function CreateProducts() {
-        // try {
+        try {
             const response = await axios.post(`${url}/adminProducts`, form)
             console.log(response);
             alert('El producto fue ingresado exitosamente');
-        // } catch (error) {
-        //     console.error(error);
-        // }
+        } catch (error) {
+            console.error(error);
+        }
+        window.location.reload();
     }
     
     // Funcion para mostrar productos en tabla:

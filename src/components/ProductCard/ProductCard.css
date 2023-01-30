@@ -46,3 +46,15 @@
     font-size: 1.2rem;
 }
 
+.botonTalle {
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.labelTalles {
+    font-size: 12px;
+}
+
