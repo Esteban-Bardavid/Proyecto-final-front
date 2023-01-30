@@ -14,6 +14,8 @@ const ResetPassword = (props) => {
     const [showPassword, setShowPassword] = useState(false);
     const [user, setUser] = useState({})
 
+    let url = "http://localhost:4000/api/";
+
     const onChange = (e) => {
         const { name, value } = e.target;
         const response = { ...user, [name]: value }
@@ -21,13 +23,13 @@ const ResetPassword = (props) => {
     }
 
     const handleSubmit = async () => {
-        let { data } = await axios.get("http://localhost:4000/api/user/searchEmail", { email: user.email })
+        let { data } = await axios.get(`${url}user/searchEmail`, { email: user.email })
         console.log(data)
         resetPassword(data._id)
     }
 
     const resetPassword = async (id) => {
-        let response = await axios.put(`http://localhost:4000/api/user/resetPassword/${id}`, {
+        let response = await axios.put(`${url}user/resetPassword/${id}`, {
             password: user.password
         })
         console.log(response)
