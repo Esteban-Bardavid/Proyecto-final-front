@@ -52,6 +52,15 @@ function App() {
           </div>
         }>
         </Route>
+        <Route path='/ResetPassword' element={
+          <div>
+            <Navbar />
+            <div className='mt-5'>
+              <ResetPassword />
+            </div>
+          </div>
+        }>
+        </Route>
         <Route path='/*' element={
           <div>
             <Navbar />
