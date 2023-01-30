@@ -54,7 +54,7 @@ function UseAdminProducts() {
         let deleteProducts = await axios.delete(`${url}/adminProducts/${id}`)
         console.log(id)
         console.log(deleteProducts.data)
-        GetProducts();
+        window.location.reload();
     }
 
     // Funcion para Actualizar productos en tabla:
@@ -65,7 +65,6 @@ function UseAdminProducts() {
         const response = { ...update, [name]: value };
         setupdate(response);
         console.log(response);
-        GetProducts()
     }
 
     async function PutProducts(id) {
@@ -73,13 +72,12 @@ function UseAdminProducts() {
             const { data } = await axios.put(`${url}/adminProducts/${id}`, update)
             console.log(data);
             setShowUp(false);
-            GetProducts();
         } catch (error) {
             alert('No se pudo.');
             console.error(error);
         }
+        window.location.reload();
     }
-
     
   const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
 

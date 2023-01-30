@@ -156,6 +156,7 @@ function ProductCard({ item }) {
                                         <label>41:<input style={{ width: '100%' }} label='41' placeholder="0"></input></label>
                                     </Col>
                                     <Link href='' style={{ marginTop: '5px', fontSize: '15px', color: '#FF6E31' }}>Ir a la pagina del   producto</Link> */}
+                                    
                                     <div className='d-flex'>
                                         <div className='mx-2'>
                                             <div>

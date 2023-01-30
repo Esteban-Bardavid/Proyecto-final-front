@@ -12,7 +12,6 @@ import {
 import { FaHeart } from "react-icons/fa";
 import "./WomanPage.css";
 import useProducts from '../../utils/useProducts';
-import UseAdminProducts from "../../utils/useAdminProducts";
 
 import axios from "axios";
 import Form from "react-bootstrap/Form";
@@ -24,7 +23,6 @@ function WomanPage() {
     productos,
     handleFilter,
     Filter,
-    productsWoman
   } = useProducts();
   
   return (

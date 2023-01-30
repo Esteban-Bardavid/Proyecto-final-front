@@ -7,8 +7,8 @@ import axios from "axios";
 
 function useProducts() {
 
+// Enlace con Pagina adminProducts:
   const { url } = UseAdminProducts();
-
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
@@ -24,10 +24,12 @@ function useProducts() {
 
   const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
 
-  //const productos = products;
+//const productos = products; (se reemplaza => productos, por => productsWoman)
   const [Filter, SetFilter] = useState([]);
   const [Search, SetSearch] = useState('');
 
+
+// Aplico los filtros a productsWoman:
   const handleFilter = (e) => {
 
     const filterValue = e.target.value;
@@ -114,7 +116,7 @@ function useProducts() {
 
   return {
     handleFilter,
-    // productos,
+    //productos,
     Filter,
     productsWoman
   }

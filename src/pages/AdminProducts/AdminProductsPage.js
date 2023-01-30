@@ -9,15 +9,12 @@ import ModalUpProducts from '../../components/Modal/modalUpProducts';
 
 function AdminProducts() {
 
-    // Hook:
-
     const { OnChangeProducts, CreateProducts, handleClose, handleShow, show, url, DeleteProducts } = UseAdminProducts();
 
     function Auxiliar() {
         CreateProducts();
         handleClose();
     }
-
 
        // Funcion para mostrar productos en tabla:
        const [products, setproducts] = useState([]);
@@ -35,8 +32,6 @@ function AdminProducts() {
        // Buscador:
        const [busqueda, setBusqueda] = useState ('')
        const [buscador, setBuscador] = useState ([])
-
-
        
        const handleChange = e => {
            setBusqueda (e.target.value)
@@ -82,7 +77,6 @@ function AdminProducts() {
                 <thead>
                     <tr>
                         <th>#</th>
-                        {/* <th>Codigo</th> */}
                         <th><div>Producto</div></th>
                         <th>Sex</th>
                         <th>Marca</th>
@@ -99,14 +93,12 @@ function AdminProducts() {
                         <th>T42</th>
                         <th>T43</th>
                         <th>Acciones</th>
-                        {/* <th><div>Imagen</div></th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {products.map((item, i) => (
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            {/* <td>{item.codigo}</td> */}
                             <td>{item.producto}</td>
                             <td>{item.sex}</td>
                             <td>{item.marca}</td>
@@ -128,7 +120,6 @@ function AdminProducts() {
                                 <ModalUpProducts
                                     key={i}
                                     indice={i + 1}
-                                    // codigo={item.codigo}
                                     producto={item.producto}
                                     imagen={item.imgUrl}
                                     sex={item.sex}
@@ -148,7 +139,6 @@ function AdminProducts() {
                                     id={item._id}
                                 />
                             </td>
-                            {/* <td>{item.imagen}</td> */}
                         </tr>
                     ))}
                 </tbody>
@@ -165,14 +155,6 @@ function AdminProducts() {
                     <Form>
 
                         <div className='d-flex'>
-                            {/* <Form.Group className="mb-3 px-2 w-50" controlId="formBasicEmail">
-                                <Form.Label>Codigo</Form.Label>
-                                <Form.Control
-                                    name='codigo'
-                                    type='text'
-                                    onChange={OnChangeProducts}
-                                    placeholder="woman/menAdidas01" />
-                            </Form.Group> */}
 
                             <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Producto</Form.Label>
@@ -230,27 +212,6 @@ function AdminProducts() {
                                     placeholder="100.00" />
                             </Form.Group>
                         </div>
-
-                        {/* <div className='d-flex'>
-                            <Form.Group className="mb-3 px-2 w-25" controlId="formBasicEmail">
-                                <Form.Label>Talle</Form.Label>
-                                <Form.Control
-                                    name='talle'
-                                    type="number"
-                                    onChange={OnChangeProducts}
-                                    placeholder="40" />
-                            </Form.Group>
-
-                            <Form.Group className="mb-3 px-2 w-25" controlId="formBasicEmail">
-                                <Form.Label>Cantidad</Form.Label>
-                                <Form.Control
-                                    name='stock'
-                                    type="number"
-                                    onChange={OnChangeProducts}
-                                    placeholder="10" />
-                            </Form.Group>
-                        </div> */}
-
 
                         <div className='d-flex'>
                             <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
