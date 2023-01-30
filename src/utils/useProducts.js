@@ -11,7 +11,6 @@ function useProducts() {
   const handleFilter = (e) => {
     const filterValue = e.target.value;
     SetSearch(filterValue);
-
     
     if (filterValue != Search){
       if (filterValue === 'Nike') {
@@ -19,6 +18,7 @@ function useProducts() {
           (item) => item.marca === 'Nike');
   
         SetFilter(filteredProducts)
+        
       }
       else if (filterValue === 'Adidas') {
         const filteredProducts = productos.filter(
@@ -84,14 +84,17 @@ function useProducts() {
       else (
         SetFilter(productos)
       )
+      console.log(filterValue)
+      console.log(Search)
     }
-    else (
-      SetFilter(productos)
+    else(
+     
+       SetFilter(productos)
+       
     )
+    
    
-
-   
-    console.log(productos)
+    
   };
   return {
     handleFilter,
