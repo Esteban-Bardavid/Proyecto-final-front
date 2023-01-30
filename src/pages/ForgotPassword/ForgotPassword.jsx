@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import useState from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
@@ -8,11 +8,13 @@ const ForgotPassword = async () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const userEmail = e.target.email.value
+        const userEmail = {
+           email : e.target.email.value
+        
     };
 
     setIsLoading(true);
-    await axios.post(process.env.REACT_APP_API_URL + "/forgotpassword", userEmail)
+    await axios.post(process.env.REACT_APP_API_URL + "/ForgotPassword", userEmail)
         .then((res) => {
             setIsLoading(false);
             Swal.fire({
@@ -28,7 +30,7 @@ const ForgotPassword = async () => {
                 text: "ha habido un error, comprueba los datos y vuelva a intentarlo"
             })
         });
-}
+
 
 return (
     <div className='main'>
@@ -40,7 +42,7 @@ return (
         {isLoading
            ?
            <div className='loadingImage'>
-          <img src={loading} alt="loading"/>
+          <img src="" alt="loading"/>
            </div>
            :
            <button type="submit">Enviar</button>
@@ -51,5 +53,6 @@ return (
      </form>
     </div>
 )
-
+}
+}
 export default ForgotPassword; 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Swal from 'sweetalert2';
+
 
 const ResetPassword = (props) => {
     const history = useHistory();
@@ -10,10 +11,10 @@ const ResetPassword = (props) => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        let regExPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,16}$/;
         const userPassword = {
             password: e.target.value
         }
@@ -28,7 +29,7 @@ const ResetPassword = (props) => {
         }
 
         setIsLoading(true);
-        await axios.put(process.env.REACT_APP_API_URL + "/resetpassword/" + props.match.params.id + "/" + props.match.params.tokenresetpassword, userPassword, {
+        await axios.put(process.env.REACT_APP_API_URL + "/ResetPassword/" + props.match.params.id + "/" + props.match.params.tokenresetpassword, userPassword, {
             where: {
                 id: props.match.params.id,
                 tokenresetpassword: props.match.params.tokenresetpassword
