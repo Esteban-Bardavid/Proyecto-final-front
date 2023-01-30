@@ -12,20 +12,23 @@ const ResetPassword = (props) => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [user, setUser] = useState({})
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        /*let regExPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,16}$/;*/
-        const userPassword = {
-            password: e.target.value
-        }
+    const onChange = (e) => {
+        const { name, value } = e.target;
+        const response = { ...user, [name]: value }
+        setUser(response);
+    }
 
-        let { data } = await axios.get("http://localhost:4000/api/user/searchEmail", { email: "mari@gmail.com" })
+    const handleSubmit = async () => {
+        let { data } = await axios.get("http://localhost:4000/api/user/searchEmail", { email: user.email })
         console.log(data)
-        let response = await axios.put(`http://localhost:4000/api/user/resetPassword/${data._id}`, {
-            password:
-                "Esteban123456789*"
+        resetPassword(data._id)
+    }
 
+    const resetPassword = async (id) => {
+        let response = await axios.put(`http://localhost:4000/api/user/resetPassword/${id}`, {
+            password: user.password
         })
         console.log(response)
     }
@@ -48,19 +51,16 @@ const ResetPassword = (props) => {
         <div className='main' onSubmit={handleSubmit}>
             <form className='mainContainer'>
                 <h3>Nueva contraseña</h3>
-                <div className='divPassword'>Contraseña*</div>
+                <div className='divPassword'>Email</div>
                 <div className='containerPassword'>
-                    <input type={showPassword ? "text" : "password"} value={password} onChange={(e) => setPassword(e.target.value)} name='password' placeholder="Introduce tu contraseña" required />
+                    <input type={showPassword ? "text" : "password"} value={password} onChange={onChange} name='email' placeholder="Introduce tu contraseña" required />
                     <button onClick={switchShowPassword}>{showPassword ? "Ocultar" : "Mostrar"}</button>
                 </div>
-                <div>Confirmar contraseña:*</div>
-                <input type="password" onchange={(e) => checkValidation(e)} name="confirmPassword" placeholder="Confirma la contraseña" />
+                <div>Contraseña</div>
+                <input type="password" onChange={onChange} name="password" placeholder="nueva contra" />
                 <div className='confirmPassword'>{isError}</div>
                 <div className='divButton'>
-
-                    <button type="submit">Enviar</button>
-
-
+                    <button type="submit" onClick={handleSubmit}>Enviar</button>
                 </div>
             </form>
         </div>
