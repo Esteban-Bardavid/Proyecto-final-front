@@ -54,3 +54,20 @@ font-size:"8px"
  padding: 2px 5px;
 
 }
+.products__page{
+    display: flex;
+    justify-content: space-around;
+}
+.filter__widget{
+    width: 16%;
+}
+.products__list{
+    width: 90%;
+}
+
+@media only screen and (max-width:768px){
+    .filter__widget{
+        display: none;
+    }
+    
+}
