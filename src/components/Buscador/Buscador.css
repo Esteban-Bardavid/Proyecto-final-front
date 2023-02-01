@@ -1,0 +1,38 @@
+.container-search-icons {
+
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.container-search {
+    margin-left: 520px;
+    position: relative;
+    align-items: center;
+
+
+}
+
+.input-search {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    height: 35px;
+    width: 400px;
+    padding-left: 10px;
+    padding-right: 36px;
+}
+
+.button-search {
+    position: absolute;
+    right: 0;
+    padding-right: 5px;
+    border: none;
+    outline: none;
+    background: none;
+
+}
+@media (max-width: 1105px) {
+    .container-search {
+        margin-left: 210px;
+    }
+}
