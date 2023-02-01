@@ -55,18 +55,13 @@ const Buscador = () => {
         filter(buscar)
 
     }, [buscar, productos])
+    // console.log(resultadosBusqueda !== [])
+    // console.log(resultadosBusqueda.length == 0)
 
-    // console.log(resultadosBusqueda)
     return (
 
-
-
-
-
-
-
         <div className="container-search d-flex dropdown ">
-            
+
             <input
                 type="text"
                 className="input-search form-control col-2 dropdown-toggle"
@@ -82,14 +77,15 @@ const Buscador = () => {
             <ul className='dropdown-menu container py-5'>
                 <li>
                     {
-                        resultadosBusqueda.lenght >= 0 ? (
+                        
+                        resultadosBusqueda.length == 0 ? (
                             <p className='text-uppercase fw-bold my-0'> sin resultados </p>
                         ) : (
                             resultadosBusqueda.map((product) => {
-                                <Link className='dropdown-item' key={product.id} to="/*" > {product.marca} </Link>
-                            }) 
-                            
-                        )
+                              return  <Link className='dropdown-item' key={product.id} to="/*" > {product.marca} </Link>
+                            })
+
+                        ) 
 
                     }
                 </li>

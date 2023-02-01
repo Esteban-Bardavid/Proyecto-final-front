@@ -9,7 +9,7 @@ import logo from "../../img/logorolling.png"
 import UseAdminProducts from '../../utils/useAdminProducts';
 import axios from "axios";
 import Buscador from "../Buscador/Buscador";
-
+import favoritos from "../../pages/Favorites/favorites"
 function NavBarComponent() {
     const { url } = UseAdminProducts();
     const token = localStorage.getItem('token');
@@ -18,12 +18,11 @@ function NavBarComponent() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-   
+
     return (
         <div>
             <div className=" pre-navbar  ">
                 <h2>3 <small>CUOTAS SIN INTERES </small><strong>-ENVIOS GRATIS</strong> <small>DESDE $20.000</small></h2>
-
 
                 {/* MODAL CONTACTO */}
 
@@ -55,10 +54,10 @@ function NavBarComponent() {
                             className=" my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
-                            <Link className="links-icons m-2 p-1" id="favs" to="/Favorites"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
-                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
-                            <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
+                            <Link className="links-icons m-2 p-1" id="home" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="favs" to="/favoritos"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="carrito" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="info" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
                                 <Modal
                                     show={show}
                                     onHide={handleClose}
@@ -79,15 +78,12 @@ function NavBarComponent() {
                                     </Modal.Footer>
                                 </Modal>
                             </Link>
-                            <Link className="links-icons m-2 p-1" id="favs" to="/Info"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Link>
-
+                            <Link className="links-icons m-2 p-1" id="favs" to="/InfoPage"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Link>
                         </Nav>
-
 
                         {/* BUSCADOR  */}
 
-
-                        <Buscador/>
+                        <Buscador />
 
                     </Navbar.Collapse>
                 </Container>
