@@ -13,11 +13,6 @@ function NavBarComponent() {
     const [smShow, setSmShow] = useState(false);
     const [lgShow, setLgShow] = useState(false);
     const [show, setShow] = useState(false);
-    const [form, setform] = useState({});
-
-    const ModalClose = () => setform(false);
-
-    const [validate, setvalidate] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -25,7 +20,6 @@ function NavBarComponent() {
         localStorage.removeItem('token')
         window.location.href = "/login"
     }
-
     function onChange(e) {
         const { name, value } = e.target;
         const response = { ...form, [name]: value }
@@ -69,13 +63,13 @@ function NavBarComponent() {
     return (
         <div>
             <div className=" pre-navbar  ">
-                <h2 >3 <small >CUOTAS SIN INTERES </small><strong >-ENVIOS GRATIS</strong> <small >DESDE $20.000</small></h2>
+                <h2>3 <small>CUOTAS SIN INTERES </small><strong>-ENVIOS GRATIS</strong> <small>DESDE $20.000</small></h2>
 
 
                 {/* MODAL CONTACTO */}
 
                 <div className="contact-navb">
-                    <Button className="button-nav" onClick={() => setLgShow(true)}>Contacto</Button>
+                    <Button className="button-nav" onClick={() => setLgShow(true)}>Contact Us</Button>
                     <Modal
                         size="lg"
                         show={lgShow}
@@ -95,7 +89,7 @@ function NavBarComponent() {
             {/* NAVBAR  */}
             <Navbar bg="orange" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#"><img className="logo-img" src="https://o.remove.bg/downloads/6e3f4129-583d-415f-95d5-93ff14aeca57/ROLLING_SHOES-removebg-preview.png" alt="" srcset="" /></Navbar.Brand>
+                    <Navbar.Brand href="#">LOGO</Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse className="container-search-icons " id="navbarScroll">
 
@@ -108,12 +102,9 @@ function NavBarComponent() {
                             <Link className="links-icons m-2 p-1" id="favs" to="/Favorites"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
-
-
-
                                 <Modal
                                     show={show}
-                                    onHide={ModalClose}
+                                    onHide={handleClose}
                                     backdrop="static"
                                     keyboard={false}
                                 >
@@ -151,19 +142,12 @@ function NavBarComponent() {
                                                         />
                                                     </Form.Group>
                                                 </Form>
-
-
-
-
                                                 <div id="ConteinerForgottenPassword">
                                                     <p className="me-2">¿Olvidaste tu contraseña?</p>
                                                     <a href="http://">Recuperar contraseña</a>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button id="CloseLoginButton" onClick={handleClose}>

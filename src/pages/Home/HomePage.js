@@ -21,7 +21,7 @@ function HomePage() {
   const token = localStorage.getItem("token") ?? "";
   const headers = { "x-auth-token": token }
   useEffect(() => { AdminGet() })
-  
+
   async function AdminGet() {
 
     try {
@@ -33,12 +33,13 @@ function HomePage() {
       console.error('error')
 
     }
+
+
+    return (
+      <div>
+
+      </div>
+    );
   }
-  return (
-    <div>
-
-    </div>
-  );
 }
-
-export default HomePage;
+  export default HomePage;
