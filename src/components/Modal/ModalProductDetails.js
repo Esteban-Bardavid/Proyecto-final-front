@@ -97,36 +97,51 @@ function ModalProduct({item}) {
         <>   
         <i onClick={openModal} ><FaCartPlus /></i>
             <Modal show={ShowProduct} onHide={closeModal}  >
-            <Modal.Body>
-                <div className='modal__container'>
-                    
-                    <div className='img__modal'>
-                        <img className="img__1"src={item.imgUrl} alt='' />
-                    </div>
-                    <div className='box__modal'>
-                        <div className='row__box'>
-                        <h2>{item.producto}</h2>
-                        <span>${item.precio}</span>
+                <Modal.Body>
+                    <div className='modal__container'>
+
+                        <div className='img__modal'>
+                            <img className="img__1" src={item.imgUrl} alt='' />
+                            
                         </div>
-                    
-                    <div className='talles'>
-                        {
-                            [36,37,38,39,40,41,42,43].map(talle=>(
-                                <button value={talle}>
-                                    {talle}
-                                </button>
-                            ))
-                        }
+                        <div className='box__modal'>
+                            <div className='row__box'>
+                                <h2>{item.producto}</h2>
+                                <span>${item.precio}</span>
+                                
+                            </div>
+                            <p>
+                                {item.sex} - {item.categoria}
+                            </p>
+                            
+                            <div className='talles'>
+                                <h2>Talles disponibles:</h2>
+                                {
+                                    [36, 37, 38, 39, 40, 41, 42].map(talle => (
+                                        <button value={talle}>
+                                            {talle}
+                                        </button>
+                                    ))
+                                }
+                            </div>
+                            <div className='thumb'>
+                                <img src={item.imgUrl} alt=''/>
+                                <img src={item.imgUrl} alt=''/>
+                                <img src={item.imgUrl} alt=''/>
+                            </div>
+                            
+                            <div className='modal__buttons'>
+                            <button className='add__tocart' >
+                                Agregar al carrito
+                            </button>
+                            <button className='salir__modal' onClick={closeModal}>
+                                Salir
+                            </button>
+                            </div>
+                            
+                        </div>
+
                     </div>
-                    <p>
-                        {item.descripcion}
-                    </p>
-                    <button className='add__tocart'>
-                        Agregar al carrito
-                    </button>
-                    </div>
-                    
-                </div>
                 </Modal.Body>
 
 

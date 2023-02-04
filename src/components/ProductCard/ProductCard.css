@@ -9,6 +9,7 @@
     background-color: #e3ceb9;
 }
 .product__name{
+    
     cursor: pointer;
     font-size: 1rem;
     padding-left: 0.5rem;
@@ -46,20 +47,20 @@
     color: #243763;
     padding-right: 1rem;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 400;
 };
 
 
 
 @media only screen and (max-width:768px){
     .product__name{
-        font-size: 12px;
+        font-size: 0.6rem;
     }
     .product__sex{
-        font-size: 9px;
+        font-size: 8px;
     }
     .price{
-        font-size: 17px;
+        font-size: 12px;
     }
     .add__cart{
         right: -40%;
@@ -69,6 +70,7 @@
 @media only screen and (max-width:414px){
   
     .product__name{
+        text-transform: uppercase;
         font-size:18px;
     }
     .product__sex{
