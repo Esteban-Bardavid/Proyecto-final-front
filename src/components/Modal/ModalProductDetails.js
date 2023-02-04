@@ -5,6 +5,8 @@ import ProductCard from '../ProductCard/ProductCard';
 import './ModalProductDetails.css'
 
 import { FaCartPlus } from "react-icons/fa";
+import { display } from '@mui/system';
+
 function ModalProduct({item}) {
    
  
@@ -22,8 +24,12 @@ function ModalProduct({item}) {
 
     }
 
+    
+
     // Talles:
 
+
+    
     function Talle36() {
         if (item.tseis > 0) {
             document.getElementById("talle").innerHTML = '36'
@@ -116,19 +122,25 @@ function ModalProduct({item}) {
                             
                             <div className='talles'>
                                 <h2>Talles disponibles:</h2>
-                                {
-                                    [36, 37, 38, 39, 40, 41, 42].map(talle => (
-                                        <button value={talle}>
-                                            {talle}
-                                        </button>
-                                    ))
-                                }
+                                <button onClick={Talle36}>36</button>
+                                <button onClick={Talle37}>37</button>
+                                <button onClick={Talle38}>38</button>
+                                <button onClick={Talle39}>39</button>
+                                <button onClick={Talle40}>40</button>
+                                <button onClick={Talle41}>41</button>
+                                <button onClick={Talle42}>42</button>
+                                <div className='d-flex'>
+                                        <p className='me-2'>Elegiste Talle:</p> <p className="mt-4" id='talle'></p>
+                                </div>
+                               
+
                             </div>
                             <div className='thumb'>
-                                <img src={item.imgUrl} alt=''/>
-                                <img src={item.imgUrl} alt=''/>
-                                <img src={item.imgUrl} alt=''/>
-                            </div>
+                               { [item.imgUrl, item.imgUrl,item.imgUrl].flatMap((img,index)=>(
+                                <img src={img} alt=""/>
+                               ))}
+                               </div>
+                                
                             
                             <div className='modal__buttons'>
                             <button className='add__tocart' >
