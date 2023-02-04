@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { LoginPage } from "../../pages/Login/LoginPage"
+import axios from "axios"
 
 
 function NavBarComponent() {
@@ -15,6 +16,8 @@ function NavBarComponent() {
     const [form, setform] = useState({});
 
     const ModalClose = () => setform(false);
+
+    const [validate, setvalidate] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -27,10 +30,41 @@ function NavBarComponent() {
         const { name, value } = e.target;
         const response = { ...form, [name]: value }
         setform(response)
-        console.log(form)
-      }
 
-      
+        //setvalidate(false)
+    }
+
+    async function LoginPost() {
+
+
+        console.log(form)
+        try {
+            let url = `http://localhost:4000/api/Login`
+            const { data } = await axios.post(url, form)
+
+            localStorage.setItem('token', data)
+
+            window.location.href = '/'
+
+            //   alert("esta es el home")
+
+            // const email = document.getElementById("emailLogin").value;
+            //const password = document.getElementById("passwordLogin").value;
+
+            // if (email === "EstebanBardavid@gmail.com" && password === "esteban") {
+            //
+            //      localStorage.setItem('token', data)
+            //      window.location.href = '/'
+            //      alert("esta es el home de admin")
+            //  }
+
+        } catch (error) {
+            console.error('error')
+            setvalidate(true)
+            console.log(validate)
+
+        }
+    }
 
     return (
         <div>
@@ -74,8 +108,8 @@ function NavBarComponent() {
                             <Link className="links-icons m-2 p-1" id="favs" to="/Favorites"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
-                              
-                            
+
+
 
                                 <Modal
                                     show={show}
@@ -95,6 +129,9 @@ function NavBarComponent() {
                                                     <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
                                                         <Form.Label>Ingrese su email</Form.Label>
                                                         <Form.Control
+                                                            id="emailLogin"
+                                                            classname="border border-danger border-1"
+                                                            //    classname = {validate? "border border-danger" : ""}
                                                             name="email"
                                                             type="email"
                                                             placeholder="juan@gmail.com"
@@ -105,6 +142,8 @@ function NavBarComponent() {
                                                     <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
                                                         <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
                                                         <Form.Control
+                                                            id="passwordLogin"
+                                                            classname={validate ? " border border-danger" : ""}
                                                             name="password"
                                                             type="password"
                                                             placeholder="************"
@@ -130,7 +169,7 @@ function NavBarComponent() {
                                         <Button id="CloseLoginButton" onClick={handleClose}>
                                             Cerrar
                                         </Button>
-                                        <Button id="ReadyLoginButton" onClick={onChange}>Listo!
+                                        <Button id="ReadyLoginButton" onClick={LoginPost}>Listo!
                                         </Button>
                                     </Modal.Footer>
                                 </Modal>
