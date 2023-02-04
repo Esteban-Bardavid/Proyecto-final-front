@@ -1,0 +1,90 @@
+.modal__container{
+  
+    box-shadow: 0 0 5px #ccc;
+    display: flex;
+    justify-content: space-around ;
+    padding: 30px 0;
+}
+.img__modal{
+    width: 50%;
+    overflow: hidden;
+    margin: 5px;
+
+}
+.img__modal img{
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    display: block;
+    object-fit: cover;
+}
+.box__modal{
+    width: 50%;
+    margin: 5px;
+}
+
+.row__box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.row__box h2 {
+text-transform: uppercase;
+letter-spacing: 2px;
+font-size: 20px;
+}
+.row__box span{
+    color:#243763;
+}
+
+
+
+.product__info h3{
+    font-size: 1.2rem;
+    color: #243763;
+    font-weight:600;
+    
+};
+
+
+.botonTalle {
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+    border-radius: 10px;
+}
+
+.labelTalles {
+    font-size: 12px;
+}
+@media only screen and (max-width:414px){
+  
+    
+    .modal__imgs{
+        display: none !important;
+    }
+    .modal__img{
+        width: 60%;
+    }
+    .modal__title{
+        margin:auto;
+        color:#243763;
+        font-size: 8px;
+    }
+    .talles__inputs{
+        display: none !important;
+    }
+    .product__info span{
+        display: none !important;
+    }
+    .cuotas__{
+        display: none !important;
+    }
+    .container__modal{
+        display: flex;
+        align-items: center;
+    }
+
+}

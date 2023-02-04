@@ -96,6 +96,55 @@ function WomanPage() {
         </Container>
 
       </section>
+
+
+      <section className="filter__widget__responsive">
+        <Container>
+          <Row data={Filter}>
+            
+            <h2 style={{ fontSize: "35px", color: "#243763" }}>MUJER
+              <span style={{ fontSize: "20px", color: "#243763" }}> [{Filter.length}] </span>
+            </h2>
+            
+            <Col lg='3' md='3'>
+            <div>
+              <select >
+                <option>Ordenar por:</option>
+                <option value="Menor">Menor precio</option>
+                <option value="Mayor">Mayor precio</option>
+                <option value="Nuevo">Mas nuevo a mas viejo</option>
+                <option value="Viejo">Mas viejo a mas nuevo</option>
+              </select>
+
+            </div>
+            </Col>
+            <Col lg="3" md="3">
+              <select onChange={handleFilter}>
+              {['Todas las categorias', 'Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) =>
+              (
+                <option key={`${cat}`} className="mb-3"
+                value={`${cat}`}
+                id={`${cat}`}
+                label={`${cat}`}>
+                  
+                </option>
+              ))}
+              </select>
+            </Col>
+            <Col lg="3" md="3">
+              <select onChange={handleFilter}>
+              {['Todas las marcas', 'Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
+                  <option key={`${marca}`} className="mb-3" value={`${marca}`}
+                  id={`${marca}`}
+                  label={`${marca}`}>
+                    
+                  </option>
+                ))}
+              </select>
+            </Col>
+          </Row>
+        </Container>
+      </section>
       <section className="products__list">
         <Container>
           <Row>

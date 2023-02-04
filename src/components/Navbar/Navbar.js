@@ -73,7 +73,9 @@ function NavBarComponent() {
 
                     </Navbar.Collapse>
                 </Container>
+            
             </Navbar>
+            
         </div>
     )
 }
