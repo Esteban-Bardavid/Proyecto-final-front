@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Form, Button, Container, Col, Row } from 'react-bootstrap';
 import useProducts from '../../utils/useProducts';
 import ProductCard from '../ProductCard/ProductCard';
 import './ModalProductDetails.css'
 
+
 import { FaCartPlus } from "react-icons/fa";
+import { CartContext } from "../CartProvider/CartProvider";
 import { display } from '@mui/system';
+
 
 function ModalProduct({item}) {
    
@@ -17,12 +20,8 @@ function ModalProduct({item}) {
     const openModal = () =>  setShowProd(true);
    
     
-    const [Cart, setCart] = useState([]);
-    const addToCart = item => {
-        setCart([...Cart, item]);
-        console.log(Cart)
-
-    }
+  
+    const { addItem } = useContext(CartContext);
 
     
 
@@ -136,14 +135,14 @@ function ModalProduct({item}) {
 
                             </div>
                             <div className='thumb'>
-                               { [item.imgUrl, item.imgUrl,item.imgUrl].flatMap((img,index)=>(
+                               { [item.imgUrl, item.imgUrl,item.imgUrl].flatMap((img)=>(
                                 <img src={img} alt=""/>
                                ))}
                                </div>
                                 
                             
                             <div className='modal__buttons'>
-                            <button className='add__tocart' >
+                            <button className='add__tocart' onClick={() => addItem(item)}>
                                 Agregar al carrito
                             </button>
                             <button className='salir__modal' onClick={closeModal}>

@@ -1,6 +1,6 @@
 
 import { Card, ListGroup, Col, Container, Row } from "react-bootstrap";
-import { useState } from "react";
+import {useContext, useState } from "react";
 import { Modal, Form, Button } from 'react-bootstrap';
 import { FaHeart } from "react-icons/fa";
 
@@ -16,6 +16,7 @@ import { addClass } from "doom/lib/presentation";
 import { display } from "@mui/system";
 import { Visibility } from "@mui/icons-material";
 import ModalProduct from "../Modal/ModalProductDetails";
+import {CartContent} from "../CartProvider/CartProvider";
 
 
 function ProductCard({ item }) {

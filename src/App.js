@@ -13,6 +13,7 @@ import FavoritesPage from './pages/Favorites/favorites';
 import InfoPage from './pages/Info/info' 
 import { Navbar } from 'react-bootstrap';
 import AdminProducts from './pages/AdminProducts/AdminProductsPage';
+import CartProvider from "./components/CartProvider/CartProvider";
 
 
 function App() {
@@ -20,7 +21,8 @@ function App() {
 
   
   return (
-    <BrowserRouter >
+    <CartProvider> 
+     <BrowserRouter >
       <NavBarComponent />
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
@@ -33,6 +35,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </CartProvider>
   );
 }
 export default App;
