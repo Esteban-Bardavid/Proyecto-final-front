@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./ResetPassword.css";
+import Button from 'react-bootstrap/Button';
 
 import Swal from 'sweetalert2';
 
@@ -24,8 +26,11 @@ const ResetPassword = (props) => {
 
     const handleSubmit = async () => {
         let { data } = await axios.get(`${url}user/searchEmail`, { email: user.email })
+       
+       if (data._id) {
+        resetPassword(data._id)  /*aqui*/
         console.log(data)
-        resetPassword(data._id)
+       }
     }
 
     const resetPassword = async (id) => {
@@ -50,22 +55,23 @@ const ResetPassword = (props) => {
     }
 
     return (
+        
         <div className='main' onSubmit={handleSubmit}>
             <form className='mainContainer'>
                 <h3>Nueva contraseña</h3>
-                <div className='divPassword'>Email</div>
+                <div className='divEmail'>Email</div>
                 <div className='containerPassword'>
-                    <input type={showPassword ? "text" : "password"} value={password} onChange={onChange} name='email' placeholder="Introduce tu contraseña" required />
-                    <button onClick={switchShowPassword}>{showPassword ? "Ocultar" : "Mostrar"}</button>
+                    <input type="email" onChange={onChange} name='email' placeholder="Introduce tu Email" />
                 </div>
-                <div>Contraseña</div>
-                <input type="password" onChange={onChange} name="password" placeholder="nueva contra" />
+                <div className='divPassword'>Contraseña</div>
+                <input type="password" onChange={onChange} name="password" placeholder="nueva contraseña" />
                 <div className='confirmPassword'>{isError}</div>
                 <div className='divButton'>
-                    <button type="submit" onClick={handleSubmit}>Enviar</button>
+                <button type="submit" class="btn btn-primary m-2" onClick={handleSubmit}>Enviar</button>
                 </div>
             </form>
         </div>
+        
     )
 }
 
