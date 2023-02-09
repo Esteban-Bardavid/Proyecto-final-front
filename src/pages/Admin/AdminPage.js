@@ -2,6 +2,7 @@ import "./AdminPage.css";
 import ModalComponent from "../../components/Modal/Modal";
 import useAdmin from '../../utils/useAdmin';
 import { Modal, Form, Button } from 'react-bootstrap';
+import Navbar from '../../components/Navbar/Navbar'; 
 
 function AdminPage() {
     const { 
@@ -20,6 +21,7 @@ function AdminPage() {
 
     return (
         <div>
+            <Navbar/> 
            hola soy el admin page
         </div>
     )

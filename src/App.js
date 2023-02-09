@@ -4,7 +4,7 @@ import AdminPage from "./pages/Admin/AdminPage";
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import RegisterPage from "./pages/Register/RegisterPage";
+import RegisterModal from "./components/Register/RegisterModal";
 import ErrorPage from "./pages/404/404";
 import Navbar from "./components/Navbar/Navbar";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -36,7 +36,7 @@ function App() {
           <div>
             <Navbar />
             <div className='mt-5'>
-              <RegisterPage />
+              <RegisterModal />
             </div>
           </div>
         }>
