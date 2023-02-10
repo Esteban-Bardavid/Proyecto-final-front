@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form, Button, Container, Col, Row } from 'react-bootstrap';
 
-function ModalComponent({ open }) {
+
+function ModalProduct({item}) {
+    
     //Hook
 
     return (
-        <div>
-        </div>
+        <>
+                 
+        </>
+        
     );
 }
-export default ModalComponent;
+export default ModalProduct;

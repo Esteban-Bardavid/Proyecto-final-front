@@ -29,7 +29,7 @@
      padding: 0 !important;
      background: none !important;
      border: none !important;
-    color: rgb(250, 210, 190);
+
  }
 
  .container-search-icons {
@@ -39,7 +39,7 @@
  }
 
  .container-search {
-    margin-left: 520px;
+    margin-left: 550px;
     position: relative;
     align-items: center;
  
