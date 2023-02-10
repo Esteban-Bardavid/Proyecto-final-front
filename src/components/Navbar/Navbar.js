@@ -5,6 +5,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import 'animate.css';
+import logo from '../../img/rollinglogo.png';
+import Buscador from "../Buscador/Buscador";
+
+
 
 function NavBarComponent() {
     const token = localStorage.getItem('token');
@@ -48,7 +52,7 @@ function NavBarComponent() {
             {/* NAVBAR  */}
             <Navbar bg="orange" expand="lg">
                 <Container fluid>
-                    <Navbar.Brand href="#"><img className="logo-img" src="https://o.remove.bg/downloads/6e3f4129-583d-415f-95d5-93ff14aeca57/ROLLING_SHOES-removebg-preview.png" alt=""  srcset="" /></Navbar.Brand>
+                    <Navbar.Brand className="logo-navbar" href="#"><img className="logo-img" src={logo} alt="LOGO"  srcset="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse className="container-search-icons " id="navbarScroll">
 
@@ -86,6 +90,9 @@ function NavBarComponent() {
 
                         </Nav>
 
+                        {/* BUSCADOR  */}
+
+                        <Buscador/>
 
                         <Form className="container-search d-flex  ">
 
