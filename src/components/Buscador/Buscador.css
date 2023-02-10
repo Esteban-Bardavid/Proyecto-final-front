@@ -8,6 +8,8 @@
     margin-left: 520px;
     position: relative;
     align-items: center;
+
+
 }
 
 .input-search {
@@ -27,8 +29,8 @@
     border: none;
     outline: none;
     background: none;
-}
 
+}
 @media (max-width: 1105px) {
     .container-search {
         margin-left: 210px;
