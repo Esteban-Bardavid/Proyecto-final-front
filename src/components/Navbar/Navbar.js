@@ -10,7 +10,7 @@ import UseAdminProducts from '../../utils/useAdminProducts';
 import axios from "axios";
 import Buscador from "../Buscador/Buscador";
 import favoritos from "../../pages/Favorites/favorites"
-
+import SubNavbar from "../SubNav/subNav"
 
 function NavBarComponent() {
     const { url } = UseAdminProducts();
@@ -21,7 +21,7 @@ function NavBarComponent() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    
+
     function singOut() {
         localStorage.removeItem('token')
         window.location.href = "/login"
@@ -91,15 +91,17 @@ function NavBarComponent() {
 
                         {/* BUSCADOR  */}
 
-                        <Buscador/>
+                        <Buscador />
 
-                        
 
-                        
+
+
 
                     </Navbar.Collapse>
                 </Container>
+
             </Navbar>
+            <SubNavbar/>
         </div>
     )
 }

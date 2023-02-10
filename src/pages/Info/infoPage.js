@@ -1,4 +1,4 @@
-import Acorrdion from "../../components/InfoAccordion/QuestionsAccordion"
+import Acordion from "../../components/InfoAccordion/QuestionsAccordion"
 import "./infoPage.css"
 
 
@@ -11,7 +11,7 @@ function InfoPage() {
                 </h1>
             </div>
             <div>
-                <Acorrdion />
+                <Acordion />
             </div>
         </div>
     )

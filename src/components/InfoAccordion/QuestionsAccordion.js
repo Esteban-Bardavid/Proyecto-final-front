@@ -11,7 +11,17 @@ function Acorrdion() {
 
                         <Accordion.Header >Cuanto tardara en llegar mi pedido?</Accordion.Header>
                         <Accordion.Body >
-                            Lorem
+                            ENTREGAS:
+                            Una vez que nuestro almacén termine la preparación de tu pedido recibirás un correo electrónico de confirmación con tu guía de seguimiento.
+                            rollingshoes realizará la entrega en la dirección registrada en la orden de 4(cuatro) a 7 (siete) en San Miguel de Tucuman y hasta 10 días hábiles en resto del país.
+
+                            Si utilizaste nuestro Servicio Express, valida  los parámetros  y tiempos establecidos aquí.
+
+                            Recordá que pódes realizar el seguimiento de tu pedido en:
+
+                            Seguimiento de Pedidos: Con tu número de pedido / orden podés seguir tu pedido ingesando aquí.
+
+                            Socio logístico: Ingresa al sitio de nuestro socio logístico OCA y Correo Argentino con la guía de despacho asignada.
 
                         </Accordion.Body>
                     </Accordion.Item>
