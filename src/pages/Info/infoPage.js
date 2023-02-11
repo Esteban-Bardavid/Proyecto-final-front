@@ -4,15 +4,24 @@ import "./infoPage.css"
 
 function InfoPage() {
     return (
-        <div className="containerBody">
-            <div className="containerTittle">
-                <h1>
-                    Preguntas Frecuentes
-                </h1>
+        <div >
+
+
+            <div >
+                <h1 className="Titulo">Preguntas Frecuentes</h1>
+                <div className="categorias" id="categorias" >
+                    <div className="categorias" data-categoria="metedos-pago" >
+                        
+                    </div>
+                </div>
             </div>
+
+
+
             <div>
                 <Acordion />
             </div>
+
         </div>
     )
 }
