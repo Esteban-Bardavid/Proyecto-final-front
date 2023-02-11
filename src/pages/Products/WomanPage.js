@@ -50,8 +50,7 @@ function WomanPage() {
                 <option>Ordenar por:</option>
                 <option value="Menor">Menor precio</option>
                 <option value="Mayor">Mayor precio</option>
-                <option value="Nuevo">Mas nuevo a mas viejo</option>
-                <option value="Viejo">Mas viejo a mas nuevo</option>
+     
               </select>
 
             </div>
@@ -85,14 +84,7 @@ function WomanPage() {
                   </div>
                 ))}
               </Form>
-              <h5>PRECIO</h5>
-              <Form>
-                <select>
-                  {['OFERTAS', '$10.000 a $20.000', '$20.000 a $30.000', '$30.000 a $40.000', '$50.000 a $60.000'].map((price) => (
-                    <option value={`${price}`}>{price}</option>
-                  ))}
-                </select>
-              </Form>
+              
             </div>
           </Row>
         </Container>
