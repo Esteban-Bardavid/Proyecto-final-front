@@ -7,6 +7,7 @@ import ManPage from './pages/Products/ManPage';
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import NavBarComponent from './components/Navbar/Navbar';
+import CartPage from "./pages/CartPage/CartPage";
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FavoritesPage from './pages/Favorites/favorites';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/womanpage' element={<WomanPage />}></Route>
         <Route path='/manpage' element={<ManPage />}></Route>
         <Route path='/adminProducts' element={<AdminProducts />}></Route>
+        <Route path='/cartpage' element={<CartPage />}></Route>
 
       </Routes>
     </BrowserRouter>

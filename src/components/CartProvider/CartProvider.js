@@ -5,6 +5,7 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useLocalStorage("cart", []);
+ 
 
   const addItem = (newItem) => {
     setCart((prev) => {

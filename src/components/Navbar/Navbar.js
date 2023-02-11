@@ -21,14 +21,17 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../CartProvider/CartProvider";
-
+import { CartModal} from "../CartModal/CartModal";
+import {useCart} from "../../utils/useCart";
 function NavBarComponent() {
   const token = localStorage.getItem("token");
   const [smShow, setSmShow] = useState(false);
   const [lgShow, setLgShow] = useState(false);
-
+  
+  const {CartOpen,setCartOpen} = useCart();
   const { itemCount } = useContext(CartContext);
-
+  const[active,setActive]= useState(false);
+  
   function singOut() {
     localStorage.removeItem("token");
     window.location.href = "/login";
@@ -43,7 +46,7 @@ function NavBarComponent() {
         </h2>
 
         {/* MODAL CONTACTO */}
-
+        
         <div className="contact-navb">
           <Button className="button-nav" onClick={() => setLgShow(true)}>
             Contact Us
@@ -94,14 +97,10 @@ function NavBarComponent() {
                   icon={faStar}
                 />{" "}
               </Nav.Link>
-              <Nav.Link href="#action1">
-                {" "}
-                {itemCount}
-                <FontAwesomeIcon
-                  color="grey"
-                  fontSize={28}
-                  icon={faCartShopping}
-                />
+              <Nav.Link href="#action1" 
+              >
+                <CartModal />
+               
               </Nav.Link>
               <Nav.Link href="#action1">
                 {" "}
@@ -141,6 +140,7 @@ function NavBarComponent() {
       </Navbar>
     </div>
   );
+  
 }
 
 export default NavBarComponent;
