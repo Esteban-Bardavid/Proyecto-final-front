@@ -28,22 +28,22 @@ export const CartModal = () => {
 
 
     <>
-    <div  onMouseEnter={()=>setCartOpen(!CartOpen
-                )}
-                onMouseLeave={()=>setCartOpen(CartOpen
-                  )}>
-                   {" "}
-                {itemCount}
-                
-                <FontAwesomeIcon
-                  color="grey"
-                  fontSize={28}
-                  icon={faCartShopping}
-                  
-                 
-                 
-                />
-                </div>
+      <div onClick={() => setCartOpen(!CartOpen
+      )}
+      onMouseLeave={() => setCartOpen(CartOpen
+        )}>
+
+
+        {" "}
+        <span className="itemcount">{itemCount}</span>
+        
+
+        <FontAwesomeIcon
+          color="grey"
+          fontSize={28}
+          icon={faCartShopping}
+        />
+      </div>
 
     
     {CartOpen &&(
