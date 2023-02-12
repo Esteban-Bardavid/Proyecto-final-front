@@ -1,4 +1,6 @@
 import "./LoginPage.css";
+//import { useEffect } from "react";
+import Swal from "sweetalert2";
 import { Form, Button, Modal, Alert } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
@@ -6,6 +8,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FooterComponent from "../../../src/components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
+import { ThemeConsumer } from "styled-components";
+
 
 function LoginPage() {
     // const { } = useLogin();
@@ -13,6 +17,23 @@ function LoginPage() {
 
     const handleClose = () => setform(false);
     const handleShow = () => setform(true);
+
+    const mostrarAlertaExito = () => {
+        Swal({
+            title: "Inicio de sesion exitoso",
+            icon: "success",
+            button: "Ir a la Homepage"
+        });
+    }
+
+    const mostrarAlertaError = () => {
+        Swal({
+            title: "Inicio de sesion erroneo",
+            text: "controle que los campos esten correctos y completos",
+            icon: "error",
+            button: "Ir a la Homepage"
+        });
+    }
 
     function onChange(e) {
         const { name, value } = e.target;
@@ -23,19 +44,26 @@ function LoginPage() {
 
 
     async function LoginPost() {
-        console.log("todo bien pana")
+        //console.log("todo bien pana")
         try {
             let url = `http://localhost:3000`
 
             const responseLogin = await axios.post(url, form)
             console.log(responseLogin)
             alert("todo bien pana")
-            //   localStorage.setItem('token', data)
-            //  window.location.href = '/'
+          //  localStorage.setItem('token', data)
+           //  window.location.href = '/'
         } catch (error) {
+            alert("Upss.. Hubo un problema")
             console.error('error')
 
         }
+  //      useEffect(() => {
+    //        mostrarAlertaExito();
+      //  }, []);
+
+
+
     }
     return (
         <div className="Return">
@@ -67,6 +95,11 @@ function LoginPage() {
                                         placeholder="juan@gmail.com"
                                         onChange={onChange}
                                     />
+                                    if ("email"== "" && "password"== "") {
+                                        //res.send(mostrarAlertaError)
+                                        alert("falta datos")
+                                    }
+                                
                                 </Form.Group>
 
                                 <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
@@ -84,8 +117,12 @@ function LoginPage() {
 
 
                             <div id="ConteinerForgottenPassword">
-                                <p className="me-2">¿Olvidaste tu contraseña?</p>
-                                <a href="http://">Recuperar contraseña</a>
+                                <p className="me-2">¿Olvidaste tu contraseña? 
+
+                                </p>
+                                <a  href="http://">Recuperar contraseña
+                              
+                                </a>
                             </div>
                         </div>
 

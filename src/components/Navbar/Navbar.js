@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { LoginPage } from "../../pages/Login/LoginPage"
 import axios from "axios"
+import Swal from "sweetalert2";
 
 
 function NavBarComponent() {
@@ -13,6 +14,7 @@ function NavBarComponent() {
     const [smShow, setSmShow] = useState(false);
     const [lgShow, setLgShow] = useState(false);
     const [show, setShow] = useState(false);
+    const [form, setform] = useState();
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -37,25 +39,36 @@ function NavBarComponent() {
             const { data } = await axios.post(url, form)
 
             localStorage.setItem('token', data)
+            
+            Swal.fire({
+                title: "Inicio de sesion exitoso",
+                icon: "success",
+                button: "Ir a la Homepage",
+            }).then(resultado => {
+                if (resultado.value) {
+                    window.location.href = '/'
+                } else {
+                    //nada
+                }
+            })
 
-            window.location.href = '/'
-
-            //   alert("esta es el home")
-
-            // const email = document.getElementById("emailLogin").value;
-            //const password = document.getElementById("passwordLogin").value;
-
-            // if (email === "EstebanBardavid@gmail.com" && password === "esteban") {
-            //
-            //      localStorage.setItem('token', data)
-            //      window.location.href = '/'
-            //      alert("esta es el home de admin")
-            //  }
 
         } catch (error) {
             console.error('error')
-            setvalidate(true)
-            console.log(validate)
+            Swal.fire({
+               title: "Inicio de sesion defectuoso",
+                icon: "error",
+                text: "chequea que ambos campos esten correctos y completos",
+                button: "Aceptar",
+            }).then(resultado => {
+                if (resultado.value) {
+                    window.location.reload();
+                } else {
+                    //nada
+                }
+            })
+            //setvalidate(true)
+            //npm console.log(validate)
 
         }
     }
@@ -120,7 +133,7 @@ function NavBarComponent() {
                                                     <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
                                                         <Form.Label>Ingrese su email</Form.Label>
                                                         <Form.Control
-                                                            id="emailLogin"
+                                                            // id="emailLogin"
                                                             classname="border border-danger border-1"
                                                             //    classname = {validate? "border border-danger" : ""}
                                                             name="email"
@@ -133,8 +146,8 @@ function NavBarComponent() {
                                                     <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
                                                         <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
                                                         <Form.Control
-                                                            id="passwordLogin"
-                                                            classname={validate ? " border border-danger" : ""}
+                                                            // id="passwordLogin"
+                                                            //classname={validate ? " border border-danger" : ""}
                                                             name="password"
                                                             type="password"
                                                             placeholder="************"

@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter >
       <NavBarComponent />
       <Routes>
-        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/'> </Route>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route path='/register' element={<RegisterPage />}></Route>
         <Route path='/*' element={<ErrorPage />}></Route>
