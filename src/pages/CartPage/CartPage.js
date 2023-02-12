@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { CartContext } from "../../components/CartProvider/CartProvider";
 import { useCart } from "../../utils/useCart";
+import { Modal, Form, Button } from "react-bootstrap";
 
 import './CartPage.css'
 
@@ -22,6 +23,10 @@ export const CartPage = () => {
 
   const cartTotalSum = cart.reduce((acc, item) => acc + item.precio, 0);
   const cartItemCount = cart.length;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
 
@@ -58,15 +63,15 @@ export const CartPage = () => {
                         <p>{item.producto}</p>
                         <h6>Talle: 38</h6>
                         <h6>Cantidad:
-                        
+
                         </h6>
-                        <select> 
-                          
+                        <select>
+
                           <option>
                             1
                           </option>
                         </select>
-                        
+
                       </div>
                       <div className="precio_producto">
                         <p>${item.precio}</p>
@@ -87,12 +92,12 @@ export const CartPage = () => {
 
 
         </div>
-        
+
         <div className="container_pedido">
           <div className="container_resumen">
             <h4>RESUMEN DEL PEDIDO:</h4>
             <p>
-              {cartItemCount} productos 
+              {cartItemCount} productos
               <span>
                 ${cartTotalSum}
               </span>
@@ -105,15 +110,51 @@ export const CartPage = () => {
             <p className="linea">
               Total (IVA incluido)
               <span>
-              ${cartTotalSum}
+                ${cartTotalSum}
               </span>
             </p>
 
           </div>
           <div className="container_pagar" >
-            <button>Ir a pagar </button>
+            <button onClick={handleShow}>Ir a pagar </button>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" />
+                    
+                  </Form.Group>
+
+                </Form>
+
+
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                  Save Changes
+                </Button>
+              </Modal.Footer>
+            </Modal>
+
+
+
+
+
+
+
+
+
+
+
           </div>
-      </div>
+        </div>
       </div>
     </>
   );
