@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import "./ResetPassword.css";
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import button from 'react-bootstrap/Button';
 
 import Swal from 'sweetalert2';
 
@@ -55,7 +57,7 @@ const ResetPassword = (props) => {
     }
 
     return (
-        
+        <div className='body'>
         <div className='main' onSubmit={handleSubmit}>
             <form className='mainContainer'>
                 <h3>Nueva contraseña</h3>
@@ -71,6 +73,8 @@ const ResetPassword = (props) => {
                 </div>
             </form>
         </div>
+        </div>
+       
         
     )
 }

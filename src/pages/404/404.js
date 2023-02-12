@@ -1,3 +1,5 @@
+import "./404.css";
+
 function ErrorPage() {
     return (
         <div>
