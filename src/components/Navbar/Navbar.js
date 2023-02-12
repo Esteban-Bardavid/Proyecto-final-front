@@ -52,14 +52,14 @@ function NavBarComponent() {
             </div>
 
             {/* NAVBAR  */}
-            <Navbar bg="orange" expand="lg">
-                <Container fluid p-5>
+            <Navbar className="navbar1" id="navContainer" bg="orange" expand="lg">
+                <Container className="container-3" fluid p-5>
                     <Navbar.Brand className="logo-navbar" href="#"><img className="logo-img" src={logo} alt="LOGO" srcset="" /></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Toggle className="me-3" aria-controls="navbarScroll" />
                     <Navbar.Collapse className="container-search-icons " id="navbarScroll">
 
                         <Nav
-                            className=" my-2 my-lg-0"
+                            className=" icons-hamburguer my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
                             <Link className="links-icons m-2 p-1" id="home" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
@@ -101,7 +101,7 @@ function NavBarComponent() {
                 </Container>
 
             </Navbar>
-            <SubNavbar/>
+            <SubNavbar />
         </div>
     )
 }

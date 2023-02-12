@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Buscador.css"
 import { Link } from 'react-router-dom';
 import { Container, Nav, Navbar, Button, NavDropdown, Form, Modal, Offcanvas } from 'react-bootstrap';
+import useProducts from "../../utils/useProducts";
+
 
 
 
@@ -16,6 +18,9 @@ const Buscador = () => {
     const [buscar, setBuscar] = useState("")
     const [resultadosBusqueda, setResultadosBusqueda] = useState([])
     const { url } = UseAdminProducts();
+
+    // const { handleFilter } = useProducts()
+
 
 
 
@@ -77,15 +82,16 @@ const Buscador = () => {
             <ul className='dropdown-menu container py-5'>
                 <li>
                     {
-                        
+
                         resultadosBusqueda.length == 0 ? (
                             <p className='text-uppercase fw-bold my-0'> sin resultados </p>
                         ) : (
                             resultadosBusqueda.map((product) => {
-                              return  <Link className='dropdown-item' key={product.id} to="/*" > {product.marca} </Link>
+                               
+                                return <Link className='dropdown-item' key={product.id} to="/manpage" > {product.marca} </Link>
                             })
 
-                        ) 
+                        )
 
                     }
                 </li>

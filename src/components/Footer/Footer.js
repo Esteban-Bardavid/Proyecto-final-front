@@ -4,8 +4,8 @@ import "./Footer.css";
 function FooterComponent() {
     return (
 
-        <div>
-           hola soy el footer
+        <div className="container bg-primary">
+           hola soy footer
         </div>
     )
 }

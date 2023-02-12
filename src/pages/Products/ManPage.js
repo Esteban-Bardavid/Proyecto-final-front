@@ -18,12 +18,13 @@ import Form from "react-bootstrap/Form";
 import { Contrast } from "@mui/icons-material";
 
 
-function WomanPage() {
+function ManPage() {
 
   const {
     productos,
     handleFilter,
-    Filter,
+    handleFilterMan,
+    FilterMan,
   } = useProducts();
 
   return (
@@ -31,10 +32,10 @@ function WomanPage() {
       <section className="filter__widget">
         <Container>
 
-          <Row data={Filter}>
-            <h2 style={{ fontSize: "35px", color: "#243763" }}>MUJER
+          <Row data={FilterMan}>
+            <h2 style={{ fontSize: "35px", color: "#243763" }}>HOMBRE
 
-              <span style={{ fontSize: "20px", color: "#243763" }}> [{Filter.length}] </span>
+              <span style={{ fontSize: "15px", color: "#243763" }}> [{FilterMan.length}] </span>
 
             </h2>
 
@@ -48,7 +49,6 @@ function WomanPage() {
                 <option>Ordenar por:</option>
                 <option value="Menor">Menor precio</option>
                 <option value="Mayor">Mayor precio</option>
-     
               </select>
 
             </div>
@@ -61,7 +61,7 @@ function WomanPage() {
                 {['Todas las categorias', 'Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) => (
                   <div key={`${cat}`} className="mb-3">
                     <Form.Check
-                      onChange={handleFilter}
+                      onChange={handleFilterMan}
                       value={`${cat}`}
                       id={`${cat}`}
                       label={`${cat}`}
@@ -74,7 +74,7 @@ function WomanPage() {
                 {['Todas las marcas', 'Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
                   <div key={`${marca}`} className="mb-3">
                     <Form.Check type="checkbox"
-                      onChange={handleFilter}
+                      onChange={handleFilterMan}
                       value={`${marca}`}
                       id={`${marca}`}
                       label={`${marca}`}
@@ -91,16 +91,11 @@ function WomanPage() {
 
 
       <section className="filter__widget__responsive">
-        <div className="filter__container" data={Filter}>
-          <div>
-            
-            <h2 style={{ fontSize: "35px", color: "#243763" }}>MUJER
-              <span style={{ fontSize: "20px", color: "#243763" }}> [{Filter.length}] </span>
-            </h2>
-          </div>
-            
-          <div>
-              <select onChange={handleFilter}>
+        <Container>
+          <Row data={FilterMan}>
+     
+            <Col lg="5" md="5">
+              <select onChange={handleFilterMan}>
               {['Filtrar por categoria', 'Running', 'Trainning', 'Outdoor', 'Footbal', 'Clasicas', 'Ojotas',].map((cat) =>
               (
                 <option key={`${cat}`} className="mb-3"
@@ -111,10 +106,10 @@ function WomanPage() {
                 </option>
               ))}
               </select>
-              </div>
-            <div>
+            </Col>
+            <Col lg="5" md="3">
               <select onChange={handleFilter}>
-              {['Filtrar por marca', 'Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
+              {['Filtrar por marcas', 'Adidas', 'Nike', 'Fila', 'Reebok'].map((marca) => (
                   <option key={`${marca}`} className="mb-3" value={`${marca}`}
                   id={`${marca}`}
                   label={`${marca}`}>
@@ -122,19 +117,19 @@ function WomanPage() {
                   </option>
                 ))}
               </select>
-              </div>
-          
-        </div>
+            </Col>
+          </Row>
+        </Container>
       </section>
       <section className="products__list">
         <Container>
           <Row>
 
           
-        {Filter.length === 0 ? (
+        {FilterMan.length === 0 ? (
                   <h2>No hay productos para mostrar </h2>
                 ) : (
-                  <ProductsList data={Filter} />)}
+                  <ProductsList data={FilterMan} />)}
           </Row>
         </Container>
       </section>
@@ -145,4 +140,4 @@ function WomanPage() {
   );
 }
 
-export default WomanPage;
+export default ManPage;

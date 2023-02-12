@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './subNav.css'
 
 
@@ -6,12 +7,12 @@ function SubNavbar() {
     return (
 
         <div className="subNav">
-            <div className="categorias">
+            <div className="categorias-suvnab">
                
                     <ul>
-                        <li><a href='#'>Women</a></li>
-                        <li><a href='#'>Men</a></li>
-                        <li><a href='#'>Categories</a></li>
+                        <li> <Link className='link-cat' to="/womanpage">Woman</Link> </li>
+                        <li> <Link className='link-cat' to="/manpage">Men</Link> </li>
+                        
                         
                     </ul>
                 
