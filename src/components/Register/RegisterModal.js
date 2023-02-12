@@ -7,38 +7,40 @@ import swal from "sweetalert";
 
 const url = process.env.REACT_APP_API_URL;
 
-function RegisterModal({ handleClose, show }) {
-  const [form, setForm] = useState({});
-  const[name,setName]=useState({});
+function RegisterModal({handleClose, show}) {
 
-  function onChangeInputs(e) {
-    setForm(e.target.value);
-  }
 
-  function OnChange(e) {
-    const { name, value, imagen } = e.target;
-    const response = {
-      ...form,
-      [name]: value,
-    };
-    setForm(response);
-  }
+
+
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [dni, setDni] = useState("");
+
+
+    function SaveLocalStorage ({name, lastname,dni}) {
+      localStorage.setItem("Usuarios", JSON.stringify({name, lastname,dni}));
+      
+    }
+
 
   //↓Es async ya que hago una llamada al servidor
   async function Register() {
-    if(name.length<3){
+    if (name.length < 3 && lastname.length < 3 && dni.length<8 ) {
       swal({
         title: "Hubo un Error",
-        text: "Verifica si completaste todos los campos obligatorios (*)",
+        text: "Verifica si completaste todos los campos ",
         icon: "error",
         button: "Aceptar",
       });
-    }else {
+    } else {
+      
       try {
-        const response = await axios.post(`${url}/user`, form);
-  
-        const successAlert = () => {     
-          swal({
+
+        const response = await axios.post(`${url}/user`, {name, lastname,dni});
+        SaveLocalStorage(response.data);
+        
+        const successAlert = () => {
+          swal({ 
             title: "Registro Exitoso",
             text: "Bienvenido/a !!!",
             icon: "success",
@@ -49,28 +51,26 @@ function RegisterModal({ handleClose, show }) {
             }
           });
         };
-  
+
         successAlert();
       } catch (error) {
         console.error(error);
-  
+
         const errorAlert = () => {
           swal({
-            title: "Hubo un Error",
+            title: "Error",
             text: "Error de servidor",
             icon: "error",
             button: "Aceptar",
           });
         };
-  
+
         errorAlert();
       }
     }
-  
-    }
-   
-  return (
+  }
 
+  return (
     <div className="container-fluid">
       <Modal show={show} onHide={handleClose}>
         <div>
@@ -86,23 +86,23 @@ function RegisterModal({ handleClose, show }) {
             <Form.Group className="mb-2" controlId="exampleForm.ControlInput1">
               <Form.Control
                 className="mb-2"
-                
                 type="text"
                 placeholder="NOMBRE"
-                required="true"
-                value={name} 
-                onChange={e => setName(e.target.value)}
+                value= {name}
+                onChange={(e) => setName(e.target.value)}
               />
               <Form.Control
                 className="mb-2"
-                onChange={onChangeInputs}
                 type="text"
                 placeholder="APELLIDO"
+                value={lastname}
+                onChange= {(e) => setLastname(e.target.value)}
               />
               <Form.Control
-                onChange={onChangeInputs}
                 type="text"
                 placeholder="DNI"
+                value={dni}
+                onChange={(e) => setDni(e.target.value)}
               />
 
               <Form.Group className="mt-3 p-2">
