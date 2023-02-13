@@ -69,6 +69,116 @@ function NavBarComponent() {
         window.location.href = "/login";
     }
 
+
+    const [form, setform] = useState();
+  
+  function onChange(e) {
+    const { name, value } = e.target;
+    const response = { ...form, [name]: value }
+    setform(response)
+
+    //setvalidate(false)
+  }
+
+  const [user, setUser] = useState([])
+
+  useEffect(() => {
+    GetUsers()
+}, []);
+
+
+  async function GetUsers() {
+
+    const response = await axios.get(`http://localhost:4000/api/user`)
+    console.log(response.data)
+    setUser(response.data)
+  }
+  console.log(user)
+
+
+  async function LoginPost() {
+
+    console.log(form.email)
+    try {
+      let url = `http://localhost:4000/api/auth`
+      const { data } = await axios.post(url, form)
+      console.log(data);
+
+      localStorage.setItem('token', data)
+
+
+      function AdminProducts() {
+        GetUsers()
+        console.log(user)
+        let response = user.find(item => item.email == form.email)
+        console.log(response)
+        console.log(response.admin)
+        if (response.admin == "true") {
+          window.location.href = '/adminProducts'
+        } else if (response.admin == "false") {
+          window.location.href = '/'
+        }
+      }
+
+      Swal.fire({
+        title: "Inicio de sesion exitoso",
+        icon: "success",
+        button: "Ir a la Homepage",
+      }).then(resultado => {
+        if (resultado.value) {
+          AdminProducts();
+        } else {
+          //nada
+        }
+      })
+    } catch (error) {
+      console.error('error')
+      Swal.fire({
+        title: "Inicio de sesion defectuoso",
+        icon: "error",
+        text: "chequea que ambos campos esten correctos y completos",
+        button: "Aceptar",
+      }).then(resultado => {
+        if (resultado.value) {
+          window.location.reload();
+        } else {
+          //nada
+        }
+      })
+      //setvalidate(true)
+      //npm console.log(validate)
+
+    }
+  }
+
+
+  // //Register:
+  const [showReg, setShowReg] = useState(false);
+
+  const handleCloseReg = () => setShowReg(false);
+  const handleShowReg = () => setShowReg(true);
+
+  //const [form, setform] = useState({});
+
+  let url1 = 'http://localhost:4000/api'
+
+  function OnChange(e) {
+    const { name, value } = e.target;
+    const response = { ...form, [name]: value, admin: false };
+    setform(response);
+  }
+
+  async function Registrar() {
+    try {
+      const response = await axios.post(`${url1}/user`, form);
+      console.log(response);
+      alert('Se registro con exito');
+      window.location.href = '/';
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
     return (
         <div>
             <div className=" pre-navbar  ">
@@ -180,6 +290,10 @@ function NavBarComponent() {
                                         <Button variant="primary">Understood</Button>
                                     </Modal.Footer>
                                 </Modal>
+
+
+
+                                
                             </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/InfoPage"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Link>
                         </Nav>
