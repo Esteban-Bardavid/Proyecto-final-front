@@ -1,30 +1,72 @@
 import "./Navbar.css";
-import { Container, Nav, Navbar, Button, NavDropdown, Form, Modal, Offcanvas } from 'react-bootstrap';
+import {
+    Container,
+    Nav,
+    Navbar,
+    Button,
+    NavDropdown,
+    Form,
+    Modal,
+    Offcanvas,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse, faStar, faCartShopping, faUser, faCircleInfo, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import 'animate.css';
-import logo from "../../img/logorolling.png"
-import UseAdminProducts from '../../utils/useAdminProducts';
-import axios from "axios";
-import Buscador from "../Buscador/Buscador";
-import favoritos from "../../pages/Favorites/favorites"
+import {
+    faHouse,
+    faStar,
+    faCartShopping,
+    faUser,
+    faCircleInfo,
+    faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
+import { CartContext } from "../CartProvider/CartProvider";
+import { CartModal } from "../CartModal/CartModal";
+import { useCart } from "../../utils/useCart";
 import SubNavbar from "../SubNav/subNav"
+import Buscador from "../Buscador/Buscador"
+import favoritos from "../../pages/Favorites/favorites"
+import logo from "../../img/rollinglogo.png"
+import UseAdminProducts from '../../utils/useAdminProducts';
+import "../CartModal/CartModal.css"
+
+
+
+
+
 
 function NavBarComponent() {
+
+
+
+
+
+    const { cart, deleteItem } = useContext(CartContext);
+
+
+
+    const cartTotalSum = cart.reduce((acc, item) => acc + item.precio, 0);
+    const cartItemCount = cart.length;
+
+
+
+
     const { url } = UseAdminProducts();
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const [smShow, setSmShow] = useState(false);
     const [lgShow, setLgShow] = useState(false);
     const [show, setShow] = useState(false);
+
+    const { CartOpen, setCartOpen } = useCart();
+    const { itemCount } = useContext(CartContext);
+    const [active, setActive] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     function singOut() {
-        localStorage.removeItem('token')
-        window.location.href = "/login"
+        localStorage.removeItem("token");
+        window.location.href = "/login";
     }
 
     return (
@@ -64,7 +106,60 @@ function NavBarComponent() {
                             navbarScroll>
                             <Link className="links-icons m-2 p-1" id="home" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/favoritos"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
-                            <Link className="links-icons m-2 p-1" id="carrito" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} /> </Link>
+                            <Link className="links-icons m-2 p-1" id="carrito" to="/">
+                                {" "}
+                                <span className="itemcount">{itemCount}</span>
+
+                                <FontAwesomeIcon color="black" fontSize={26} icon={faCartShopping} onClick={() => setCartOpen(!CartOpen
+                                )}
+                                    onMouseLeave={() => setCartOpen(CartOpen
+                                    )} />
+
+                                {CartOpen && (
+                                    <div className="cart">
+
+                                        <h5>Mi carrito [{cartItemCount}]</h5>
+                                        {cartItemCount === 0 ?
+                                            <p className="cartVacio">Tu carrito esta vacio</p> :
+                                            (
+
+                                                <div className="cart__container">
+                                                    {cart.map((item) => {
+                                                        return (
+                                                            <div key={item._id} class="cart__producto">
+                                                                <img src={item.imgUrl} alt='' />
+                                                                <div className="col-1">
+                                                                    <p>{item.producto}</p>
+
+
+                                                                </div>
+                                                                <div className="col-2">
+                                                                    <p>${item.precio}</p>
+                                                                    <button onClick={() => deleteItem(item._id)}>Borrar</button>
+
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                    <h5 className="total">Subtotal: ${cartTotalSum}</h5>
+                                                    <a className="comprar" href="/cartpage">Comprar</a>
+                                                </div>
+
+                                            )}
+
+
+
+
+
+
+
+                                    </div>)}
+
+
+
+
+                            </Link>
+                            {/* <CartModal/> */}
                             <Link className="links-icons m-2 p-1" id="info" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
                                 <Modal
                                     show={show}
@@ -107,6 +202,3 @@ function NavBarComponent() {
 }
 
 export default NavBarComponent;
-
-
-

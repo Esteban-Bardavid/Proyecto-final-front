@@ -7,12 +7,14 @@ import ManPage from './pages/Products/ManPage';
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
 import NavBarComponent from './components/Navbar/Navbar';
+import CartPage from "./pages/CartPage/CartPage";
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FavoritesPage from './pages/Favorites/favorites';
 import InfoPage from './pages/Info/infoPage' 
 import { Navbar } from 'react-bootstrap';
 import AdminProducts from './pages/AdminProducts/AdminProductsPage';
+import CartProvider from "./components/CartProvider/CartProvider";
 
 
 function App() {
@@ -20,7 +22,8 @@ function App() {
 
   
   return (
-    <BrowserRouter >
+    <CartProvider> 
+     <BrowserRouter >
       <NavBarComponent />
       <Routes>
         <Route path='/' element={<HomePage />}></Route>
@@ -31,10 +34,12 @@ function App() {
         <Route path='/manpage' element={<ManPage />}></Route>
         <Route path='/adminProducts' element={<AdminProducts />}></Route>
         <Route path='/infopage' element={<InfoPage />}></Route>
+        <Route path='/cartpage' element={<CartPage />}></Route>
 
       </Routes>
       <Footer />
     </BrowserRouter>
+    </CartProvider>
   );
 }
 export default App;

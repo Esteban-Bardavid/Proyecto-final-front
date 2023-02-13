@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 //import products from "../../assets/data/ProductsData";
 import ProductsList from "../../components/ProductCard/ProductsList";
+import CartModal from "../../components/CartModal/CartModal";
 import {
   Badge,
   Col,
@@ -28,6 +29,7 @@ function WomanPage() {
 
   return (
     <Container className='products__page'>
+      
       <section className="filter__widget">
         <Container>
 
