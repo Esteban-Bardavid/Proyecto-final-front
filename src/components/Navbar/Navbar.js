@@ -197,6 +197,11 @@ function NavBarComponent() {
 
             </Navbar>
             <SubNavbar />
+
+
+
+
+            
         </div>
     )
 }
