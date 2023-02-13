@@ -271,6 +271,70 @@ function NavBarComponent() {
                             </Link>
                             {/* <CartModal/> */}
                             <Link className="links-icons m-2 p-1" id="info" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
+
+
+                            <Modal
+                  show={show}
+                  onHide={handleClose}
+                  backdrop="static"
+                  keyboard={false}
+                >
+                  <Modal.Header closeButton onClick={handleClose}>
+                    <Modal.Title className="FirstButton">Iniciar Sesion</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <h2>Bienvenid@s a Rolling Shoes</h2>
+                    <div className="ConteinerInputLogin">
+                      <div className="ConteinerInputLogin">
+
+                        <Form>
+                          <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
+                            <Form.Label>Ingrese su email</Form.Label>
+                            <Form.Control
+                              // id="emailLogin"
+                              classname="border border-danger border-1"
+                              //    classname = {validate? "border border-danger" : ""}
+                              name="email"
+                              type="email"
+                              placeholder="juan@gmail.com"
+                              onChange={onChange}
+                            />
+                          </Form.Group>
+
+                          <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
+                            <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
+                            <Form.Control
+                              // id="passwordLogin"
+                              //classname={validate ? " border border-danger" : ""}
+                              name="password"
+                              type="password"
+                              placeholder="************"
+                              onChange={onChange}
+                            />
+                          </Form.Group>
+                        </Form>
+                        <div id="ConteinerForgottenPassword">
+                          <p className="me-2">¿Olvidaste tu contraseña?</p>
+                          <a href="http://">Recuperar contraseña</a>
+                        </div>
+                      </div>
+                    </div>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button id="CloseLoginButton" onClick={handleClose}>
+                      Cerrar
+                    </Button>
+                    <Button id="ReadyLoginButton" onClick={LoginPost}>Listo!
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+
+
+
+
+
+
+{/* 
                                 <Modal
                                     show={show}
                                     onHide={handleClose}
@@ -289,7 +353,7 @@ function NavBarComponent() {
                                         </Button>
                                         <Button variant="primary">Understood</Button>
                                     </Modal.Footer>
-                                </Modal>
+                                </Modal> */}
 
 
 
