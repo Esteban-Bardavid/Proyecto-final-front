@@ -29,7 +29,7 @@ import favoritos from "../../pages/Favorites/favorites"
 import logo from "../../img/rollinglogo.png"
 import UseAdminProducts from '../../utils/useAdminProducts';
 import "../CartModal/CartModal.css"
-
+import cartpage from "../../pages/CartPage/CartPage"
 
 
 
@@ -106,7 +106,7 @@ function NavBarComponent() {
                             navbarScroll>
                             <Link className="links-icons m-2 p-1" id="home" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faHouse} /> </Link>
                             <Link className="links-icons m-2 p-1" id="favs" to="/favoritos"> <FontAwesomeIcon color="black" fontSize={26} icon={faStar} /> </Link>
-                            <Link className="links-icons m-2 p-1" id="carrito" to="/">
+                            <Link className="links-icons m-2 p-1" id="carrito" >
                                 {" "}
                                 <span className="itemcount">{itemCount}</span>
 
@@ -142,7 +142,7 @@ function NavBarComponent() {
                                                         );
                                                     })}
                                                     <h5 className="total">Subtotal: ${cartTotalSum}</h5>
-                                                    <a className="comprar" href="/cartpage">Comprar</a>
+                                                    <Link className="comprar" to="/cartpage">Comprar</Link>
                                                 </div>
 
                                             )}
