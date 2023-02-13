@@ -1,13 +1,14 @@
 .itemcount{
     position: relative;
-    top:100%;
+    top:40%;
     left:30%;
-    background: black;
+    background: rgb(243, 17, 17);
     color:#fff;
     padding-left: 5px;
     padding-right: 5px;
     font-size:10px;
     border-radius: 10px;
+   
 }
 
 

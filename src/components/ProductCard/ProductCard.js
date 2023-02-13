@@ -3,10 +3,12 @@ import { Card, ListGroup, Col, Container, Row } from "react-bootstrap";
 import {useContext, useState } from "react";
 import { Modal, Form, Button } from 'react-bootstrap';
 import { FaHeart } from "react-icons/fa";
+import { FaCartPlus } from "react-icons/fa";
 
 import { motion } from "framer-motion";
 
-import "./ProductCard.css";
+
+import  "./ProductCard.css";
 import { Link } from "react-router-dom";
 //import products from "../../assets/data/ProductsData";
 

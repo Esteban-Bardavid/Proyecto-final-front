@@ -22,19 +22,19 @@ function useProducts() {
   async function GetProducts() {
     let getProducts = await axios.get(`${url}/adminProducts`);
     setproducts(getProducts.data);
-    SetFilter(getProducts.data.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
+    SetFilter(getProducts.data.filter((item, i) => (item.publicado > 0 && item.sex === 'Mujer'))
     
     );
   }
   async function GetProductsMan() {
     let getProducts = await axios.get(`${url}/adminProducts`);
     setproducts(getProducts.data);
-    SetFilterMan(getProducts.data.filter((item, i) => (item.publicado > 0 && item.sex == 'Hombre'))
+    SetFilterMan(getProducts.data.filter((item, i) => (item.publicado > 0 && item.sex === 'Hombre'))
     
     );
   }
-  const productsMan = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Hombre'))
-  const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
+  const productsMan = products.filter((item, i) => (item.publicado > 0 && item.sex === 'Hombre'))
+  const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex === 'Mujer'))
 
 //const productos = products; (se reemplaza => productos, por => productsWoman)
   const [Filter, SetFilter] = useState([]);
@@ -50,7 +50,7 @@ function useProducts() {
     SetSearch(filterValue);
 
     
-    if (filterValue != Search){
+    if (filterValue !== Search){
       if (filterValue === 'Nike') {
         const filteredProducts = productsWoman.filter(
           (item) => item.marca === 'Nike');
@@ -136,7 +136,7 @@ const handleFilterMan = (e) => {
   const filterValue = e.target.value;
   SetSearch(filterValue);
 
-  if (filterValue != Search){
+  if (filterValue !== Search){
     if (filterValue === 'Nike') {
       const filteredProducts = productsMan.filter(
         (item) => item.marca === 'Nike');

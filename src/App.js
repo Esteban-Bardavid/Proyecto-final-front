@@ -11,7 +11,7 @@ import CartPage from "./pages/CartPage/CartPage";
 import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import FavoritesPage from './pages/Favorites/favorites';
-import InfoPage from './pages/Info/info' 
+import InfoPage from './pages/Info/infoPage' 
 import { Navbar } from 'react-bootstrap';
 import AdminProducts from './pages/AdminProducts/AdminProductsPage';
 import CartProvider from "./components/CartProvider/CartProvider";
@@ -33,9 +33,11 @@ function App() {
         <Route path='/womanpage' element={<WomanPage />}></Route>
         <Route path='/manpage' element={<ManPage />}></Route>
         <Route path='/adminProducts' element={<AdminProducts />}></Route>
+        <Route path='/infopage' element={<InfoPage />}></Route>
         <Route path='/cartpage' element={<CartPage />}></Route>
 
       </Routes>
+      <Footer />
     </BrowserRouter>
     </CartProvider>
   );
