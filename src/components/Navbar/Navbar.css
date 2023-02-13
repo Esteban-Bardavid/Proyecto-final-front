@@ -1,4 +1,52 @@
- 
+*{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0%;
+    padding: 0%;
+}
+#Return{
+    display:flex ;
+    justify-content: center;
+}
+#FirstButton{
+    background-color: rgb(36, 55, 99);
+}
+
+.modal.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.ConteinerInputLogin {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.ConteinerOptionsLogin {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+#ConteinerForgottenPassword{
+    display: flex;
+    flex-direction: row;
+}
+#CloseLoginButton{
+    background-color: rgb(232, 14, 14);
+    padding: 10px;
+    border-radius: 15px;
+    border-color: rgba(204, 8, 8, 0.845);
+}
+#ReadyLoginButton{
+    background-color: rgb(255, 110, 49);
+    padding: 10px;
+    border-radius: 15px;
+    border-color:rgb(255, 110, 49); ;
+}
 
  .navbar1 {
      display: flex;
