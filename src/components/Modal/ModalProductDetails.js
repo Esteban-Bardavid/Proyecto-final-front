@@ -121,13 +121,13 @@ function ModalProduct({item}) {
                             
                             <div className='talles'>
                                 <h2>Talles disponibles:</h2>
-                                <button onClick={Talle36}>36</button>
-                                <button onClick={Talle37}>37</button>
-                                <button onClick={Talle38}>38</button>
-                                <button onClick={Talle39}>39</button>
-                                <button onClick={Talle40}>40</button>
-                                <button onClick={Talle41}>41</button>
-                                <button onClick={Talle42}>42</button>
+                                <button value="36" onClick={Talle36}>36</button>
+                                <button value="37" onClick={Talle37}>37</button>
+                                <button value="38" onClick={Talle38}>38</button>
+                                <button value="39" onClick={Talle39}>39</button>
+                                <button value="40" onClick={Talle40}>40</button>
+                                <button value="41" onClick={Talle41}>41</button>
+                                <button value="42" onClick={Talle42}>42</button>
                                 <div className='d-flex'>
                                         <p className='me-2'>Elegiste Talle:</p> <p className="mt-4" id='talle'></p>
                                 </div>

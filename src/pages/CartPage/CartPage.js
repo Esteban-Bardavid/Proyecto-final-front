@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useContext } from "react";
 import { CartContext } from "../../components/CartProvider/CartProvider";
 import { useCart } from "../../utils/useCart";
@@ -14,6 +15,11 @@ import {
 
 export const CartPage = () => {
 
+  const { buyForm,
+    setBuyForm,
+    OnChangeForm,
+  handlePost } = useCart();
+
   const { itemCount } = useContext(CartContext);
 
 
@@ -25,6 +31,10 @@ export const CartPage = () => {
   const cartItemCount = cart.length;
   const [show, setShow] = useState(false);
 
+  const realizarCompra = () => {
+    handleClose();
+    handlePost()
+  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -115,34 +125,116 @@ export const CartPage = () => {
             </p>
 
           </div>
+
+
           <div className="container_pagar" >
+
+
             <button onClick={handleShow}>Ir a pagar </button>
+            
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Realizar la compra:</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                 <Form>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                  <h6>Datos del destinatario</h6>
+                  <Form.Label>
+                    Nombre y apellido{" "}
+                  </Form.Label>
+                  <Form.Control
+                    name="nombre"
+                    placeholder="Sofia villaluenga"
+                    type="text"
+                    onChange={OnChangeForm}
                     
-                  </Form.Group>
+            
+                  />
+                  <br />
+                  <Form.Label>
+                    Email{" "}
+                  </Form.Label>
+                  <Form.Control
+                  name="email"
+                    placeholder="sofia@email.mail"
+                    type="email"
+                    onChange={OnChangeForm}
+                  
+                  />
+                  <br />
+                  <Form.Label>
+                    Teléfono{" "}
+                  </Form.Label>
+                  <Form.Control
+                  name="telefono"
+                    required
+                    placeholder="386544444"
+                    type="number"
+                    onChange={OnChangeForm}
+                  
+                  />
+                  <h6>DOMICILIO DEL DESTINATARIO</h6>
+
+                  <Form.Label>
+                    Provincia{" "}
+
+                  </Form.Label>
+                  <Form.Control
+                    required
+                    name="provincia"
+                    placeholder="Tucuman"
+                    type="text"
+                    onChange={OnChangeForm}
+
+                  
+                  />
+                  <Form.Label>
+                    Direccion{" "}
+
+                  </Form.Label>
+                  <Form.Control
+                    required
+                    name="direccion"
+                    placeholder="Calle Bs As 559 Depto 5°a"
+                    type="text"
+                    onChange={OnChangeForm}
+
+                  
+                  />
+                  <Form.Label>
+                    Codigo postal{" "}
+
+                  </Form.Label>
+                  <Form.Control
+                    required
+                    name="cp"
+                    placeholder="4000"
+                    type="number"
+                    onChange={OnChangeForm}
+                  
+                  />
+                  <h6> Forma de pago</h6>
+
+
+                  <select name="formaPago" onChange={OnChangeForm}>
+                    {['Tarjeta de credito', 'Tarjeta de debito', 'Transferencia'].map((pago) => (
+                      <option value={`${pago}`}>{pago}</option>
+                    ))}
+                  </select>
+                  
+                 
 
                 </Form>
-
-
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                  Close
+                  Volver a Carrito
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
-                  Save Changes
+                <Button variant="primary" onClick={realizarCompra}>
+                  Comprar
                 </Button>
               </Modal.Footer>
             </Modal>
-
 
 
 
