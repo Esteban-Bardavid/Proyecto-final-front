@@ -57,7 +57,7 @@ const ResetPassword = (props) => {
     }
 
     return (
-        <div className='body'>
+        <div className='bodyContainer'>
         <div className='main' onSubmit={handleSubmit}>
             <form className='mainContainer'>
                 <h3>Nueva contraseña</h3>
