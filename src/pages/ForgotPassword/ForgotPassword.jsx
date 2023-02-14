@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./ForgotPassword.css";
 
 import Swal from 'sweetalert2';
 const ForgorPassword = () => {
@@ -30,8 +31,8 @@ const ForgorPassword = () => {
             });
     }
     return (
-        <div className="main">
-            <form className="mainContainer" onSubmit={handleSubmit}>
+        <div className="mainBody">
+            <form className="mainContainerForgot" onSubmit={handleSubmit}>
                 <h3>Recuperar cuenta</h3>
                 <div>Correo electrónico:</div>
                 <input type="email" name="email" placeholder="Introduce tu email" required /> <div className="divButton">
@@ -40,7 +41,7 @@ const ForgorPassword = () => {
                             <img src="https://www.svgrepo.com/show/199948/loading-loader.svg" alt="loading" />
                         </div>
                         :
-                        <button type="submit">Enviar</button>
+                        <button type="submit" class="btn btn-primary m-2" onClick={handleSubmit}>Enviar</button>
                     }
                 </div>
             </form>

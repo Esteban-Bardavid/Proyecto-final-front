@@ -3,84 +3,44 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 /*import AdminPage from "./pages/Admin/AdminPage";*/
 import HomePage from "./pages/Home/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
-import ProfilePage from "./pages/Profile/ProfilePage";
+import WomanPage from './pages/Products/WomanPage';
+import ManPage from './pages/Products/ManPage';
 import RegisterPage from "./pages/Register/RegisterPage";
 import ErrorPage from "./pages/404/404";
-import Navbar from "./components/Navbar/Navbar";
+import NavBarComponent from './components/Navbar/Navbar';
+import CartPage from "./pages/CartPage/CartPage";
+import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
+import InfoPage from './pages/Info/infoPage' 
+import AdminProducts from './pages/AdminProducts/AdminProductsPage';
+import CartProvider from "./components/CartProvider/CartProvider";
+
 
 function App() {
+
+
+  
   return (
-    <BrowserRouter >
-    
+    <CartProvider> 
+     <BrowserRouter >
+      <NavBarComponent />
       <Routes>
-        <Route path='/' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <HomePage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/login' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <LoginPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/register' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <RegisterPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/ForgotPassword' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ForgotPassword />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/ResetPassword' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ResetPassword />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/*' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ErrorPage />
-            </div>
-          </div>
-        }>
-        </Route>
-        <Route path='/profile' element={
-          <div>
-            <Navbar />
-            <div className='mt-5'>
-              <ProfilePage />
-            </div>
-          </div>
-        }>
-        </Route>
+        <Route path='/ResetPassword' element={<ResetPassword />}></Route>
+        <Route path='/profile' element={<ProfilePage />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/*' element={<ErrorPage />}></Route>
+        <Route path='/womanpage' element={<WomanPage />}></Route>
+        <Route path='/manpage' element={<ManPage />}></Route>
+        <Route path='/adminProducts' element={<AdminProducts />}></Route>
+        <Route path='/infopage' element={<InfoPage />}></Route>
+        <Route path='/cartpage' element={<CartPage />}></Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
+    </CartProvider>
   );
 }
 export default App;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import CardComponent from "../components/Card/Card";
+import CardComponent from "../components/ProductCard/ProductCard";
 
 function UseAdmin() {
     
