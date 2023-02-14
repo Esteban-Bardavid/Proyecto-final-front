@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { CartContext } from "../../components/CartProvider/CartProvider";
 import { useCart } from "../../utils/useCart";
 import { Modal, Form, Button } from "react-bootstrap";
+import axios from "axios";
 
 import './CartPage.css'
 
@@ -27,6 +28,22 @@ export const CartPage = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const token = localStorage.getItem("token");
+  const product = JSON.parse(localStorage.getItem("cart")) || [];
+  const headers = { "x-auth-token": token }
+
+  async function cartMethod() {
+    try {
+      for (let index = 0; index < product.length; index++) {
+        const response = await axios.put(`http://localhost:4000/api/user/product/${product[index]._id}`, {}, { headers })
+        console.log(response)
+      }
+      window.location.href="/"
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
 
@@ -126,7 +143,7 @@ export const CartPage = () => {
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
-                    
+
                   </Form.Group>
 
                 </Form>
@@ -137,7 +154,7 @@ export const CartPage = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={cartMethod}>
                   Save Changes
                 </Button>
               </Modal.Footer>

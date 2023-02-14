@@ -94,7 +94,10 @@ function ModalProduct({item}) {
         }
     }
 
-
+    function sendProduct(id) {
+        addItem(id)
+        closeModal()
+    }
 
 
 
@@ -142,7 +145,7 @@ function ModalProduct({item}) {
                                 
                             
                             <div className='modal__buttons'>
-                            <button className='add__tocart' onClick={() => addItem(item)}>
+                            <button className='add__tocart' onClick={() => sendProduct(item)}>
                                 Agregar al carrito
                             </button>
                             <button className='salir__modal' onClick={closeModal}>
