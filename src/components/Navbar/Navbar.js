@@ -95,7 +95,7 @@ function NavBarComponent() {
     console.log(response.data)
     setUser(response.data)
   }
-  console.log(user)
+
 
 
   async function LoginPost() {
