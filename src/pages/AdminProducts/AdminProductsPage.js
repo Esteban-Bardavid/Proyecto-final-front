@@ -24,7 +24,8 @@ function AdminProducts() {
         show,
         url,
         CreateProducts,
-        DeleteProducts,
+        //DeleteProducts,
+        consultAndDeleteProduct
     } = UseAdminProducts();
 
 
@@ -67,7 +68,6 @@ function AdminProducts() {
         setproducts(response);
         console.log(products);
     }
-
 
 
     return (
@@ -136,7 +136,7 @@ function AdminProducts() {
                             <td>{item.cdos}</td>
                             <td>{item.ctres}</td>
                             <td className='d-flex'>
-                                <Button className="btn mx-2" onClick={() => DeleteProducts(item._id)}><FaTrashAlt /></Button>
+                                <Button className="btn mx-2" onClick={() => consultAndDeleteProduct(item._id)}><FaTrashAlt /></Button>
 
                                 <ModalUpProducts
                                     key={i}

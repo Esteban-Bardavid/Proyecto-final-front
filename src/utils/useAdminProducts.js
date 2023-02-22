@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import swal from 'sweetalert';
 
 const initialForm = {
     producto: "",
@@ -48,11 +47,14 @@ function UseAdminProducts() {
     }
 
 
-    // Validaciones de Inputs:
+    // Validaciones de Inputs (Formulario para crear o ingresar nuevo Producto):
     const validationsForm = (form) => {
         let errors = {};
         let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
         let regexComments = /^.{1,20}$/;
+        let regexComments1 = /^.{1,10}$/;
+        let regexComments2 = /^.{1,6}$/;
+        let regexComments3 = /^.{1,3}$/;
 
         if (!form.producto.trim()) {
             errors.producto = "'Producto' es requerido"
@@ -81,42 +83,72 @@ function UseAdminProducts() {
 
         else if (!form.color.trim()) {
             errors.color = "'Color' es requerido"
+        } else if (!regexComments1.test(form.color.trim())) {
+            errors.color = "'Color' solo debe tener hasta 10 caracteres"
+            setform(initialForm)
         }
 
         else if (!form.precio.trim()) {
             errors.precio = "'Precio' es requerido"
+        } else if (!regexComments2.test(form.precio.trim())) {
+            errors.precio = "'Precio' solo puede tener hasta 6 cifras"
+            setform(initialForm)
         }
 
         else if (!form.tseis.trim()) {
             errors.tseis = "Campo requerido"
+        } else if (!regexComments3.test(form.tseis.trim())) {
+            errors.tseis = "'T-36' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.tsiete.trim()) {
             errors.tsiete = "Campo requerido"
+        } else if (!regexComments3.test(form.tsiete.trim())) {
+            errors.tsiete = "'T-37' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.tocho.trim()) {
             errors.tocho = "Campo requerido"
+        } else if (!regexComments3.test(form.tocho.trim())) {
+            errors.tocho = "'T-38' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.tnueve.trim()) {
             errors.tnueve = "Campo requerido"
+        } else if (!regexComments3.test(form.tnueve.trim())) {
+            errors.tnueve = "'T-39' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.ccero.trim()) {
             errors.ccero = "Campo requerido"
+        } else if (!regexComments3.test(form.ccero.trim())) {
+            errors.ccero = "'T-40' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.cuno.trim()) {
             errors.cuno = "Campo requerido"
+        } else if (!regexComments3.test(form.cuno.trim())) {
+            errors.cuno = "'T-41' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.cdos.trim()) {
             errors.cdos = "Campo requerido"
+        } else if (!regexComments3.test(form.cdos.trim())) {
+            errors.cdos = "'T-42' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.ctres.trim()) {
             errors.ctres = "Campo requerido"
+        } else if (!regexComments3.test(form.ctres.trim())) {
+            errors.ctres = "'T-43' solo puede tener hasta 3 cifras"
+            setform(initialForm)
         }
 
         else if (!form.categoria.trim()) {
@@ -227,27 +259,26 @@ function UseAdminProducts() {
         window.location.reload();
     }
 
-    // Funcion para Actualizar productos en tabla:
-    const [update, setupdate] = useState({})
-
-    function OnChangeUpdate(e) {
-        const { name, value } = e.target;
-        const response = { ...update, [name]: value };
-        setupdate(response);
-        console.log(response);
+    function consultAndDeleteProduct (id) {
+        Swal
+        .fire({
+            title: "Eliminar Producto !!",
+            text: "Seguro desea eliminar este producto?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                DeleteProducts (id);
+            } else {
+                // Dijeron que no
+            }
+        });
     }
 
-    async function PutProducts(id) {
-        try {
-            const { data } = await axios.put(`${url}/adminProducts/${id}`, update)
-            console.log(data);
-            setShowUp(false);
-        } catch (error) {
-            alert('No se pudo.');
-            console.error(error);
-        }
-        window.location.reload();
-    }
 
     const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex == 'Mujer'))
 
@@ -264,15 +295,14 @@ function UseAdminProducts() {
         OnChangeProducts,
         CreateProducts,
         GetProducts,
-        DeleteProducts,
-        OnChangeUpdate,
-        PutProducts,
+        //DeleteProducts,
         products,
         url,
         productsWoman,
         handleBlur,
         form,
-        errors
+        errors,
+        consultAndDeleteProduct
     })
 }
 

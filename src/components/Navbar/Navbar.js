@@ -35,23 +35,12 @@ import axios from 'axios'
 
 
 
-
-
 function NavBarComponent() {
-
-
-
-
 
   const { cart, deleteItem } = useContext(CartContext);
 
-
-
   const cartTotalSum = cart.reduce((acc, item) => acc + item.precio, 0);
   const cartItemCount = cart.length;
-
-
-
 
   const { url } = UseAdminProducts();
   const token = localStorage.getItem("token");
@@ -66,20 +55,27 @@ function NavBarComponent() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+
   function singOut() {
     localStorage.removeItem("token");
     window.location.href = "/login";
   }
 
 
-  const [form, setform] = useState();
+  const initialForm = {
+    email: "",
+    password: ""
+  }
+
+
+  const [form, setform] = useState(initialForm);
+  const [errors, setErrors] = useState({});
+
 
   function onChange(e) {
     const { name, value } = e.target;
     const response = { ...form, [name]: value }
     setform(response)
-
-    //setvalidate(false)
   }
 
   const [user, setUser] = useState([])
@@ -96,6 +92,41 @@ function NavBarComponent() {
     setUser(response.data)
   }
   console.log(user)
+
+
+  // Validaciones de Inputs (Formulario - Login):
+  const validationsForm = (form) => {
+    let errors = {};
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexComments = /^.{1,15}$/;
+    let regexComments1 = /^.{1,10}$/;
+    let regexComments2 = /^.{1,2}$/;
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+
+    if (!form.email.trim()) {
+      errors.email = "'Email' es requerido"
+    } else if (!regexEmail.test(form.email.trim())) {
+      errors.email = "Tu 'Email' no es valido."
+      setform(initialForm)
+    }
+
+    else if (!form.password.trim()) {
+      errors.password = "'Password' es requerido"
+    } else if (form.password.length < 4 || form.password.length > 8) {
+      errors.password = "Tu 'Password' no es valido."
+      setform(initialForm)
+    }
+
+
+    return errors;
+  }
+
+  const handleBlur = (e) => {
+    onChange(e);
+    setErrors(validationsForm(form));
+  };
+
 
 
   async function LoginPost() {
@@ -147,8 +178,6 @@ function NavBarComponent() {
           //nada
         }
       })
-      //setvalidate(true)
-      //npm console.log(validate)
 
     }
   }
@@ -160,35 +189,153 @@ function NavBarComponent() {
   const handleCloseReg = () => setShowReg(false);
   const handleShowReg = () => setShowReg(true);
 
-  //const [form, setform] = useState({});
+  const initialFormReg = {
+    name: "",
+    lastname: "",
+    age: "",
+    email: "",
+    password: ""
+  }
+
+  const [formReg, setFormReg] = useState(initialFormReg);
+  const [errorsReg, setErrorsReg] = useState({});
 
   let url1 = 'http://localhost:4000/api'
 
-  function OnChange(e) {
-    const { name, value } = e.target;
-    const response = { ...form, [name]: value, admin: false };
-    setform(response);
+
+  let styles = {
+    fontWeight: "bold",
+    color: "#dc3545"
   }
 
+
+  function OnChangeReg(e) {
+    const { name, value } = e.target;
+    const response = { ...formReg, [name]: value, admin: false };
+    setFormReg(response);
+  }
+
+
+  // Validaciones de Inputs (Formulario para crear o ingresar nuevo Usuario - Register):
+  const validationsFormReg = (formReg) => {
+    let errorsReg = {};
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexComments = /^.{1,15}$/;
+    let regexComments1 = /^.{1,10}$/;
+    let regexComments2 = /^.{1,2}$/;
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (!formReg.name.trim()) {
+      errorsReg.name = "'Nombre' es requerido"
+    } else if (!regexComments1.test(formReg.name.trim())) {
+      errorsReg.name = "'Nombre' solo debe tener hasta 10 caracteres"
+      setFormReg(initialFormReg)
+    }
+
+    else if (!formReg.lastname.trim()) {
+      errorsReg.lastname = "'Apellido' es requerido"
+    } else if (!regexComments.test(formReg.lastname.trim())) {
+      errorsReg.lastname = "'Apellido' solo debe tener hasta 15 caracteres"
+      setFormReg(initialFormReg)
+    }
+
+    else if (!formReg.age.trim()) {
+
+    } else if (!regexComments2.test(formReg.age.trim())) {
+      errorsReg.age = "'Edad' solo debe tener hasta 2 cifras"
+      setFormReg(initialFormReg)
+    }
+
+    else if (!formReg.email.trim()) {
+      errorsReg.email = "'Email' es requerido"
+    } else if (!regexEmail.test(formReg.email.trim())) {
+      errorsReg.email = "Tu 'Email' no es valido."
+      setFormReg(initialFormReg)
+    }
+
+    else if (!formReg.password.trim()) {
+      errorsReg.password = "'Password' es requerido"
+    } else if (formReg.password.length < 4 || formReg.password.length > 8) {
+      errorsReg.password = "Tu 'Password' no es valido."
+      setFormReg(initialFormReg)
+    }
+
+
+    return errorsReg;
+  }
+
+  const handleBlurReg = (e) => {
+    OnChangeReg(e);
+    setErrorsReg(validationsFormReg(formReg));
+  };
+
+
+  // Funcion para crear o ingresar Usuarios en la Base de Datos:
   async function Registrar() {
     try {
-      const response = await axios.post(`${url1}/user`, form);
-      console.log(response);
-      Swal.fire({
-        title: "Se registro con exito !!!",
-        icon: "success",
-        button: "Ir a la Homepage",
-      }).then(resultado => {
-        if (resultado.value) { 
-          window.location.href = '/';
-        } else {
-          //nada
-        }
-      })
+      const existentUser = user.find((user) => user.email === formReg.email)
+
+      if (formReg.name === "" || formReg.lastname === "" || formReg.email === "" || formReg.password === "") {
+
+        Swal
+          .fire({
+            title: "Importante !!",
+            text: "Debes completar todos los campos requeridos",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+          })
+
+      } else if (!existentUser) {
+
+        const response = await axios.post(`${url1}/user`, formReg)
+        console.log(response);
+
+        Swal
+          .fire({
+            title: "Listo !!",
+            text: "Ingreso exitoso",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+          })
+          .then(resultado => {
+            if (resultado.value) {
+              // Hicieron click en "Sí"
+              window.location.reload();
+            } else {
+              // Dijeron que no
+            }
+          });
+
+      } else {
+
+        Swal
+          .fire({
+            title: "Importante !!",
+            text: "El Usuario ya existe.",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+          })
+          .then(resultado => {
+            if (resultado.value) {
+              // Hicieron click en "Sí"
+              window.location.reload();
+            } else {
+              // Dijeron que no
+            }
+          });
+      }
     } catch (error) {
       console.error(error);
     }
   }
+
+
 
   return (
     <div>
@@ -265,23 +412,13 @@ function NavBarComponent() {
                           <h5 className="total">Subtotal: ${cartTotalSum}</h5>
                           <Link className="comprar" to="/cartpage">Comprar</Link>
                         </div>
-
                       )}
-
-
-
-
-
-
-
                   </div>)}
-
-
-
 
               </Link>
               {/* <CartModal/> */}
               <Link className="links-icons m-2 p-1" id="info" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
+
 
                 {/* Modal Login */}
                 <Modal
@@ -299,6 +436,7 @@ function NavBarComponent() {
                       <div className="ConteinerInputLogin">
 
                         <Form>
+
                           <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
                             <Form.Label>Ingrese su email</Form.Label>
                             <Form.Control
@@ -309,7 +447,10 @@ function NavBarComponent() {
                               type="email"
                               placeholder="juan@gmail.com"
                               onChange={onChange}
+                              onBlur={handleBlur}
+                              value={form.email}
                             />
+                            {errors.email && <p style={styles}>{errors.email}</p>}
                           </Form.Group>
 
                           <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
@@ -321,9 +462,14 @@ function NavBarComponent() {
                               type="password"
                               placeholder="************"
                               onChange={onChange}
+                              onBlur={handleBlur}
+                              value={form.password}
                             />
+                            {errors.password && <p style={styles}>{errors.password}</p>}
                           </Form.Group>
+
                         </Form>
+
                         <div id="ConteinerForgottenPassword">
                           <p className="me-2">¿Olvidaste tu contraseña?</p>
                           <a href="http://">Recuperar contraseña</a>
@@ -347,10 +493,6 @@ function NavBarComponent() {
             {/* BUSCADOR  */}
 
             <Buscador />
-
-
-
-
 
           </Navbar.Collapse>
         </Container>
@@ -380,9 +522,12 @@ function NavBarComponent() {
                   <Form.Control
                     name='name'
                     type='text'
-                    onChange={OnChange}
-                    placeholder= "Juan"
+                    onChange={OnChangeReg}
+                    onBlur={handleBlurReg}
+                    value={formReg.name}
+                    placeholder="Juan"
                   />
+                  {errorsReg.name && <p style={styles}>{errorsReg.name}</p>}
                 </Form.Group>
 
                 <Form.Group className="mb-1">
@@ -390,9 +535,12 @@ function NavBarComponent() {
                   <Form.Control
                     name='lastname'
                     type='text'
-                    onChange={OnChange}
-                    placeholder= "Perez"
+                    onChange={OnChangeReg}
+                    onBlur={handleBlurReg}
+                    value={formReg.lastname}
+                    placeholder="Perez"
                   />
+                  {errorsReg.lastname && <p style={styles}>{errorsReg.lastname}</p>}
                 </Form.Group>
 
                 <Form.Group className="mb-1">
@@ -400,9 +548,12 @@ function NavBarComponent() {
                   <Form.Control
                     name='age'
                     type='number'
-                    onChange={OnChange}
-                    placeholder= "25"
+                    onChange={OnChangeReg}
+                    onBlur={handleBlurReg}
+                    value={formReg.age}
+                    placeholder="25"
                   />
+                  {errorsReg.age && <p style={styles}>{errorsReg.age}</p>}
                 </Form.Group>
 
                 <Form.Group className="mb-1">
@@ -410,9 +561,12 @@ function NavBarComponent() {
                   <Form.Control
                     name='email'
                     type='email'
-                    onChange={OnChange}
-                    placeholder= "juan@gmail.com"
+                    onChange={OnChangeReg}
+                    onBlur={handleBlurReg}
+                    value={formReg.email}
+                    placeholder="juan@gmail.com"
                   />
+                  {errorsReg.email && <p style={styles}>{errorsReg.email}</p>}
                 </Form.Group>
 
                 <Form.Group className="mb-1">
@@ -420,9 +574,12 @@ function NavBarComponent() {
                   <Form.Control
                     name='password'
                     type='password'
-                    onChange={OnChange}
-                    placeholder= "*************"
+                    onChange={OnChangeReg}
+                    onBlur={handleBlurReg}
+                    value={formReg.password}
+                    placeholder="*************"
                   />
+                  {errorsReg.password && <p style={styles}>{errorsReg.password}</p>}
                 </Form.Group>
 
               </Form>
@@ -435,10 +592,6 @@ function NavBarComponent() {
           </Button>
         </Modal.Footer>
       </Modal>
-
-
-
-
 
     </div>
   )
