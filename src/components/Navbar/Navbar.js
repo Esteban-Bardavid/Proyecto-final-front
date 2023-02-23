@@ -485,7 +485,7 @@ function NavBarComponent() {
 
                       <Form>
 
-                        <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
+                        <Form.Group className="FGroupLoginEmail mb-1 p-2" controlId="formBasicEmail">
                           <Form.Label>Ingrese su email</Form.Label>
                           <Form.Control
                             // id="emailLogin"
@@ -522,10 +522,11 @@ function NavBarComponent() {
                         <p className="me-2">¿Olvidaste tu contraseña?</p>
                         <a href="http://">Recuperar contraseña</a>
                       </div>
-                      <div className="d-flex justify-content-end me-5">
-                        <Button variant="dark" onClick={handleShowReg}>
-                          Registrate Aqui !!!
-                        </Button>
+                      <div className="d-flex justify-content-center me-5">
+                        <p className="me-2">No tienes una cuenta?</p>
+                        <Link onClick={handleShowReg}>
+                                Registrate Aqui !!!
+                        </Link>
                       </div>
 
                     </div>
