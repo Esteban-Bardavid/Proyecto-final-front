@@ -1,10 +1,11 @@
-import { Modal, Form, Button, Table } from 'react-bootstrap';
+import {  Modal, Form, Button, Table } from 'react-bootstrap';
 import UseAdminProducts from '../../utils/useAdminProducts';
 import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrashAlt } from "react-icons/fa";
 import ModalUpProducts from '../../components/Modal/modalUpProducts';
+import { Link } from "react-router-dom";
 
 let styles = {
     fontWeight: "bold",
@@ -72,6 +73,11 @@ function AdminProducts() {
 
     return (
         <div>
+              <div className='ms-4 mt-3'>
+                    <Link to="/adminUsuarios">
+                        AdminUser
+                    </Link>
+                </div>
             <div className=''>
                 <div className='ms-4 mt-3'>
                     <Button variant="primary" onClick={handleShow}>

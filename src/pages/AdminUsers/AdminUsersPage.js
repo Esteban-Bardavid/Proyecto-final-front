@@ -1,10 +1,11 @@
 import { Modal, Form, Button, Table } from 'react-bootstrap';
-import UseAdminProducts from '../../utils/useAdminProducts';
 import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaTrashAlt } from "react-icons/fa";
-import ModalUpProducts from '../../components/Modal/modalUpProducts';
+import UseAdminUsers from '../../utils/useAdminUsers';
+import ModalUpUsers from '../../components/Modal/modalUpUser';
+import { Link } from 'react-router-dom'
 
 let styles = {
     fontWeight: "bold",
@@ -15,36 +16,33 @@ let styles = {
 function AdminUsers() {
 
     const {
-        handleBlur,
-        OnChangeProducts,
-        form,
-        errors,
-        handleClose,
-        handleShow,
-        show,
+        showUp,
+        setShowUp,
+        handleCloseUp,
+        handleShowUp,
+        //GetUser,
+        //user,
         url,
-        CreateProducts,
-        //DeleteProducts,
-        consultAndDeleteProduct
-    } = UseAdminProducts();
+        consultAndDeleteUser
+    } = UseAdminUsers();
 
 
-    function Auxiliar() {
-        CreateProducts();
-        handleClose();
-    }
+    // function Auxiliar() {
+    //     CreateProducts();
+    //     handleClose();
+    // }
 
-    // Funcion para mostrar productos en tabla:
-    const [products, setproducts] = useState([]);
+    // Funcion para mostrar Usuarios en tabla:
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
-        GetProducts()
+        GetUser()
     }, []);
 
-    async function GetProducts() {
-        let getProducts = await axios.get(`${url}/adminProducts`);
-        setproducts(getProducts.data);
-        setBuscador(getProducts.data);
+    async function GetUser() {
+        let getUser = await axios.get(`${url}/user`);
+        setUser(getUser.data);
+        setBuscador(getUser.data);
     }
 
     // Buscador:
@@ -58,25 +56,25 @@ function AdminUsers() {
 
     const filtrar = (terminoBusqueda) => {
         var response = buscador.filter((elemento) => {
-            if (elemento.producto.toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.marca.toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.sex.toLowerCase().includes(terminoBusqueda.toLowerCase())
+            if (elemento.name.toLowerCase().includes(terminoBusqueda.toLowerCase())
+                || elemento.lastname.toLowerCase().includes(terminoBusqueda.toLowerCase())
+                || elemento.admin.toLowerCase().includes(terminoBusqueda.toLowerCase())
             ) {
                 return elemento;
             }
         });
-        setproducts(response);
-        console.log(products);
+        setUser(response);
+        console.log(user);
     }
 
 
     return (
-        <div>
+        <div className='container-fluid'>
             <div className=''>
-                <div className='ms-4 mt-3'>
-                    <Button variant="primary" onClick={handleShow}>
-                        Ingresar Producto
-                    </Button>
+            <div className='ms-4 mt-3'>
+                    <Link to="/adminProducts">
+                        AdminProducts
+                    </Link>
                 </div>
 
                 <div className='d-flex justify-content-center w-100 ms-2' >
@@ -94,69 +92,38 @@ function AdminUsers() {
 
             {/* ---------------------------------------------------------- Tabla --------------------------------------------------------------------------- */}
 
-            <Table striped bordered hover responsive className='w-100'>
+            <Table striped bordered hover responsive className=''>
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th><div>Producto</div></th>
-                        <th>Sex</th>
-                        <th>Marca</th>
-                        <th>Color</th>
-                        <th>Precio</th>
-                        <th>Categ.</th>
-                        <th>Pub.</th>
-                        <th>T36</th>
-                        <th>T37</th>
-                        <th>T38</th>
-                        <th>T39</th>
-                        <th>T40</th>
-                        <th>T41</th>
-                        <th>T42</th>
-                        <th>T43</th>
+                        <th><div>Nombre</div></th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Email</th>
+                        <th>Admin</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {products.map((item, i) => (
+                    {user.map((item, i) => (
                         <tr key={i}>
                             <td>{i + 1}</td>
-                            <td>{item.producto}</td>
-                            <td>{item.sex}</td>
-                            <td>{item.marca}</td>
-                            <td>{item.color}</td>
-                            <td>{item.precio}</td>
-                            <td>{item.categoria}</td>
-                            <td>{item.publicado}</td>
-                            <td>{item.tseis}</td>
-                            <td>{item.tsiete}</td>
-                            <td>{item.tocho}</td>
-                            <td>{item.tnueve}</td>
-                            <td>{item.ccero}</td>
-                            <td>{item.cuno}</td>
-                            <td>{item.cdos}</td>
-                            <td>{item.ctres}</td>
+                            <td>{item.name}</td>
+                            <td>{item.lastname}</td>
+                            <td>{item.age}</td>
+                            <td>{item.email}</td>
+                            <td>{item.admin}</td>
                             <td className='d-flex'>
-                                <Button className="btn mx-2" onClick={() => consultAndDeleteProduct(item._id)}><FaTrashAlt /></Button>
+                                <Button className="btn mx-2" onClick={() => consultAndDeleteUser(item._id)}><FaTrashAlt /></Button>
 
-                                <ModalUpProducts
+                                <ModalUpUsers
                                     key={i}
                                     indice={i + 1}
-                                    producto={item.producto}
-                                    imagen={item.imgUrl}
-                                    sex={item.sex}
-                                    marca={item.marca}
-                                    color={item.color}
-                                    precio={item.precio}
-                                    tseis={item.tseis}
-                                    tsiete={item.tsiete}
-                                    tocho={item.tocho}
-                                    tnueve={item.tnueve}
-                                    ccero={item.ccero}
-                                    cuno={item.cuno}
-                                    cdos={item.cdos}
-                                    ctres={item.ctres}
-                                    categoria={item.categoria}
-                                    publicado={item.publicado}
+                                    name={item.name}
+                                    lastname={item.lastname}
+                                    age={item.age}
+                                    email={item.email}
+                                    admin={item.admin}
                                     id={item._id}
                                 />
                             </td>
@@ -167,7 +134,7 @@ function AdminUsers() {
 
             {/* ---------------------------------------------------------- Modal Ingresar Producto -------------------------------------------------- */}
 
-            <Modal show={show} onHide={handleClose}>
+            {/* <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Producto</Modal.Title>
                 </Modal.Header>
@@ -387,7 +354,7 @@ function AdminUsers() {
                     </Button>
                 </Modal.Footer>
 
-            </Modal>
+            </Modal> */}
 
         </div>
     )

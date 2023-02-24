@@ -267,7 +267,7 @@ function NavBarComponent() {
     else if (!formReg.password.trim()) {
       errorsReg.password = "'Password' es requerido"
     } else if (formReg.password.length < 4 || formReg.password.length > 8) {
-      errorsReg.password = "Tu 'Password' no es valido."
+      errorsReg.password = "Tu 'Password' no es valido, debe tener entre 4 y 8 caracteres."
       setFormReg(initialFormReg)
     }
 
