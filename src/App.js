@@ -15,6 +15,7 @@ import InfoPage from './pages/Info/infoPage'
 import { Navbar } from 'react-bootstrap';
 import AdminProducts from './pages/AdminProducts/AdminProductsPage';
 import CartProvider from "./components/CartProvider/CartProvider";
+import AdminUsers from './pages/AdminUsers/AdminUsersPage';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         <Route path='/adminProducts' element={<AdminProducts />}></Route>
         <Route path='/infopage' element={<InfoPage />}></Route>
         <Route path='/cartpage' element={<CartPage />}></Route>
-
+        <Route path='/adminUsuarios' element={<AdminUsers />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
