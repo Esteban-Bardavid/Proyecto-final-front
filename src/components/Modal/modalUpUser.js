@@ -24,16 +24,16 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
 
 
     let initialFormUp = {
-        name: "",
-        lastname: "",
-        age: "",
-        email: "",
-        admin: "",
+        name: `${name}`,
+        lastname: `${lastname}`,
+        age: `${age}`,
+        email: `${email}`,
+        admin: `${admin}`,
     }
 
 
     // Funcion para Actualizar Usuarios en tabla:
-    const [update, setupdate] = useState(initialFormUp)
+    const [update, setupdate] = useState({})
 
 
     function OnChangeUpdate(e) {
@@ -113,37 +113,27 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
         let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
-        if (!update.name.trim()) {
-            errorsUp.name = "'Nombre' es requerido"
-        } else if (!regexComments.test(update.name.trim())) {
+        if (!regexComments.test(update.name.trim())) {
             errorsUp.name = "'Nombre' solo debe tener hasta 10 caracteres"
             setupdate(initialFormUp)
         }
 
-        if (!update.lastname.trim()) {
-            errorsUp.lastname = "'Apellido' es requerido"
-        } else if (!regexComments1.test(update.lastname.trim())) {
+        else if (!regexComments1.test(update.lastname.trim())) {
             errorsUp.lastname = "'Apellido' solo debe tener hasta 15 caracteres"
             setupdate(initialFormUp)
         }
 
-        if (!update.age.trim()) {
-            errorsUp.age = "'Edad' es requerido"
-        } else if (!regexComments2.test(update.age.trim())) {
+        else if (!regexComments2.test(update.age.trim())) {
             errorsUp.age = "'Edad' solo debe tener hasta 2 cifras"
             setupdate(initialFormUp)
         }
 
-        if (!update.email.trim()) {
-            errorsUp.email = "'Email' es requerido"
-        } else if (!regexEmail.test(update.email.trim())) {
+        else if (!regexEmail.test(update.email.trim())) {
             errorsUp.email = "Tu 'Email' no es valido."
             setupdate(initialFormUp)
         }
 
-        if (!update.admin.trim()) {
-            errorsUp.admin = "'Admin' es requerido"
-        } else if (update.admin != "true" && update.admin != "false") {
+        else if (update.admin != "true" && update.admin != "false") {
             errorsUp.admin = "Solo 'true' o 'false'"
             setupdate(initialFormUp)
         }
@@ -158,12 +148,17 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
         setErrorsUp(validationsFormUp(update));
     };
 
+    const modalUserUp = () => {
+        handleShowUp();
+        setupdate(initialFormUp)
+    }
+
 
 
     return (
         <div>
 
-            <Button variant="primary" onClick={handleShowUp}><FaRegEdit /></Button>
+            <Button variant="primary" onClick={modalUserUp}><FaRegEdit /></Button>
 
             <Modal show={showUp} onHide={handleCloseUp}>
                 <Modal.Header closeButton>
