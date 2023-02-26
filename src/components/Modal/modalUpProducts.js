@@ -3,6 +3,7 @@ import UseAdminProducts from '../../utils/useAdminProducts';
 import { FaRegEdit } from "react-icons/fa";
 import { useState } from "react";
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 let styles = {
     fontWeight: "bold",
@@ -23,7 +24,7 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
         imgUrl: `${imagen}`,
         sex: `${sex}`,
         marca: `${marca}`,
-        color:`${color}` ,
+        color: `${color}`,
         precio: `${precio}`,
         tseis: `${tseis}`,
         tsiete: `${tsiete}`,
@@ -38,30 +39,50 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
     }
 
 
-      // Funcion para Actualizar productos en tabla:
-      const [update, setupdate] = useState(initialFormUp)
+    // Funcion para Actualizar productos en tabla:
+    const [update, setupdate] = useState({})
 
 
-      function OnChangeUpdate(e) {
-          const { name, value } = e.target;
-          const response = { ...update, [name]: value };
-          setupdate(response);
-          console.log(response);
-      }
-      console.log(update)
-  
-  
-      async function PutProducts(id) {
-          try {
-              const { data } = await axios.put(`${url}/adminProducts/${id}`, update)
-              console.log(data);
-              setShowUp(false);
-          } catch (error) {
-              alert('No se pudo.');
-              console.error(error);
-          }
-          window.location.reload();
-      }
+    function OnChangeUpdate(e) {
+        const { name, value } = e.target;
+        const response = { ...update, [name]: value };
+        setupdate(response);
+        console.log(response);
+    }
+    console.log(update)
+
+
+    async function PutProducts(id) {
+        try {
+            if (!update.producto || !update.imgUrl || !update.sex || !update.marca || !update.color || !update.precio || !update.tseis || !update.tsiete || !update.tocho || !update.tnueve || !update.ccero || !update.cuno || !update.cdos || !update.ctres || !update.categoria || !update.publicado) {
+                Swal
+                    .fire({
+                        title: "No se pudo Actualizar !!",
+                        text: "Debes completar los campos requeridos.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: "Aceptar",
+                        cancelButtonText: "Cancelar",
+                    })
+                    .then(resultado => {
+                        if (resultado.value) {
+                            // Hicieron click en "Sí"
+                            //setShowUp(false);
+                        } else {
+                            // Dijeron que no
+                        }
+                    });
+            } else {
+                const { data } = await axios.put(`${url}/adminProducts/${id}`, update)
+                console.log(data);
+                setShowUp(false);
+                window.location.reload();
+            }
+        } catch (error) {
+            alert('No se pudo.');
+            console.error(error);
+        }
+    }
 
 
     // Validaciones de Inputs (Formulario para Actualizar Producto):
@@ -75,130 +96,77 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
 
 
 
-        if (!update.producto.trim()) {
-            //errorsUp.producto = "'Producto' es requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments.test(update.producto.trim())) {
+        if (!regexComments.test(update.producto.trim())) {
             errorsUp.producto = "'Producto' solo debe tener hasta 20 caracteres"
             setupdate(initialFormUp)
         }
 
-        else if (!update.imgUrl.trim()) {
-            //errorsUp.imgUrl = "'Imagen' es requerido"
-            setupdate(initialFormUp)
-
-        }
-
-        else if (!update.sex.trim()) {
-            //errorsUp.sex = "'Sexo' es requerido"
-            setupdate(initialFormUp)
-
-        } else if (update.sex != "Mujer" && update.sex != "Hombre") {
+        else if (update.sex != "Mujer" && update.sex != "Hombre") {
             errorsUp.sex = "Solo 'Mujer' u 'Hombre'"
             setupdate(initialFormUp)
         }
 
-        else if (!update.marca.trim()) {
-            //errorsUp.marca = "'Marca' es requerido"
-            setupdate(initialFormUp)
-
-        } else if (update.marca != "Adidas" && update.marca != "Nike" && update.marca != "Fila" && update.marca != "Reebok") {
+        else if (update.marca != "Adidas" && update.marca != "Nike" && update.marca != "Fila" && update.marca != "Reebok") {
             errorsUp.marca = "Solo Adidas, Nike, Fila o Reebok"
             setupdate(initialFormUp)
         }
 
-        else if (!update.color.trim()) {
-            //errorsUp.color = "'Color' es requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments1.test(update.color.trim())) {
+        else if (!regexComments1.test(update.color.trim())) {
             errorsUp.color = "'Color' solo debe tener hasta 10 caracteres"
             setupdate(initialFormUp)
         }
 
-        else if (!update.precio.trim()) {
-            //errorsUp.precio = "'Precio' es requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments2.test(update.precio.trim())) {
+        else if (!regexComments2.test(update.precio.trim())) {
             errorsUp.precio = "'Precio' solo puede tener hasta 6 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.tseis.trim()) {
-            //errorsUp.tseis = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.tseis.trim())) {
+        else if (!regexComments3.test(update.tseis.trim())) {
             errorsUp.tseis = "'T-36' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.tsiete.trim()) {
-            //errorsUp.tsiete = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.tsiete.trim())) {
+        else if (!regexComments3.test(update.tsiete.trim())) {
             errorsUp.tsiete = "'T-37' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.tocho.trim()) {
-            //errorsUp.tocho = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.tocho.trim())) {
+        else if (!regexComments3.test(update.tocho.trim())) {
             errorsUp.tocho = "'T-38' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.tnueve.trim()) {
-            //errorsUp.tnueve = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.tnueve.trim())) {
+        else if (!regexComments3.test(update.tnueve.trim())) {
             errorsUp.tnueve = "'T-39' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.ccero.trim()) {
-            //errorsUp.ccero = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.ccero.trim())) {
+        else if (!regexComments3.test(update.ccero.trim())) {
             errorsUp.ccero = "'T-40' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.cuno.trim()) {
-            //errorsUp.cuno = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.cuno.trim())) {
+        else if (!regexComments3.test(update.cuno.trim())) {
             errorsUp.cuno = "'T-41' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.cdos.trim()) {
-            //errorsUp.cdos = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.cdos.trim())) {
+        else if (!regexComments3.test(update.cdos.trim())) {
             errorsUp.cdos = "'T-42' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.ctres.trim()) {
-            //errorsUp.ctres = "Campo requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments3.test(update.ctres.trim())) {
+        else if (!regexComments3.test(update.ctres.trim())) {
             errorsUp.ctres = "'T-43' solo puede tener hasta 3 cifras"
             setupdate(initialFormUp)
         }
 
-        else if (!update.categoria.trim()) {
-            //errorsUp.categoria = "'Categoria' es requerido"
-            setupdate(initialFormUp)
-        } else if (update.categoria != "Trainning" && update.categoria != "Running" && update.categoria != "Outdoor") {
+        else if (update.categoria != "Trainning" && update.categoria != "Running" && update.categoria != "Outdoor") {
             errorsUp.categoria = "Solo Trainning, Running u Outdoor"
             setupdate(initialFormUp)
         }
 
-        else if (!update.publicado.trim()) {
-            //errorsUp.publicado = "'Publicado' es requerido"
-            setupdate(initialFormUp)
-        } else if (update.publicado != 1 && update.publicado != 0) {
+        else if (update.publicado != 1 && update.publicado != 0) {
             errorsUp.publicado = "Solo '1' o '0'"
             setupdate(initialFormUp)
         }
@@ -211,13 +179,17 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
         setErrorsUp(validationsFormUp(update));
     };
 
-    console.log(errorsUp)
+
+    const modalUpProducts = () => {
+        handleShowUp();
+        setupdate(initialFormUp);
+    }
 
 
     return (
         <div>
 
-            <Button variant="primary" onClick={handleShowUp}><FaRegEdit /></Button>
+            <Button variant="primary" onClick={modalUpProducts}><FaRegEdit /></Button>
 
             <Modal show={showUp} onHide={handleCloseUp}>
                 <Modal.Header closeButton>
