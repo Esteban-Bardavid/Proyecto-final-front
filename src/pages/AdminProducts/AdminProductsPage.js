@@ -74,8 +74,8 @@ function AdminProducts() {
     return (
         <div>
               <div className='ms-4 mt-3'>
-                    <Link to="/adminUsuarios">
-                        AdminUser
+                    <Link to="/adminUsers">
+                        Ir a Usuarios
                     </Link>
                 </div>
             <div className=''>

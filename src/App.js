@@ -36,7 +36,7 @@ function App() {
         <Route path='/adminProducts' element={<AdminProducts />}></Route>
         <Route path='/infopage' element={<InfoPage />}></Route>
         <Route path='/cartpage' element={<CartPage />}></Route>
-        <Route path='/adminUsuarios' element={<AdminUsers />}></Route>
+        <Route path='/adminUsers' element={<AdminUsers />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>

@@ -3,6 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { useState } from "react";
 import axios from 'axios';
 import UseAdminUsers from '../../utils/useAdminUsers';
+import Swal from 'sweetalert2';
 
 let styles = {
     fontWeight: "bold",
@@ -10,20 +11,24 @@ let styles = {
 }
 
 
+
 function ModalUpUsers({ name, lastname, age, email, admin, id }) {
 
-    const { showUp, handleCloseUp, handleShowUp, url, setShowUp } = UseAdminUsers();
+    const { url, user } = UseAdminUsers();
 
+    const [showUp, setShowUp] = useState(false);
+    const handleCloseUp = () => setShowUp(false);
+    const handleShowUp = () => setShowUp(true)
 
     const [errorsUp, setErrorsUp] = useState({});
 
 
-    const initialFormUp = {
-        name: `${name}`,
-        lastname: `${lastname}`,
-        age: `${age}`,
-        email: `${email}`,
-        admin: `${admin}`,
+    let initialFormUp = {
+        name: "",
+        lastname: "",
+        age: "",
+        email: "",
+        admin: "",
     }
 
 
@@ -37,77 +42,122 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
         setupdate(response);
         console.log(response);
     }
-    console.log(update)
 
 
     async function PutUsers(id) {
         try {
-            const { data } = await axios.put(`${url}/user/${id}`, update)
-            console.log(data);
-            setShowUp(false);
+
+            let admin = user.find(user => user.email === "esteban@gmail.com");
+
+
+            if (!update.name || !update.lastname || !update.age || !update.email || !update.admin) {
+                Swal
+                    .fire({
+                        title: "No se pudo Actualizar !!",
+                        text: "Debes completar todos los campos.",
+                        icon: 'warning',
+                        //showCancelButton: true,
+                        confirmButtonText: "Aceptar",
+                        //cancelButtonText: "Cancelar",
+                    })
+                    .then(resultado => {
+                        if (resultado.value) {
+                            // Hicieron click en "Sí"
+                            setShowUp(false);
+                        } else {
+                            // Dijeron que no
+                        }
+                    });
+            }
+
+
+            else if (id !== admin._id) {
+
+                const { data } = await axios.put(`${url}/user/${id}`, update)
+                setShowUp(false);
+                window.location.reload();
+
+            } else {
+                Swal
+                    .fire({
+                        title: "Este Usuario No se puede Modificar !!",
+                        icon: 'warning',
+                        //showCancelButton: true,
+                        confirmButtonText: "Aceptar",
+                        //cancelButtonText: "Cancelar",
+                    })
+                    .then(resultado => {
+                        if (resultado.value) {
+                            // Hicieron click en "Sí"
+                            setShowUp(false);
+                        } else {
+                            // Dijeron que no
+                        }
+                    });
+            }
         } catch (error) {
             alert('No se pudo.');
             console.error(error);
         }
-        window.location.reload();
     }
+
 
 
     // Validaciones de Inputs (Formulario para Actualizar Usuario):
     const validationsFormUp = (update) => {
         let errorsUp = {};
         let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-        let regexComments = /^.{1,20}$/;
-        let regexComments1 = /^.{1,10}$/;
-        let regexComments2 = /^.{1,6}$/;
-        let regexComments3 = /^.{1,3}$/;
+        let regexComments = /^.{1,10}$/;
+        let regexComments1 = /^.{1,15}$/;
+        let regexComments2 = /^.{1,2}$/;
         let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 
         if (!update.name.trim()) {
-            //errorsUp.producto = "'Producto' es requerido"
-            setupdate(initialFormUp)
+            errorsUp.name = "'Nombre' es requerido"
         } else if (!regexComments.test(update.name.trim())) {
-            errorsUp.name = "'Nombre' solo debe tener hasta 20 caracteres"
+            errorsUp.name = "'Nombre' solo debe tener hasta 10 caracteres"
             setupdate(initialFormUp)
         }
 
-        else if (!update.lastname.trim()) {
-            //errorsUp.imgUrl = "'Imagen' es requerido"
-            setupdate(initialFormUp)
-        } else if (!regexComments.test(update.lastname.trim())) {
-            errorsUp.lastname = "'Apellido' solo debe tener hasta 20 caracteres"
-            setupdate(initialFormUp)
-        }
-
-        else if (!update.age.trim()) {
-            //errorsUp.sex = "'Sexo' es requerido"
+        if (!update.lastname.trim()) {
+            errorsUp.lastname = "'Apellido' es requerido"
+        } else if (!regexComments1.test(update.lastname.trim())) {
+            errorsUp.lastname = "'Apellido' solo debe tener hasta 15 caracteres"
             setupdate(initialFormUp)
         }
 
-        else if (!update.email.trim()) {
+        if (!update.age.trim()) {
+            errorsUp.age = "'Edad' es requerido"
+        } else if (!regexComments2.test(update.age.trim())) {
+            errorsUp.age = "'Edad' solo debe tener hasta 2 cifras"
+            setupdate(initialFormUp)
+        }
+
+        if (!update.email.trim()) {
             errorsUp.email = "'Email' es requerido"
         } else if (!regexEmail.test(update.email.trim())) {
             errorsUp.email = "Tu 'Email' no es valido."
             setupdate(initialFormUp)
         }
 
-        else if (update.admin != "true" && update.admin != "false") {
+        if (!update.admin.trim()) {
+            errorsUp.admin = "'Admin' es requerido"
+        } else if (update.admin != "true" && update.admin != "false") {
             errorsUp.admin = "Solo 'true' o 'false'"
             setupdate(initialFormUp)
         }
 
 
-
         return errorsUp;
     }
+
 
     const handleBlurUp = (e) => {
         OnChangeUpdate(e);
         setErrorsUp(validationsFormUp(update));
     };
 
-    console.log(errorsUp)
 
 
     return (
@@ -162,7 +212,7 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
                                 {errorsUp.age && <p style={styles}>{errorsUp.age}</p>}
                             </Form.Group>
 
-                            <Form.Group className="mb-2 px-2 w-25" controlId="formBasicEmail">
+                            <Form.Group className="mb-2 px-2 w-50" controlId="formBasicEmail">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
                                     name='email'
