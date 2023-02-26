@@ -38,13 +38,22 @@ export const CartPage = () => {
       for (let index = 0; index < product.length; index++) {
         const response = await axios.put(`http://localhost:4000/api/user/product/${product[index]._id}`, {}, { headers })
         console.log(response)
+        window.location.href="/"
+        
       }
-      window.location.href="/"
+      
     } catch (error) {
       console.log(error)
+     
     }
+    
   }
 
+
+  function guardar() {
+    cartMethod()
+    handleClose()
+}
   return (
 
 
@@ -154,7 +163,7 @@ export const CartPage = () => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="primary" onClick={cartMethod}>
+                <Button variant="primary" onClick={guardar}>
                   Save Changes
                 </Button>
               </Modal.Footer>

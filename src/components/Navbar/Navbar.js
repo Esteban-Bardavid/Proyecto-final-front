@@ -92,7 +92,7 @@ function NavBarComponent() {
   async function GetUsers() {
 
     const response = await axios.get(`http://localhost:4000/api/user`)
-    console.log(response.data)
+    
     setUser(response.data)
   }
 
@@ -217,10 +217,9 @@ function NavBarComponent() {
       {/* NAVBAR  */}
       <Navbar className="navbar1" id="navContainer" bg="orange" expand="lg">
         <Container className="container-3" fluid p-5>
-          <Navbar.Brand className="logo-navbar" href="#"><img className="logo-img" src={logo} alt="LOGO" srcset="" /></Navbar.Brand>
+          <Navbar.Brand className="logo-navbar" href="/"><img className="logo-img" src={logo} alt="LOGO" srcset="" /></Navbar.Brand>
           <Navbar.Toggle className="me-3" aria-controls="navbarScroll" />
           <Navbar.Collapse className="container-search-icons " id="navbarScroll">
-
             <Nav
               className=" icons-hamburguer my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
@@ -280,10 +279,10 @@ function NavBarComponent() {
 
 
               </Link>
-              {/* <CartModal/> */}
+              
               <Link className="links-icons m-2 p-1" id="info" to="/"> <FontAwesomeIcon color="black" fontSize={26} icon={faUser} onClick={handleShow} />
 
-                {/* Modal Login */}
+                {/* Modal SINGOUT */}
                 <Modal
                   show={show}
                   onHide={handleClose}
@@ -291,51 +290,17 @@ function NavBarComponent() {
                   keyboard={false}
                 >
                   <Modal.Header closeButton onClick={handleClose}>
-                    <Modal.Title className="FirstButton">Iniciar Sesion</Modal.Title>
+                    <Modal.Title className="FirstButton">Cerrar sesion</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
-                    <h2>Bienvenid@s a Rolling Shoes</h2>
-                    <div className="ConteinerInputLogin">
-                      <div className="ConteinerInputLogin">
-
-                        <Form>
-                          <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
-                            <Form.Label>Ingrese su email</Form.Label>
-                            <Form.Control
-                              // id="emailLogin"
-                              classname="border border-danger border-1"
-                              //    classname = {validate? "border border-danger" : ""}
-                              name="email"
-                              type="email"
-                              placeholder="juan@gmail.com"
-                              onChange={onChange}
-                            />
-                          </Form.Group>
-
-                          <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
-                            <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
-                            <Form.Control
-                              // id="passwordLogin"
-                              //classname={validate ? " border border-danger" : ""}
-                              name="password"
-                              type="password"
-                              placeholder="************"
-                              onChange={onChange}
-                            />
-                          </Form.Group>
-                        </Form>
-                        <div id="ConteinerForgottenPassword">
-                          <p className="me-2">¿Olvidaste tu contraseña?</p>
-                          <a href="http://">Recuperar contraseña</a>
-                        </div>
-                      </div>
-                    </div>
+                    <h2>Estas seguro de que deseas cerrar sesion?</h2>
+                    
                   </Modal.Body>
                   <Modal.Footer>
                     <Button id="CloseLoginButton" onClick={handleClose}>
-                      Cerrar
+                      Cancelar
                     </Button>
-                    <Button id="ReadyLoginButton" onClick={LoginPost}>Listo!
+                    <Button id="ReadyLoginButton" onClick={singOut}>Cerrar sesion
                     </Button>
                   </Modal.Footer>
                 </Modal>
@@ -347,10 +312,6 @@ function NavBarComponent() {
             {/* BUSCADOR  */}
 
             <Buscador />
-
-
-
-
 
           </Navbar.Collapse>
         </Container>

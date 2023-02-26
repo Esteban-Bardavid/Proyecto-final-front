@@ -54,11 +54,11 @@ function LoginPage() {
    }
     async function LoginPost() {
 
-        console.log(form.email)
         try {
             let url = `http://localhost:4000/api/auth`
             const { data } = await axios.post(url, form)
             console.log(data);
+            
 
             localStorage.setItem('token', data)
 
@@ -81,6 +81,7 @@ function LoginPage() {
                 button: "Ir a la Homepage",
             }).then(resultado => {
                 if (resultado.value) {
+                    window.location.href = '/'
                     goAdminProducts();
                 } else {
                     //nada
@@ -146,7 +147,6 @@ function LoginPage() {
     return (
         <div>
 
-
             {/* NAVBAR DE LOGIN */}
             <Navbar className="navbar1" id="navContainer" bg="orange" expand="lg">
                 <Container className="container-3" fluid p-5>
@@ -205,9 +205,9 @@ function LoginPage() {
                     <div id="ConteinerForgottenPassword">
                         <p className="me-2">¿Aun no estas registrado?</p>
 
-                        <a href="" onClick={handleShowReg}>
+                        <Link onClick={handleShowReg}>
                             Registrate Aqui !!!
-                        </a>
+                        </Link>
 
                     </div>
 
