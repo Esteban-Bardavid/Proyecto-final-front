@@ -2,17 +2,14 @@ import { Button, Table } from 'react-bootstrap';
 import { FaSearch } from "react-icons/fa";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaTrashAlt } from "react-icons/fa";
-import UseAdminUsers from '../../utils/useAdminUsers';
-import ModalUpUsers from '../../components/Modal/modalUpUser';
 import { Link } from 'react-router-dom'
-import UseAdminShopping from '../../utils/useAdminShopping';
 
 
 
-function AdminShopping () {
+function AdminShoppingCart () {
 
-    const { url } = UseAdminShopping();
+
+    var url = 'http://localhost:4000/api'
 
 
     // Funcion para mostrar Compras en tabla:
@@ -72,9 +69,6 @@ function AdminShopping () {
             <td>{item.direccion}</td>
         </tr>
     ))
-
-
-    
 
 
 
@@ -139,4 +133,4 @@ function AdminShopping () {
     )
 }
 
-export default AdminShopping;
+export default AdminShoppingCart;

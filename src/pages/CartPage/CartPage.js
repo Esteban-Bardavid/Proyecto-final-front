@@ -9,8 +9,6 @@ import Swal from "sweetalert2";
 
 export const CartPage = () => {
 
-  const { itemCount } = useContext(CartContext);
-
   const { cart, setCart, deleteItem } = useContext(CartContext);
 
   const cartTotalSum = cart.reduce((acc, item) => acc + item.precio, 0);
@@ -33,6 +31,7 @@ export const CartPage = () => {
     GetUser();
   }, [])
 
+
   async function GetUser() {
     try {
       const response = await axios.get('http://localhost:4000/api/auth', { headers });
@@ -43,11 +42,7 @@ export const CartPage = () => {
     }
   }
 
-  console.log(user)
-  //console.log(user._id)
-
-
-
+  // Creo el Array compra:
   let compra = [];
 
   if (product !== []) {
@@ -64,35 +59,24 @@ export const CartPage = () => {
     }
   }
 
-  console.log(compra)
-
+  // Creo el Objeto compra:
   let objectCompra = { ...compra, total: cartTotalSum };
-
-  console.log(objectCompra);
-
-
 
 
   async function cartMethod() {
-
     try {
-      //for (let index = 0; index < compra.length; index++) {
       const response = await axios.put(
         `http://localhost:4000/api/user/${user._id}`,
         { "product": objectCompra },
         { headers }
       )
-      //}
       console.log(response)
       GetUser();
-      //setUser(response.data)
-      //window.location.href = "/"
     } catch (error) {
       console.log(error)
     }
   }
 
-  console.log(user)
 
 
   function DetailsPay() {
@@ -178,7 +162,6 @@ export const CartPage = () => {
       } else {
 
         const response = await axios.post(`${url1}/adminShopping`, form)
-        console.log(response);
 
         Swal
           .fire({
@@ -273,8 +256,6 @@ export const CartPage = () => {
     setErrors(validationsForm(form));
   };
 
-  console.log(form)
-  console.log(errors)
 
   let styles = {
     fontWeight: "bold",
@@ -286,7 +267,6 @@ export const CartPage = () => {
 
     <>
       <div className="container_padre">
-
         <div className="container_carrito ">
           <div>
             <h1>TU CARRITO</h1>
@@ -301,7 +281,6 @@ export const CartPage = () => {
           {cartItemCount === 0 ?
             <p className="cartVacio">Tu carrito esta vacio</p> :
             (
-
               <div className="card_carrito">
                 {cart.map((item) => {
                   return (
@@ -316,7 +295,6 @@ export const CartPage = () => {
 
                         </h6>
                         <select>
-
                           <option>
                             1
                           </option>
@@ -587,7 +565,6 @@ export const CartPage = () => {
               </Modal.Body>
 
             </Modal>
-
 
           </div>
         </div>
