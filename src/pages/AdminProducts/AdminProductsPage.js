@@ -78,6 +78,11 @@ function AdminProducts() {
                         Ir a Usuarios
                     </Link>
                 </div>
+                <div className='ms-4 mt-3'>
+                    <Link to="/adminShopping">
+                        Ir a Ventas
+                    </Link>
+                </div>
             <div className=''>
                 <div className='ms-4 mt-3'>
                     <Button variant="primary" onClick={handleShow}>

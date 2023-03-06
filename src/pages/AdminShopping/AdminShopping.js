@@ -6,25 +6,26 @@ import { FaTrashAlt } from "react-icons/fa";
 import UseAdminUsers from '../../utils/useAdminUsers';
 import ModalUpUsers from '../../components/Modal/modalUpUser';
 import { Link } from 'react-router-dom'
+import UseAdminShopping from '../../utils/useAdminShopping';
 
 
 
-function AdminUsers() {
+function AdminShopping () {
 
-    const { url, consultAndDeleteUser } = UseAdminUsers();
+    const { url } = UseAdminShopping();
 
 
-    // Funcion para mostrar Usuarios en tabla:
-    const [user, setUser] = useState([]);
+    // Funcion para mostrar Compras en tabla:
+    const [shopping, setShopping] = useState([]);
 
     useEffect(() => {
-        GetUser()
+        GetShopping()
     }, []);
 
-    async function GetUser() {
-        let getUser = await axios.get(`${url}/user`);
-        setUser(getUser.data);
-        setBuscador(getUser.data);
+    async function GetShopping() {
+        let getShopping = await axios.get(`${url}/adminShopping`);
+        setShopping(getShopping.data);
+        setBuscador(getShopping.data);
     }
 
 
@@ -41,54 +42,54 @@ function AdminUsers() {
         var response = buscador.filter((elemento) => {
             if (elemento.name.toLowerCase().includes(terminoBusqueda.toLowerCase())
                 || elemento.lastname.toLowerCase().includes(terminoBusqueda.toLowerCase())
-                || elemento.admin.toLowerCase().includes(terminoBusqueda.toLowerCase())
+                || elemento.dni.toString().includes(terminoBusqueda)
             ) {
                 return elemento;
             }
         });
-        setUser(response);
+        setShopping(response);
     }
 
 
-    const mapUser = user.map((item, i) => (
+    const mapShopping = shopping.map((item, i) => (
         <tr key={i}>
             <td>{i + 1}</td>
             <td>{item.name}</td>
             <td>{item.lastname}</td>
-            <td>{item.age}</td>
-            <td>{item.email}</td>
-            <td>{item.admin}</td>
-            <td className='d-flex'>
-
-                <Button className="btn mx-2" onClick={() => consultAndDeleteUser(item._id)}><FaTrashAlt /></Button>
-
-                {user.map((item, i) => (
-                    <ModalUpUsers
-                        name={item.name}
-                        lastname={item.lastname}
-                        age={item.age}
-                        email={item.email}
-                        admin={item.admin}
-                        id={item._id}
-                    />
-                ))[i]}
-            </td>
+            <td>{item.dni}</td>
+            <td>{item.total}</td>
+            <td>{item.producto1}</td>
+            <td>{item.marca1}</td>
+            <td>{item.precio1}</td>
+            <td>{item.producto2}</td>
+            <td>{item.marca2}</td>
+            <td>{item.precio2}</td>
+            <td>{item.producto3}</td>
+            <td>{item.marca3}</td>
+            <td>{item.precio3}</td>
+            <td>{item.provincia}</td>
+            <td>{item.localidad}</td>
+            <td>{item.direccion}</td>
         </tr>
     ))
+
+
+    
 
 
 
     return (
         <div className='container-fluid'>
             <div className=''>
+
                 <div className='ms-4 mt-3'>
                     <Link to="/adminProducts">
                         Ir a Productos
                     </Link>
                 </div>
                 <div className='ms-4 mt-3'>
-                    <Link to="/adminShopping">
-                        Ir a Ventas
+                    <Link to="/adminUsers">
+                        Ir a Usuarios
                     </Link>
                 </div>
 
@@ -113,14 +114,24 @@ function AdminUsers() {
                         <th>#</th>
                         <th><div>Nombre</div></th>
                         <th>Apellido</th>
-                        <th>Edad</th>
-                        <th>Email</th>
-                        <th>Admin</th>
-                        <th>Acciones</th>
+                        <th>DNI</th>
+                        <th>Total Compra</th>
+                        <th>Producto</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Producto</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Producto</th>
+                        <th>Marca</th>
+                        <th>Precio</th>
+                        <th>Provincia</th>
+                        <th>Localidad</th>
+                        <th>Direccion</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {mapUser}
+                    {mapShopping}
                 </tbody>
             </Table >
 
@@ -128,4 +139,4 @@ function AdminUsers() {
     )
 }
 
-export default AdminUsers;
+export default AdminShopping;
