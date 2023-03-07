@@ -24,6 +24,7 @@ const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cart,
+        setCart,
         addItem,
         deleteItem,
         itemCount: cart.length,

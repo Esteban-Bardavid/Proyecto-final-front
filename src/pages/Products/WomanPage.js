@@ -17,6 +17,7 @@ import useProducts from '../../utils/useProducts';
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { Contrast } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 
 function WomanPage() {
@@ -86,6 +87,18 @@ function WomanPage() {
               </Form>
               
             </div>
+          </Row>
+          <Row className="publicidad">
+            <a href="https://rollingcode.co/"> <div className="div_publicidad">
+              <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
+            </div></a>
+            <Link><div className="div_publicidad">
+              <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
+            </div></Link>
+            <Link><div className="div_publicidad">
+              <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
+            </div></Link>
+            
           </Row>
         </Container>
 

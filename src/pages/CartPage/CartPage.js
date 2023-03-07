@@ -1,26 +1,15 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { CartContext } from "../../components/CartProvider/CartProvider";
-import { useCart } from "../../utils/useCart";
-import { Modal, Form, Button } from "react-bootstrap";
+import { Modal, Form, Button, Table } from "react-bootstrap";
 import axios from "axios";
+import './CartPage.css';
+import Swal from "sweetalert2";
 
-import './CartPage.css'
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-
-  faCartShopping,
-
-} from "@fortawesome/free-solid-svg-icons";
 
 export const CartPage = () => {
 
-  const { itemCount } = useContext(CartContext);
-
-
-  const { cart, deleteItem } = useContext(CartContext);
-
-
+  const { cart, setCart, deleteItem } = useContext(CartContext);
 
   const cartTotalSum = cart.reduce((acc, item) => acc + item.precio, 0);
   const cartItemCount = cart.length;
@@ -32,37 +21,253 @@ export const CartPage = () => {
   const token = localStorage.getItem("token");
   const product = JSON.parse(localStorage.getItem("cart")) || [];
   const headers = { "x-auth-token": token }
+  console.log(token)
+
+
+  const [user, setUser] = useState({});
+
+
+  useEffect(() => {
+    GetUser();
+  }, [])
+
+
+  async function GetUser() {
+    try {
+      const response = await axios.get('http://localhost:4000/api/auth', { headers });
+      console.log(response)
+      setUser(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Creo el Array compra:
+  let compra = [];
+
+  if (product !== []) {
+
+    for (let i = 0; i < product.length; i++) {
+
+      compra.push(
+
+        product[i].producto,
+        product[i].marca,
+        product[i].precio
+
+      )
+    }
+  }
+
+  // Creo el Objeto compra:
+  let objectCompra = { ...compra, total: cartTotalSum };
+
 
   async function cartMethod() {
     try {
-      for (let index = 0; index < product.length; index++) {
-        const response = await axios.put(`http://localhost:4000/api/user/product/${product[index]._id}`, {}, { headers })
-        console.log(response)
-        window.location.href="/"
-        
-      }
-      
+      const response = await axios.put(
+        `http://localhost:4000/api/user/${user._id}`,
+        { "product": objectCompra },
+        { headers }
+      )
+      console.log(response)
+      GetUser();
     } catch (error) {
       console.log(error)
-     
+      
     }
-    
   }
 
 
-  function guardar() {
-    cartMethod()
-    handleClose()
-}
+
+  function DetailsPay() {
+    cartMethod();
+    handleShow();
+  }
+
+
+  // REGISTRO DE VENTAS:
+
+  console.log(user.name)
+  console.log(user.lastname)
+
+
+  const initialForm = {
+    dni: "",
+    provincia: "",
+    localidad: "",
+    direccion: "",
+    tarjeta: "",
+    nroTarjeta: "",
+  }
+
+
+  const [form, setform] = useState(initialForm);
+
+
+  // Capturamos los inputs del formulario:
+  function OnChange(e) {
+    const { name, value } = e.target;
+    if (!objectCompra[3]) {
+      const response = {
+        name: user.name, lastname: user.lastname,
+        producto1: objectCompra[0], marca1: objectCompra[1], precio1: objectCompra[2],
+        total: objectCompra.total,
+        ...form, [name]: value
+      };
+      setform(response);
+
+    } else if (!objectCompra[6]) {
+      const response = {
+        name: user.name, lastname: user.lastname,
+        producto1: objectCompra[0], marca1: objectCompra[1], precio1: objectCompra[2],
+        producto2: objectCompra[3], marca2: objectCompra[4], precio2: objectCompra[5],
+        total: objectCompra.total,
+        ...form, [name]: value
+      };
+      setform(response);
+    } else {
+      const response = {
+        name: user.name, lastname: user.lastname,
+        producto1: objectCompra[0], marca1: objectCompra[1], precio1: objectCompra[2],
+        producto2: objectCompra[3], marca2: objectCompra[4], precio2: objectCompra[5],
+        producto3: objectCompra[6], marca3: objectCompra[7], precio3: objectCompra[8],
+        total: objectCompra.total,
+        ...form, [name]: value
+      };
+      setform(response);
+    }
+  }
+
+
+  let url1 = 'http://localhost:4000/api'
+
+
+  // Funcion para ingresar Ventas en la Base de Datos:
+
+  async function RegistrarVenta() {
+    try {
+
+      if (form.dni === "" || form.provincia === "" || form.localidad === "" || form.direccion === "" || form.tarjeta === "" || form.nroTarjeta === "") {
+
+        Swal
+          .fire({
+            title: "Importante !!",
+            text: "Debes completar todos los campos requeridos",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+          })
+
+      } else {
+
+        const response = await axios.post(`${url1}/adminShopping`, form)
+
+        Swal
+          .fire({
+            title: "Listo !!",
+            text: "Tu compra se Registro correctamente !!",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+          })
+          .then(resultado => {
+            if (resultado.value) {
+              // Hicieron click en "Sí"
+              setCart([]);
+              window.location.href = '/'
+            } else {
+              // Dijeron que no
+            }
+          });
+
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  // Validaciones de Inputs (Formulario para ingresar ventas):
+
+  const [errors, setErrors] = useState({})
+
+
+  const validationsForm = (form) => {
+    let errors = {};
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
+    let regexComments = /^.{1,8}$/;
+    let regexComments1 = /^.{1,15}$/;
+    let regexComments2 = /^.{1,20}$/;
+    let regexComments3 = /^.{1,30}$/;
+    let regexComments4 = /^.{1,16}$/;
+
+
+    if (!form.dni.trim()) {
+      errors.dni = "'DNI' es requerido"
+    } else if (!regexComments.test(form.dni.trim())) {
+      errors.dni = "'DNI' solo debe tener hasta 8 numeros"
+      setform(initialForm)
+    }
+
+    else if (!form.provincia.trim()) {
+      errors.provincia = "'Provincia' es requerido"
+    } else if (!regexComments1.test(form.provincia.trim())) {
+      errors.provincia = "'Provincia' solo debe tener hasta 15 caracteres."
+      setform(initialForm)
+    }
+
+    else if (!form.localidad.trim()) {
+      errors.localidad = "'Localidad' es requerido"
+    } else if (!regexComments2.test(form.localidad.trim())) {
+      errors.localidad = "'Localidad' solo debe tener hasta 20 caracteres."
+      setform(initialForm)
+    }
+
+    else if (!form.direccion.trim()) {
+      errors.direccion = "'Direccion' es requerido"
+    } else if (!regexComments3.test(form.direccion.trim())) {
+      errors.direccion = "'Direccion' solo debe tener hasta 30 caracteres."
+      setform(initialForm)
+    }
+
+    else if (!form.tarjeta.trim()) {
+      errors.tarjeta = "'Tarjeta' es requerido"
+    } else if (!regexComments1.test(form.tarjeta.trim())) {
+      errors.tarjeta = "'Tarjeta' solo debe tener hasta 15 caracteres."
+      setform(initialForm)
+    }
+
+    else if (!form.nroTarjeta.trim()) {
+      errors.nroTarjeta = "'Nro de Tarjeta' es requerido"
+    } else if (!regexComments4.test(form.nroTarjeta.trim())) {
+      errors.nroTarjeta = "'Nro de Tarjeta' solo debe tener hasta 16 numeros"
+      setform(initialForm)
+    }
+
+
+
+    return errors;
+  }
+
+  const handleBlur = (e) => {
+    OnChange(e);
+    setErrors(validationsForm(form));
+  };
+
+
+  let styles = {
+    fontWeight: "bold",
+    color: "#dc3545"
+  }
+
+
   return (
-
-
 
     <>
       <div className="container_padre">
-
-
-
         <div className="container_carrito ">
           <div>
             <h1>TU CARRITO</h1>
@@ -77,7 +282,6 @@ export const CartPage = () => {
           {cartItemCount === 0 ?
             <p className="cartVacio">Tu carrito esta vacio</p> :
             (
-
               <div className="card_carrito">
                 {cart.map((item) => {
                   return (
@@ -92,7 +296,6 @@ export const CartPage = () => {
 
                         </h6>
                         <select>
-
                           <option>
                             1
                           </option>
@@ -106,17 +309,8 @@ export const CartPage = () => {
                     </div>
                   );
                 })}
-
               </div>
-
             )}
-
-
-
-
-
-
-
         </div>
 
         <div className="container_pedido">
@@ -142,42 +336,236 @@ export const CartPage = () => {
 
           </div>
           <div className="container_pagar" >
-            <button onClick={handleShow}>Ir a pagar </button>
-            <Modal show={show} onHide={handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <Form>
-                  <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
 
-                  </Form.Group>
+
+            <button onClick={DetailsPay}>Ir a pagar </button>
+
+
+
+            {/* MODAL DE FINALIZACION DE VENTA */}
+
+            <Modal show={show} onHide={handleClose}>
+
+              <Modal.Body>
+                <h4>Finaliza tu compra:</h4>
+                <Form>
+                  <section className="d-flex mb-2">
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Nombre</Form.Label>
+                      <Form.Control
+                        name="name"
+                        type="text"
+                        value={user.name}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" me-2 w-50" controlId="formBasicEmail">
+                      <Form.Label>Apellido</Form.Label>
+                      <Form.Control
+                        name="lastname"
+                        type="text"
+                        value={user.lastname}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>DNI</Form.Label>
+                      <Form.Control
+                        name="dni"
+                        type="number"
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                        placeholder="20220320"
+                      />
+                      {errors.dni && <p style={styles}>{errors.dni}</p>}
+                    </Form.Group>
+                  </section>
+
+                  <section className="d-flex mb-2">
+                    <Form.Group className=" me-2 w-50" controlId="formBasicEmail">
+                      <Form.Label>Producto</Form.Label>
+                      <Form.Control
+                        name="producto1"
+                        type="text"
+                        value={objectCompra[0]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Marca</Form.Label>
+                      <Form.Control
+                        name="marca1"
+                        type="text"
+                        value={objectCompra[1]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" w-25" controlId="formBasicEmail">
+                      <Form.Label>Precio</Form.Label>
+                      <Form.Control
+                        name="precio1"
+                        type="number"
+                        value={objectCompra[2]}
+                        disabled
+                      />
+                    </Form.Group>
+                  </section>
+
+                  <section className="d-flex mb-2">
+                    <Form.Group className=" me-2 w-50" controlId="formBasicEmail">
+                      <Form.Control
+                        name="producto2"
+                        type="text"
+                        value={objectCompra[3]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Control
+                        name="marca2"
+                        type="text"
+                        value={objectCompra[4]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" w-25" controlId="formBasicEmail">
+                      <Form.Control
+                        name="precio2"
+                        type="number"
+                        value={objectCompra[5]}
+                        disabled
+                      />
+                    </Form.Group>
+                  </section>
+
+                  <section className="d-flex mb-2">
+                    <Form.Group className=" me-2 w-50" controlId="formBasicEmail">
+                      <Form.Control
+                        name="producto3"
+                        type="text"
+                        value={objectCompra[6]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Control
+                        name="marca3"
+                        type="text"
+                        value={objectCompra[7]}
+                        disabled
+                      />
+                    </Form.Group>
+
+                    <Form.Group className=" w-25" controlId="formBasicEmail">
+                      <Form.Control
+                        name="precio3"
+                        type="number"
+                        value={objectCompra[8]}
+                        disabled
+                      />
+                    </Form.Group>
+                  </section>
+
+                  <h6>Datos de Envio:</h6>
+
+                  <section className="d-flex mb-2">
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Provincia</Form.Label>
+                      <Form.Control
+                        name="provincia"
+                        type="text"
+                        placeholder='Tucuman'
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.provincia && <p style={styles}>{errors.provincia}</p>}
+                    </Form.Group>
+
+
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Localidad</Form.Label>
+                      <Form.Control
+                        name="localidad"
+                        type="text"
+                        placeholder='Capital'
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.localidad && <p style={styles}>{errors.localidad}</p>}
+                    </Form.Group>
+
+                    <Form.Group className=" w-50" controlId="formBasicEmail">
+                      <Form.Label>Direccion</Form.Label>
+                      <Form.Control
+                        name="direccion"
+                        type="text"
+                        placeholder='Calle Junin 123 - Dpto 2A'
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.direccion && <p style={styles}>{errors.direccion}</p>}
+                    </Form.Group>
+                  </section>
+
+                  <h6>Datos de Pago:</h6>
+
+                  <section className="d-flex">
+                    <Form.Group className="me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Total Compra</Form.Label>
+                      <Form.Control
+                        name="total"
+                        type="number"
+                        value={objectCompra.total}
+                        disabled
+                      />
+                    </Form.Group>
+                    <Form.Group className=" me-2 w-25" controlId="formBasicEmail">
+                      <Form.Label>Tarjeta</Form.Label>
+                      <Form.Control
+                        name="tarjeta"
+                        type="text"
+                        placeholder='Visa'
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.tarjeta && <p style={styles}>{errors.tarjeta}</p>}
+                    </Form.Group>
+
+                    <Form.Group className="w-50" controlId="formBasicEmail">
+                      <Form.Label>Nro de Tarjeta</Form.Label>
+                      <Form.Control
+                        maxLength='16'
+                        name="nroTarjeta"
+                        type="number"
+                        placeholder='Introduce tus 16 numeros'
+                        onChange={OnChange}
+                        onBlur={handleBlur}
+                      />
+                      {errors.nroTarjeta && <p style={styles}>{errors.nroTarjeta}</p>}
+                    </Form.Group>
+                  </section>
 
                 </Form>
 
+                <section className="d-flex mt-2">
+                  <Button variant="secondary" onClick={handleClose} className="mt-2 me-2 w-50">
+                    Cancelar
+                  </Button>
+                  <Button variant="primary" className="mt-2 w-50" onClick={RegistrarVenta}>
+                    Comprar
+                  </Button>
+                </section>
 
               </Modal.Body>
-              <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                  Close
-                </Button>
-                <Button variant="primary" onClick={guardar}>
-                  Save Changes
-                </Button>
-              </Modal.Footer>
+
             </Modal>
-
-
-
-
-
-
-
-
-
-
 
           </div>
         </div>

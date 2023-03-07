@@ -1,156 +1,71 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import swal from 'sweetalert';
-
-const initialUserForm = {
-    name: "",
-    lastname: "",
-    age: "",
-    email: "",
-    admin: "",
-    password:"",
-    product: {},
-}
 
 
 function UseAdminUsers() {
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
-    const [showUp, setShowUp] = useState(false);
-    const handleCloseUp = () => setShowUp(false);
-    const handleShowUp = () => setShowUp(true);
-
-    const [formUser, setformUser] = useState(initialUserForm);
-    const [errors, setErrors] = useState({});
-
 
     var url = 'http://localhost:4000/api'
 
 
-    // Capturamos los inputs del formulario:
-    function OnChangeUsers(e) {
-        const { name, value } = e.target;
-        const response = { ...formUser, [name]: value };
-        setformUser(response);
-        console.log(formUser);
-    }
-
-
-    // Validaciones de Inputs:
-    const validationsForm = (formUser) => {
-        let errors = {};
-        let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-        let regexComments = /^.{1,20}$/;
-
-        if (!formUser.name.trim()) {
-            errors.name = "'Nombre' es requerido"
-        } else if (!regexComments.test(formUser.name.trim())) {
-            errors.name = "'Nombre' solo debe tener hasta 20 caracteres"
-            setformUser(initialUserForm)
-        }
-
-        else if (!formUser.age.trim()) {
-            errors.age = "'Edad' es requerido"
-        }
-
-        else if (!formUser.lastname.trim()) {
-            errors.lastname = "'Apellido' es requerido"
-        } else if (!regexComments.test(formUser.lastname.trim())) {
-            errors.lastname = "'Apellido' solo debe tener hasta 20 caracteres"
-            setformUser(initialUserForm)
-        }
-
-        else if (!formUser.email.trim()) {
-            errors.email = "'email' es requerido"
-        } else if (!regexComments.test(formUser.email.trim())) {
-            errors.email = "'email' solo debe tener hasta 30 caracteres"
-            setformUser(initialUserForm)
-        }
-        else if (!formUser.password.trim()) {
-            errors.password
-             = "'contraseña' es requerido"
-        } else if (!regexComments.test(formUser.password.trim())) {
-            errors.password = "'contraseña' solo debe tener hasta 20 caracteres"
-            setformUser(initialUserForm)
-        }
-
-
-        return errors;
-    }
-
-    const handleBlur = (e) => {
-        OnChangeUsers(e);
-        setErrors(validationsForm(formUser));
-    };
-
-    
-    // Funcion para mostrar usuarios en tabla:
-    const [users, setusers] = useState([]);
+    // Funcion para mostrar productos en tabla:
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
-        GetUsers()
+        GetUser()
     }, []);
 
-    async function GetUsers() {
-        let getUsers = await axios.get(`${url}/user`);
-        setusers(getUsers.data);
+    async function GetUser() {
+        let getUser = await axios.get(`${url}/user`);
+        setUser(getUser.data);
     }
 
 
-    // Funcion para Eliminar usuarios en tabla:
-    async function DeleteUsers(id) {
-        let deleteUsers = await axios.delete(`${url}/user/${id}`)
-        console.log(id)
-        console.log(deleteUsers.data)
+    // Funcion para Eliminar productos en tabla:
+    async function DeleteUser(id) {
+        let admin = user.find(user => user.email === "esteban@gmail.com")
+        if ( id !== admin._id) {
+        let deleteUser= await axios.delete(`${url}/user/${id}`)
         window.location.reload();
+    } else {
+        Swal
+        .fire({
+            title: "Este Usuario No se puede Eliminar !!",
+            icon: 'warning',
+            //showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            //cancelButtonText: "Cancelar",
+        })
     }
+}
 
-    // Funcion para Actualizar usuarios en tabla:
-    const [update, setupdate] = useState({})
 
-    function OnChangeUpdate(e) {
-        const { name, value } = e.target;
-        const response = { ...update, [name]: value };
-        setupdate(response);
-        console.log(response);
-    }
-
-    async function PutUsers(id) {
-        try {
-            const { data } = await axios.put(`${url}/user/${id}`, update)
-            console.log(data);
-            setShowUp(false);
-        } catch (error) {
-            alert('No se pudo.');
-            console.error(error);
-        }
-        window.location.reload();
+    function consultAndDeleteUser (id) {
+        Swal
+        .fire({
+            title: "Eliminar Usuario !!",
+            text: "Seguro desea eliminar a este Usuario?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "Aceptar",
+            cancelButtonText: "Cancelar",
+        })
+        .then(resultado => {
+            if (resultado.value) {
+                // Hicieron click en "Sí"
+                DeleteUser (id);
+            } else {
+                // Dijeron que no
+            }
+        });
     }
 
 
 
     return ({
-        show,
-        setShow,
-        handleClose,
-        handleShow,
-        showUp,
-        setShowUp,
-        handleCloseUp,
-        handleShowUp,
-        OnChangeUsers,
-        GetUsers,
-        DeleteUsers,
-        OnChangeUpdate,
-        PutUsers,
-        users,
+        user,
         url,
-        handleBlur,
-        formUser,
-        errors
+        consultAndDeleteUser,
     })
 }
 

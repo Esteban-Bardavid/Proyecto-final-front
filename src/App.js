@@ -16,6 +16,8 @@ import { Navbar } from 'react-bootstrap';
 import AdminProducts from './pages/AdminProducts/AdminProductsPage';
 import CartProvider from "./components/CartProvider/CartProvider";
 import AdminUsers from './pages/AdminUsers/AdminUsersPage';
+import AdminShoppingCart from './pages/AdminShopping/AdminShopping';
+
 
 function App() {
 
@@ -24,20 +26,20 @@ function App() {
   return (
     <CartProvider> 
      <BrowserRouter >
-      
+      <NavBarComponent />
       <Routes>
-    
-        <Route path='/' element={<div><NavBarComponent /> <HomePage /></div>}></Route>
-        <Route path='/login' element={<div><LoginPage /></div>}></Route>
-        <Route path='/register' element={<div><NavBarComponent /><RegisterPage /></div>}></Route>
-        <Route path='/*' element={<div><NavBarComponent /><ErrorPage /></div>}></Route>
-        <Route path='/womanpage' element={<div><NavBarComponent /><WomanPage /></div>}></Route>
-        <Route path='/manpage' element={<div><NavBarComponent /><ManPage /></div>}></Route>
-        <Route path='/adminProducts' element={<div><NavBarComponent /><AdminProducts /></div>}></Route>
-        <Route path='/adminUsers' element={<div><NavBarComponent /><AdminUsers /></div>}></Route>
-        <Route path='/infopage' element={<div><NavBarComponent /><InfoPage /></div>}></Route>
-        <Route path='/cartpage' element={<div><NavBarComponent /><CartPage /></div>}></Route>
-
+        
+        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
+        <Route path='/*' element={<ErrorPage />}></Route>
+        <Route path='/womanpage' element={<WomanPage />}></Route>
+        <Route path='/manpage' element={<ManPage />}></Route>
+        <Route path='/adminProducts' element={<AdminProducts />}></Route>
+        <Route path='/infopage' element={<InfoPage />}></Route>
+        <Route path='/cartpage' element={<CartPage />}></Route>
+        <Route path='/adminUsers' element={<AdminUsers />}></Route>
+        <Route path='/adminShopping' element={<AdminShoppingCart />}></Route>
       </Routes>
       <Footer />
     </BrowserRouter>
