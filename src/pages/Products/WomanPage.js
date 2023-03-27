@@ -92,13 +92,12 @@ function WomanPage() {
             <a href="https://rollingcode.co/"> <div className="div_publicidad">
               <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
             </div></a>
-            <Link><div className="div_publicidad">
+            <a href="https://rollingcode.co/"> <div className="div_publicidad">
               <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
-            </div></Link>
-            <Link><div className="div_publicidad">
+            </div></a>
+            <a href="https://rollingcode.co/"> <div className="div_publicidad">
               <img src="https://th.bing.com/th/id/R.85b5f64c23f4e0a9562a828c1501c864?rik=XX8b0wJziJlKYg&pid=ImgRaw&r=0"/>
-            </div></Link>
-            
+            </div></a>
           </Row>
         </Container>
 
