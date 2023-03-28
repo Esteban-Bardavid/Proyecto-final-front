@@ -9,7 +9,7 @@ import swal from "sweetalert";
 function RegisterPage() {
   const [form, setForm] = useState({});
 
-  var url = "http://localhost:4000/api";
+  var url = "https://backendproject-4ds1.onrender.com/api";
 
   function OnChange(e) {
     const { name, value, imagen } = e.target;

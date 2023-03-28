@@ -55,7 +55,7 @@ function LoginPage() {
     async function LoginPost() {
 
         try {
-            let url = `http://localhost:4000/api/auth`
+            let url = `https://backendproject-4ds1.onrender.com/api/auth`
             const { data } = await axios.post(url, form)
             console.log(data);
             
@@ -116,7 +116,7 @@ function LoginPage() {
 
     //const [form, setform] = useState({});
 
-    let url1 = 'http://localhost:4000/api'
+    let url1 = 'https://backendproject-4ds1.onrender.com/api'
 
     function OnChange(e) {
         const { name, value } = e.target;

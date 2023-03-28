@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 
 function UseAdminUsers() {
 
-    var url = 'http://localhost:4000/api'
+    var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
     // Funcion para mostrar productos en tabla:

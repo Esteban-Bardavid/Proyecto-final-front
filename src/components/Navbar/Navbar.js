@@ -84,7 +84,7 @@ function NavBarComponent() {
 
   async function GetUsers() {
 
-    const response = await axios.get(`http://localhost:4000/api/user`)
+    const response = await axios.get(`https://backendproject-4ds1.onrender.com/api/user`)
     //console.log(response.data)
     setUser(response.data)
   }
@@ -130,7 +130,7 @@ function NavBarComponent() {
 
     console.log(form.email)
     try {
-      let url = `http://localhost:4000/api/auth`
+      let url = `https://backendproject-4ds1.onrender.com/api/auth`
       const { data } = await axios.post(url, form)
       console.log(data);
 
@@ -211,7 +211,7 @@ function NavBarComponent() {
   const [formReg, setFormReg] = useState(initialFormReg);
   const [errorsReg, setErrorsReg] = useState({});
 
-  let url1 = 'http://localhost:4000/api'
+  let url1 = 'https://backendproject-4ds1.onrender.com/api'
 
 
   let styles = {

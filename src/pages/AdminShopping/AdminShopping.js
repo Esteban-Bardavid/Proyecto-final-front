@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 function AdminShoppingCart () {
 
 
-    var url = 'http://localhost:4000/api'
+    var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
     // Funcion para mostrar Compras en tabla:

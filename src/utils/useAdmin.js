@@ -20,7 +20,7 @@ function UseAdmin() {
    
 
   
-    const url = "http://localhost:4000/api";
+    const url = "https://backendproject-4ds1.onrender.com/api";
     const token = localStorage.getItem("token") ?? "";
     const headers = { "x-auth-token": token }
 

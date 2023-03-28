@@ -9,7 +9,7 @@ function UseHome() {
   const [post, setpost] = useState([]);
   const [body, setbody] = useState([]);
 
-  const url = "http://localhost:4000/api";
+  const url = "https://backendproject-4ds1.onrender.com/api";
 
   useEffect(() => {
     GetPost();

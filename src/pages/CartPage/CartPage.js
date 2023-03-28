@@ -34,7 +34,7 @@ export const CartPage = () => {
 
   async function GetUser() {
     try {
-      const response = await axios.get('http://localhost:4000/api/auth', { headers });
+      const response = await axios.get('https://backendproject-4ds1.onrender.com/api/auth', { headers });
       console.log(response)
       setUser(response.data);
     } catch (error) {
@@ -66,7 +66,7 @@ export const CartPage = () => {
   async function cartMethod() {
     try {
       const response = await axios.put(
-        `http://localhost:4000/api/user/${user._id}`,
+        `https://backendproject-4ds1.onrender.com/api/user/${user._id}`,
         { "product": objectCompra },
         { headers }
       )
@@ -140,7 +140,7 @@ export const CartPage = () => {
   }
 
 
-  let url1 = 'http://localhost:4000/api'
+  let url1 = 'https://backendproject-4ds1.onrender.com/api'
 
 
   // Funcion para ingresar Ventas en la Base de Datos:

@@ -35,7 +35,7 @@ function UseAdminProducts() {
     const [errors, setErrors] = useState({});
 
 
-    var url = 'http://localhost:4000/api'
+    var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
     // Capturamos los inputs del formulario:
