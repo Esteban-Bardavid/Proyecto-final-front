@@ -271,10 +271,8 @@ function UseAdminProducts() {
         })
         .then(resultado => {
             if (resultado.value) {
-                // Hicieron click en "Sí"
                 DeleteProducts (id);
-            } else {
-                // Dijeron que no
+            } else { 
             }
         });
     }

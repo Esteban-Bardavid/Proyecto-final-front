@@ -19,7 +19,7 @@ const Buscador = () => {
     const [resultadosBusqueda, setResultadosBusqueda] = useState([])
     const { url } = UseAdminProducts();
 
-    // const { handleFilter } = useProducts()
+   
 
 
 
@@ -60,9 +60,7 @@ const Buscador = () => {
         filter(buscar)
 
     }, [buscar, productos])
-    // console.log(resultadosBusqueda !== [])
-    // console.log(resultadosBusqueda.length == 0)
-
+   
     return (
 
         <div className="container-search d-flex dropdown ">
