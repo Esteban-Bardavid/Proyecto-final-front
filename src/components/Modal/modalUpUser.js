@@ -32,7 +32,6 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
     }
 
 
-    // Funcion para Actualizar Usuarios en tabla:
     const [update, setupdate] = useState({})
 
 
@@ -56,16 +55,15 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
                         title: "No se pudo Actualizar !!",
                         text: "Debes completar todos los campos.",
                         icon: 'warning',
-                        //showCancelButton: true,
+                        
                         confirmButtonText: "Aceptar",
-                        //cancelButtonText: "Cancelar",
                     })
                     .then(resultado => {
                         if (resultado.value) {
-                            // Hicieron click en "Sí"
+                        
                             setShowUp(false);
                         } else {
-                            // Dijeron que no
+                            
                         }
                     });
             }
@@ -82,16 +80,13 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
                     .fire({
                         title: "Este Usuario No se puede Modificar !!",
                         icon: 'warning',
-                        //showCancelButton: true,
                         confirmButtonText: "Aceptar",
-                        //cancelButtonText: "Cancelar",
+                        
                     })
                     .then(resultado => {
                         if (resultado.value) {
-                            // Hicieron click en "Sí"
                             setShowUp(false);
                         } else {
-                            // Dijeron que no
                         }
                     });
             }
@@ -103,7 +98,6 @@ function ModalUpUsers({ name, lastname, age, email, admin, id }) {
 
 
 
-    // Validaciones de Inputs (Formulario para Actualizar Usuario):
     const validationsFormUp = (update) => {
         let errorsUp = {};
         let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;

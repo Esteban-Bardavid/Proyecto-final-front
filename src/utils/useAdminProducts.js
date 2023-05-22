@@ -38,7 +38,6 @@ function UseAdminProducts() {
     var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
-    // Capturamos los inputs del formulario:
     function OnChangeProducts(e) {
         const { name, value } = e.target;
         const response = { ...form, [name]: value };
@@ -47,7 +46,6 @@ function UseAdminProducts() {
     }
 
 
-    // Validaciones de Inputs (Formulario para crear o ingresar nuevo Producto):
     const validationsForm = (form) => {
         let errors = {};
         let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -173,7 +171,6 @@ function UseAdminProducts() {
         setErrors(validationsForm(form));
     };
 
-    // Funcion para crear Producto en la Base de Datos:
     async function CreateProducts() {
         try {
             const existentProduct = products.find((product) => product.producto === form.producto && product.sex === form.sex && product && product.marca === form.marca && product.color === form.color && product.categoria === form.categoria)
@@ -185,9 +182,9 @@ function UseAdminProducts() {
                         title: "Importante !!",
                         text: "Debes completar todos los campos requeridos",
                         icon: 'warning',
-                        //showCancelButton: true,
+                        
                         confirmButtonText: "Aceptar",
-                        //cancelButtonText: "Cancelar",
+                        
                     })
 
             } else if (!existentProduct) {
@@ -200,16 +197,14 @@ function UseAdminProducts() {
                         title: "Listo !!",
                         text: "El producto fue ingresado correctamente",
                         icon: 'warning',
-                        //showCancelButton: true,
                         confirmButtonText: "Aceptar",
-                        //cancelButtonText: "Cancelar",
                     })
                     .then(resultado => {
                         if (resultado.value) {
-                            // Hicieron click en "Sí"
+                            
                             window.location.reload();
                         } else {
-                            // Dijeron que no
+                            
                         }
                     });
 
@@ -220,16 +215,16 @@ function UseAdminProducts() {
                         title: "Importante !!",
                         text: "El producto ya existe solo debes actualizarlo.",
                         icon: 'warning',
-                        //showCancelButton: true,
+                        
                         confirmButtonText: "Aceptar",
-                        //cancelButtonText: "Cancelar",
+                        
                     })
                     .then(resultado => {
                         if (resultado.value) {
-                            // Hicieron click en "Sí"
+                            
                             window.location.reload();
                         } else {
-                            // Dijeron que no
+                        
                         }
                     });
             }
@@ -238,7 +233,6 @@ function UseAdminProducts() {
         }
     }
 
-    // Funcion para mostrar productos en tabla:
     const [products, setproducts] = useState([]);
 
     useEffect(() => {
@@ -251,11 +245,10 @@ function UseAdminProducts() {
     }
 
 
-    // Funcion para Eliminar productos en tabla:
+    
     async function DeleteProducts(id) {
         let deleteProducts = await axios.delete(`${url}/adminProducts/${id}`)
-        console.log(id)
-        console.log(deleteProducts.data)
+        
         window.location.reload();
     }
 
@@ -293,7 +286,7 @@ function UseAdminProducts() {
         OnChangeProducts,
         CreateProducts,
         GetProducts,
-        //DeleteProducts,
+        
         products,
         url,
         productsWoman,

@@ -91,7 +91,6 @@ function InfoPage() {
             <div className="preguntas">
 
 
-                {/* ----------------------metedos de pago */}
                 <div className="contenedor-preguntas" data-categoria="metodos-pago">
                     <div className="contenedor-pregunta">
                         <p className="pregunta">Que metodos de pago disponible tiene? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 24 24"><path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" /></svg></p>
@@ -102,7 +101,6 @@ function InfoPage() {
                         <p className="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis adipisci, dicta aspernatur iure labore maxime quasi distinctio odit assumenda quis?</p>
                     </div>
                 </div>
-                {/* ------------------------preguntas entregas */}
                 <div className="contenedor-preguntas" data-categoria="entregas">
                     <div className="contenedor-pregunta">
                         <p className="pregunta">Tienen entregas a domicilio? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 24 24"><path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" /></svg></p>
@@ -113,7 +111,6 @@ function InfoPage() {
                         <p className="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis adipisci, dicta aspernatur iure labore maxime quasi distinctio odit assumenda quis?</p>
                     </div>
                 </div>
-                {/* ------------------------preguntas seguridad */}
                 <div className="contenedor-preguntas" data-categoria="seguridad">
                     <div className="contenedor-pregunta">
                         <p className="pregunta">Como puedo saber si son confiables? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 24 24"><path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" /></svg></p>
@@ -124,7 +121,6 @@ function InfoPage() {
                         <p className="respuesta">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis adipisci, dicta aspernatur iure labore maxime quasi distinctio odit assumenda quis?</p>
                     </div>
                 </div>
-                {/* ------------------------preguntas cuenta */}
                 <div className="contenedor-preguntas" data-categoria="cuenta">
                     <div className="contenedor-pregunta">
                         <p className="pregunta">como puedo acceder a mis pedidos? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="24" viewBox="0 0 24 24"><path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z" /></svg></p>

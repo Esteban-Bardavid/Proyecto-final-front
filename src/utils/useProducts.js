@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { useEffect } from "react";
-//import products from "../assets/data/ProductsData";
 import UseAdminProducts from '../utils/useAdminProducts';
 import axios from "axios";
 
 
 function useProducts() {
 
-// Enlace con Pagina adminProducts:
   const { url } = UseAdminProducts();
   const [products, setproducts] = useState([]);
 
@@ -36,14 +34,12 @@ function useProducts() {
   const productsMan = products.filter((item, i) => (item.publicado > 0 && item.sex === 'Hombre'))
   const productsWoman = products.filter((item, i) => (item.publicado > 0 && item.sex === 'Mujer'))
 
-//const productos = products; (se reemplaza => productos, por => productsWoman)
   const [Filter, SetFilter] = useState([]);
   const [Search, SetSearch] = useState('');
 
   const [FilterMan, SetFilterMan] = useState([]);
 
 
-// Aplico los filtros a productsWoman:
   const handleFilter = (e) => {
 
     const filterValue = e.target.value;
@@ -131,7 +127,6 @@ function useProducts() {
     console.log(productsWoman)
   };
  
-// Aplico filtros a productsMan
 const handleFilterMan = (e) => {
   const filterValue = e.target.value;
   SetSearch(filterValue);
@@ -220,7 +215,6 @@ const handleFilterMan = (e) => {
 
   return {
     handleFilter,
-    //productos,
     productsMan,
     productsWoman,
     Filter,

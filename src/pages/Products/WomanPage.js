@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-//import products from "../../assets/data/ProductsData";
 import ProductsList from "../../components/ProductCard/ProductsList";
 import CartModal from "../../components/CartModal/CartModal";
 import {

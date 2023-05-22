@@ -20,7 +20,6 @@ function RegisterPage() {
     setForm(response);
   }
 
-  //↓Es async ya que hago una llamada al servidor
   async function Register() {
     try {
 

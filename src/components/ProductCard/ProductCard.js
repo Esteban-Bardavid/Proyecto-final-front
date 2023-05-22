@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 
 import  "./ProductCard.css";
 import { Link } from "react-router-dom";
-//import products from "../../assets/data/ProductsData";
 
 import useProducts from "../../utils/useProducts";
 import { map } from "doom/lib/collection";
@@ -42,7 +41,7 @@ function ProductCard({ item }) {
                     <Card.Title className=" product__info">
 
                         <i className="add__cart"><ModalProduct item={item}/></i>
-                        <i className="add__fav" onClick={favIn} ><FaHeart /></i>
+                        
 
                         <Card.Text className="product__card-bottom d-flex align-items-center justify-content-between">
                             <h3 className="product__name">

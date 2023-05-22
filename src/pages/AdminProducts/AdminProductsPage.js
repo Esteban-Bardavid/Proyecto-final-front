@@ -25,7 +25,7 @@ function AdminProducts() {
         show,
         url,
         CreateProducts,
-        //DeleteProducts,
+        
         consultAndDeleteProduct
     } = UseAdminProducts();
 
@@ -35,7 +35,7 @@ function AdminProducts() {
         handleClose();
     }
 
-    // Funcion para mostrar productos en tabla:
+    
     const [products, setproducts] = useState([]);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ function AdminProducts() {
         setBuscador(getProducts.data);
     }
 
-    // Buscador:
+    
     const [busqueda, setBusqueda] = useState('')
     const [buscador, setBuscador] = useState([])
 

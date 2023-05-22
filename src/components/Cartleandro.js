@@ -8,7 +8,6 @@
             <div key={item.id} class="cart__product">
                 <div>
                     <h2>{item.producto} </h2>
-                <span><i className="add__fav" onClick={favIn} ><FaHeart /></i></span>
                 </div>
                 <div>
                     <img src={item.imgUrl} alt='' />

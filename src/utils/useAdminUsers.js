@@ -8,7 +8,6 @@ function UseAdminUsers() {
     var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
-    // Funcion para mostrar productos en tabla:
     const [user, setUser] = useState([]);
 
     useEffect(() => {
@@ -21,7 +20,6 @@ function UseAdminUsers() {
     }
 
 
-    // Funcion para Eliminar productos en tabla:
     async function DeleteUser(id) {
         let admin = user.find(user => user.email === "esteban@gmail.com")
         if ( id !== admin._id) {
@@ -32,9 +30,8 @@ function UseAdminUsers() {
         .fire({
             title: "Este Usuario No se puede Eliminar !!",
             icon: 'warning',
-            //showCancelButton: true,
+            
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
         })
     }
 }
@@ -52,10 +49,10 @@ function UseAdminUsers() {
         })
         .then(resultado => {
             if (resultado.value) {
-                // Hicieron click en "Sí"
+                
                 DeleteUser (id);
             } else {
-                // Dijeron que no
+                
             }
         });
     }

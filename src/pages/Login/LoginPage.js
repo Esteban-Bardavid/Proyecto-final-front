@@ -35,7 +35,6 @@ function LoginPage() {
         const response = { ...form, [name]: value }
         setform(response)
 
-        //setvalidate(false)
     }
 
 
@@ -98,23 +97,20 @@ function LoginPage() {
                 if (resultado.value) {
                     window.location.reload();
                 } else {
-                    //nada
+                    
                 }
             })
-            //setvalidate(true)
-            //npm console.log(validate)
+           
 
         }
     }
 
 
-    // //Register:
     const [showReg, setShowReg] = useState(false);
 
     const handleCloseReg = () => setShowReg(false);
     const handleShowReg = () => setShowReg(true);
 
-    //const [form, setform] = useState({});
 
     let url1 = 'https://backendproject-4ds1.onrender.com/api'
 
@@ -136,7 +132,6 @@ function LoginPage() {
                 if (resultado.value) {
                     window.location.href = '/';
                 } else {
-                    //nada
                 }
             })
         } catch (error) {
@@ -147,7 +142,6 @@ function LoginPage() {
     return (
         <div>
 
-            {/* NAVBAR DE LOGIN */}
             <Navbar className="navbar1" id="navContainer" bg="orange" expand="lg">
                 <Container className="container-3" fluid p-5>
                     <Navbar.Brand className="logo-navbar" href="/"><img className="logo-img" src={logo} alt="LOGO" srcset="" /></Navbar.Brand>
@@ -167,7 +161,6 @@ function LoginPage() {
 
             </Navbar>
 
-            {/* Login */}
             <div className="loginForm d-flex justify-content-center m-5">
                 <Form className="col-lg-3 col-sm-6 bg-light px-5 py-4">
                     <h4 className="text-center">Ingresa para ver nuestros productos</h4>
@@ -175,9 +168,7 @@ function LoginPage() {
                     <Form.Group className="FGroupLoginEmail mb-3 p-2" controlId="formBasicEmail">
                         <Form.Label>Ingrese su email</Form.Label>
                         <Form.Control
-                            // id="emailLogin"
                             classname="border border-danger border-1"
-                            //    classname = {validate? "border border-danger" : ""}
                             name="email"
                             type="email"
                             placeholder="juan@gmail.com"
@@ -189,8 +180,6 @@ function LoginPage() {
                     <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
                         <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
                         <Form.Control
-                            // id="passwordLogin"
-                            //classname={validate ? " border border-danger" : ""}
                             name="password"
                             type="password"
                             placeholder="************"
@@ -222,7 +211,6 @@ function LoginPage() {
 
                 </Form>
             </div>
-             {/* MODAL REGISTER */}
            
 
              <Modal show={showReg} onHide={handleCloseReg}>

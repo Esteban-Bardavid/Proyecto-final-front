@@ -12,7 +12,6 @@ function AdminShoppingCart () {
     var url = 'https://backendproject-4ds1.onrender.com/api'
 
 
-    // Funcion para mostrar Compras en tabla:
     const [shopping, setShopping] = useState([]);
 
     useEffect(() => {
@@ -26,7 +25,6 @@ function AdminShoppingCart () {
     }
 
 
-    // Buscador:
     const [busqueda, setBusqueda] = useState('')
     const [buscador, setBuscador] = useState([])
 
@@ -100,7 +98,6 @@ function AdminShoppingCart () {
                 </div>
             </div>
 
-            {/* ----------------- Tabla ---------------- */}
 
             <Table striped bordered hover responsive className=''>
                 <thead>

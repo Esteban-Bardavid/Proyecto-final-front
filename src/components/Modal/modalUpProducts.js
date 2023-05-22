@@ -39,7 +39,6 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
     }
 
 
-    // Funcion para Actualizar productos en tabla:
     const [update, setupdate] = useState({})
 
 
@@ -66,10 +65,9 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
                     })
                     .then(resultado => {
                         if (resultado.value) {
-                            // Hicieron click en "Sí"
-                            //setShowUp(false);
+                           
                         } else {
-                            // Dijeron que no
+                            
                         }
                     });
             } else {
@@ -85,7 +83,6 @@ function ModalUpProducts({ producto, imagen, precio, marca, categoria, sex, id, 
     }
 
 
-    // Validaciones de Inputs (Formulario para Actualizar Producto):
     const validationsFormUp = (update) => {
         let errorsUp = {};
         let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;

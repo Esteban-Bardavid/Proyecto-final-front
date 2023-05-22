@@ -85,13 +85,11 @@ function NavBarComponent() {
   async function GetUsers() {
 
     const response = await axios.get(`https://backendproject-4ds1.onrender.com/api/user`)
-    //console.log(response.data)
+    
     setUser(response.data)
   }
-  //console.log(user)
 
 
-  // Validaciones de Inputs (Formulario - Login):
   const validationsForm = (form) => {
     let errors = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -185,7 +183,7 @@ function NavBarComponent() {
           if (resultado.value) {
             window.location.reload();
           } else {
-            //nada
+          
           }
         })
       }
@@ -194,7 +192,7 @@ function NavBarComponent() {
   }
 
 
-  // //Register:
+
   const [showReg, setShowReg] = useState(false);
 
   const handleCloseReg = () => setShowReg(false);
@@ -227,7 +225,6 @@ function NavBarComponent() {
   }
 
 
-  // Validaciones de Inputs (Formulario para crear o ingresar nuevo Usuario - Register):
   const validationsFormReg = (formReg) => {
     let errorsReg = {};
     let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -281,7 +278,6 @@ function NavBarComponent() {
   };
 
 
-  // Funcion para crear o ingresar Usuarios en la Base de Datos:
   async function Registrar() {
     try {
       const existentUser = user.find((user) => user.email === formReg.email)
@@ -293,9 +289,8 @@ function NavBarComponent() {
             title: "Importante !!",
             text: "Debes completar todos los campos requeridos",
             icon: 'warning',
-            //showCancelButton: true,
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
+            
           })
 
       } else if (!existentUser) {
@@ -308,16 +303,16 @@ function NavBarComponent() {
             title: "Listo !!",
             text: "Ingreso exitoso",
             icon: 'warning',
-            //showCancelButton: true,
+            
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
+            
           })
           .then(resultado => {
             if (resultado.value) {
-              // Hicieron click en "Sí"
+              
               window.location.reload();
             } else {
-              // Dijeron que no
+              
             }
           });
 
@@ -328,16 +323,13 @@ function NavBarComponent() {
             title: "Importante !!",
             text: "El Usuario ya existe.",
             icon: 'warning',
-            //showCancelButton: true,
+            
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
           })
           .then(resultado => {
             if (resultado.value) {
-              // Hicieron click en "Sí"
               window.location.reload();
             } else {
-              // Dijeron que no
             }
           });
       }
@@ -368,7 +360,7 @@ function NavBarComponent() {
           setCart([]);
           setCartOpen(false);
         } else {
-          //nada
+          
         }
       })
     }
@@ -381,7 +373,6 @@ function NavBarComponent() {
       <div className=" pre-navbar  ">
         <h2>3 <small>CUOTAS SIN INTERES </small><strong>-ENVIOS GRATIS</strong> <small>DESDE $20.000</small></h2>
 
-        {/* MODAL CONTACTO */}
 
         <div className="contact-navb">
           <Button className="button-nav" onClick={() => setLgShow(true)}>Contact Us</Button>
@@ -400,7 +391,7 @@ function NavBarComponent() {
         </div>
       </div>
 
-      {/* NAVBAR  */}
+      
       <Navbar className="navbar1" id="navContainer" bg="orange" expand="lg">
         <Container className="container-3" fluid p-5>
           <Navbar.Brand className="logo-navbar" href="/"><img className="logo-img" src={logo} alt="LOGO" srcset="" /></Navbar.Brand>
@@ -411,7 +402,6 @@ function NavBarComponent() {
               style={{ maxHeight: '100px' }}
               navbarScroll>
               <Link className="links-icons m-2 p-1" id="home" to="/"> <FontAwesomeIcon className="icon" color="black" fontSize={26} icon={faHouse} /> </Link>
-              <Link className="links-icons m-2 p-1" id="favs" to="/favoritos"> <FontAwesomeIcon className="icon" color="black" fontSize={26} icon={faStar} /> </Link>
               <Link className="links-icons m-2 p-1" id="carrito"  >
                 {" "}
                 <span className="itemcount">{itemCount}</span>
@@ -421,7 +411,6 @@ function NavBarComponent() {
                    
                   />
 
-                {/* <CartModal/> */}
                 {CartOpen && (
                   <div className="cart">
 
@@ -468,7 +457,6 @@ function NavBarComponent() {
               </Link>
 
 
-              {/* Modal Login */}
               <Modal
                 show={show}
                 onHide={handleClose}
@@ -488,9 +476,8 @@ function NavBarComponent() {
                         <Form.Group className="FGroupLoginEmail mb-1 p-2" controlId="formBasicEmail">
                           <Form.Label>Ingrese su email</Form.Label>
                           <Form.Control
-                            // id="emailLogin"
                             classname="border border-danger border-1"
-                            //    classname = {validate? "border border-danger" : ""}
+                            
                             name="email"
                             type="email"
                             placeholder="juan@gmail.com"
@@ -504,8 +491,6 @@ function NavBarComponent() {
                         <Form.Group className="FGroupLoginPassword  mb-3 p-2" controlId="formBasicPassword">
                           <Form.Label className="p-2">Ingrese su contraseña</Form.Label>
                           <Form.Control
-                            // id="passwordLogin"
-                            //classname={validate ? " border border-danger" : ""}
                             name="password"
                             type="password"
                             placeholder="************"
@@ -544,7 +529,7 @@ function NavBarComponent() {
               <Link className="links-icons m-2 p-1" id="favs" to="/InfoPage"> <FontAwesomeIcon color="black" fontSize={26} icon={faCircleInfo} />  </Link>
             </Nav>
 
-            {/* BUSCADOR  */}
+            
 
             <Buscador />
 
@@ -555,7 +540,6 @@ function NavBarComponent() {
       <SubNavbar />
 
 
-      {/* MODAL REGISTER */}
 
       <Modal show={showReg} onHide={handleCloseReg}>
         <Modal.Header closeButton>

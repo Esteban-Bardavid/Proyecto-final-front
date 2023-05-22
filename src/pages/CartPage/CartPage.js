@@ -35,14 +35,13 @@ export const CartPage = () => {
   async function GetUser() {
     try {
       const response = await axios.get('https://backendproject-4ds1.onrender.com/api/auth', { headers });
-      console.log(response)
       setUser(response.data);
     } catch (error) {
       console.error(error);
     }
   }
 
-  // Creo el Array compra:
+  
   let compra = [];
 
   if (product !== []) {
@@ -59,7 +58,6 @@ export const CartPage = () => {
     }
   }
 
-  // Creo el Objeto compra:
   let objectCompra = { ...compra, total: cartTotalSum };
 
 
@@ -70,10 +68,9 @@ export const CartPage = () => {
         { "product": objectCompra },
         { headers }
       )
-      console.log(response)
       GetUser();
     } catch (error) {
-      console.log(error)
+      console.eror(error)
       
     }
   }
@@ -86,7 +83,6 @@ export const CartPage = () => {
   }
 
 
-  // REGISTRO DE VENTAS:
 
   console.log(user.name)
   console.log(user.lastname)
@@ -105,7 +101,6 @@ export const CartPage = () => {
   const [form, setform] = useState(initialForm);
 
 
-  // Capturamos los inputs del formulario:
   function OnChange(e) {
     const { name, value } = e.target;
     if (!objectCompra[3]) {
@@ -143,7 +138,6 @@ export const CartPage = () => {
   let url1 = 'https://backendproject-4ds1.onrender.com/api'
 
 
-  // Funcion para ingresar Ventas en la Base de Datos:
 
   async function RegistrarVenta() {
     try {
@@ -155,9 +149,7 @@ export const CartPage = () => {
             title: "Importante !!",
             text: "Debes completar todos los campos requeridos",
             icon: 'warning',
-            //showCancelButton: true,
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
           })
 
       } else {
@@ -169,17 +161,13 @@ export const CartPage = () => {
             title: "Listo !!",
             text: "Tu compra se Registro correctamente !!",
             icon: 'warning',
-            //showCancelButton: true,
             confirmButtonText: "Aceptar",
-            //cancelButtonText: "Cancelar",
           })
           .then(resultado => {
             if (resultado.value) {
-              // Hicieron click en "Sí"
               setCart([]);
               window.location.href = '/'
             } else {
-              // Dijeron que no
             }
           });
 
@@ -190,7 +178,6 @@ export const CartPage = () => {
   }
 
 
-  // Validaciones de Inputs (Formulario para ingresar ventas):
 
   const [errors, setErrors] = useState({})
 
@@ -342,7 +329,6 @@ export const CartPage = () => {
 
 
 
-            {/* MODAL DE FINALIZACION DE VENTA */}
 
             <Modal show={show} onHide={handleClose}>
 
